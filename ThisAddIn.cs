@@ -11,13 +11,22 @@ using System.Web;
 using System.Net;
 using System.Xml;
 using Microsoft.Office.Interop.Word;
+using Microsoft.Office.Tools;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace languagetool_msword10_addin
 {
     public partial class ThisAddIn
     {
+        private readonly int maxSuggestions = 10;
+        private readonly String LTServer = "https://www.softcatala.org/languagetool/api/checkDocument";
         Word.Application application;
-
+        private TaskPaneControl taskPaneControl1;
+        private Microsoft.Office.Tools.CustomTaskPane taskPaneValue;
+        private List<int> buttonsIds = new List<int>();
+        
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             application = this.Application;
@@ -26,87 +35,152 @@ namespace languagetool_msword10_addin
 
             application.CustomizationContext = application.ActiveDocument;
 
-            //Office.CommandBar commandBar = application.CommandBars.Add("LTShortcutMenu", Microsoft.Office.Core.MsoBarPosition.msoBarPopup, flase, true);
-
+            taskPaneControl1 = new TaskPaneControl();
+            taskPaneValue = this.CustomTaskPanes.Add(
+                taskPaneControl1, "Revisió amb LanguageTool");
+            taskPaneValue.VisibleChanged +=
+                new EventHandler(taskPaneValue_VisibleChanged);
+            taskPaneValue.Visible = false;
+            taskPaneValue.Width = 300;
         }
+
+        private void taskPaneValue_VisibleChanged(object sender, System.EventArgs e)
+        {
+            Globals.Ribbons.Ribbon1.toggleButton1.Checked =
+                taskPaneValue.Visible;
+        }
+
+        public Microsoft.Office.Tools.CustomTaskPane TaskPane
+        {
+            get
+            {
+                return taskPaneValue;
+            }
+        }
+
+        public object Controls { get; private set; }
+        
 
         public void application_WindowBeforeRightClick(Word.Selection selection, ref bool Cancel)
         {
             if (selection != null && !String.IsNullOrEmpty(selection.Text))
             {
                 string selectionText = selection.Text;
-
                 Office.CommandBar commandBar = application.CommandBars["Text"];
+
+                foreach (int buttonId in buttonsIds)
+                {
+                    commandBar.FindControl(Type.Missing, buttonId, Type.Missing , false, false).Delete();
+                }
+                buttonsIds.Clear();
 
                 if (selection.Font.Underline == WdUnderline.wdUnderlineWavy)
                 {
-                    Office.CommandBarButton button = (Office.CommandBarButton)commandBar.Controls.Add(
-                        Office.MsoControlType.msoControlButton); //                   
-
-                    button.accName = "LanguageTool";
-                    button.Caption = "LanguageTool";
-
-                }
-                else
-                {
-                    try
+                    Regex regex = new Regex("\\[(.*)\\|(.*)\\]");
+                    Match match = regex.Match(findHiddenData(selection));
+                    if (match.Success)
                     {
-                        if (commandBar.Controls["LanguageTool"] != null)
+                        Office.CommandBarButton button1 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, "info_error", 1, true);
+                        button1.Tag = "LTMessage";
+                        button1.Caption = match.Groups[1].Value;
+                        button1.Enabled = false;
+                        button1.Picture = getImage();
+                        buttonsIds.Add(button1.Id);
+                        
+                        String[] suggestions = match.Groups[2].Value.Split('#');
+                        if (suggestions.Length > 0 && suggestions[0].Length > 0)
                         {
-                            commandBar.Controls["LanguageTool"].Delete();
+                            int i = 0;
+                            while (i<suggestions.Length && i< maxSuggestions) { 
+                                Office.CommandBarButton button2 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, suggestions[i], i+2, true);
+                                button2.Tag = "LTSuggestion" + i;
+                                button2.Caption = suggestions[i];
+                                buttonsIds.Add(button2.Id);
+                                button2.Click +=  new Office._CommandBarButtonEvents_ClickEventHandler(LTbutton_Click);
+                                i++;
+                            }
                         }
                     }
-                    catch
-                    {
-
-                    }
-
                 }
 
             }
         }
 
-        // Handles the event when a button on the new toolbar is clicked. 
-        private void ButtonClick(Office.CommandBarButton ctrl, ref bool cancel)
+        public void LTbutton_Click(Office.CommandBarButton ctrl, ref bool cancel)
         {
-            System.Windows.Forms.MessageBox.Show("You clicked: " + ctrl.Caption);
+            //Select underlined words and replace with selected suggestion
+            Word.Range rng = Globals.ThisAddIn.Application.Selection.Range;
+
+            //Word.Range rng = selection.Range;
+            object findText = Type.Missing; object matchCase = Type.Missing; object matchWholeWord = Type.Missing; object matchWildCards = Type.Missing; object matchSoundsLike = Type.Missing;
+            object matchAllWordForms = Type.Missing; object forward = Type.Missing; object wrap = Type.Missing; object format = Type.Missing; object replaceWithText = Type.Missing;
+            object replace = Type.Missing; object matchKashida = Type.Missing; object matchDiacritics = Type.Missing; object matchAlefHamza = Type.Missing; object matchControl = Type.Missing;
+
+            forward = true;
+            rng.Find.ClearFormatting();
+            rng.Find.Font.Underline = WdUnderline.wdUnderlineWavy;
+            
+            //execute find and replace
+            bool found = rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards, 
+                ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText, 
+                ref replace, ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
+            int rangeEnd = rng.End;
+
+            forward = false;
+            rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards,
+                ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText,
+                ref replace, ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
+
+            int rangeStart = rng.Start;
+
+            rng.End = rangeEnd;
+            rng.Start = rangeStart;
+            rng.Font.Underline = WdUnderline.wdUnderlineNone;
+            rng.Text = ctrl.Parameter.ToString();
         }
 
-        public static void CheckActiveDocument()
+        public void CheckActiveDocument()
         {
-            //Dóna error si és un document protegit contra escriptura, p. ex. perquè ve d'Internet
+            //Checks the whole document
+            //TODO: checking only parts of the document from the cursor
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             if (Doc == null || Doc.ReadOnly)
             {
                 return;
             }
+
             RemoveAllErrorMarks();
             try
             {
-                //TODO Troba el primer paràgraf visible, i a partir d'aquest revisa només una certa quantitat de text.
                 Word.Paragraph firstPara = Doc.Paragraphs.First;
                 int numParagraphs = Doc.Paragraphs.Count;
+
                 for (int i = 1; i <= numParagraphs; i++)
                 {
                     Word.Paragraph para = firstPara.Next(i - 1);
                     Word.Range myrange = para.Range;
                     String paraStr = para.Range.Text.ToString();
                     String lang = GetLanguageISO(para.Range.LanguageID.ToString());
-                    //System.Windows.Forms.MessageBox.Show("El paràgraf núm. " + i + " en " + lang);
-                    String uriString = "https://www.softcatala.org/languagetool/api/checkDocument?language=" + lang + "&text=" + WebUtility.UrlEncode(paraStr);
+                    String uriString = LTServer + "?language=" + lang + "&text=" + WebUtility.UrlEncode(paraStr);
                     uriString = uriString.Replace("%C2%A0", "+"); // ????
                     Uri uri = new Uri(uriString);
-                    //System.Windows.Forms.MessageBox.Show(uriString);
                     String results = GetResultsFrom(uri);
-                    //System.Windows.Forms.MessageBox.Show(results);
 
-                    int myParaOffset = 0;
-
-                    foreach (var myerror in ParseXMLResults(results))
+                    //int myParaOffset = 0; // Not necessary if results are processed in reverse order
+                    //int myTopOffset = 0;
+                    int prevErrorStart = -1;
+                    int prevErrorEnd = -1;
+                    foreach (Dictionary<string, string> myerror in ParseXMLResults(results).Reverse<Dictionary<string, string>>())
                     {
-                        int errorStart = para.Range.Start + int.Parse(myerror["offset"]) + myParaOffset;
+                        //Select error start and end
+                        int errorStart = para.Range.Start + int.Parse(myerror["offset"]);// + myParaOffset;
                         int errorEnd = errorStart + int.Parse(myerror["errorlength"]);
+                        if (errorEnd == prevErrorEnd)  // Mark just one error at the same place
+                        {
+                            continue;
+                        }
                         Word.Range rng = Doc.Range(errorStart, errorEnd);
+                        // choose color for underline
                         Word.WdColor mycolor = Word.WdColor.wdColorBlue;
                         switch (myerror["locqualityissuetype"])
                         {
@@ -118,23 +192,25 @@ namespace languagetool_msword10_addin
                                 mycolor = Word.WdColor.wdColorGreen;
                                 break;
                         }
+                        // do not track changes
                         bool isTrackingRevisions = Doc.TrackRevisions;
                         Doc.TrackRevisions = false;
-                        rng.Font.Underline = WdUnderline.wdUnderlineWavy;//  wdUnderlineWavyHeavy;
+                        // unerline errors
+                        rng.Font.Underline = WdUnderline.wdUnderlineWavy;
                         rng.Font.UnderlineColor = mycolor;
-
-                        string errorData = "{{" + myerror["msg"] + "|" + myerror["replacements"] + "}}";
-                        myParaOffset += errorData.Length;
-
+                        // add hidden data after error
+                        string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "]";
+                        //myParaOffset += errorData.Length;
                         Word.Range newRng = Doc.Range(errorEnd, errorEnd);
                         newRng.Text = errorData;
                         newRng.Font.Hidden = 1;
-
-                        //Field myfield = Doc.Fields.Add(rng, Word.WdFieldType.wdFieldPrivate, Type.Missing, Type.Missing);
-                        //myfield.Data = myerror["msg"];
-                        //Doc.Comments.Add(rng, myerror["msg"]);
+                        // Store previous start and end values
+                        prevErrorEnd = errorEnd;
+                        prevErrorStart = errorStart;
+                        // Track revisions again
                         Doc.TrackRevisions = isTrackingRevisions;
-                        //System.Windows.Forms.MessageBox.Show(int.Parse(myerror["offset"]) + " " + int.Parse(myerror["errorlength"]) + " " + errorStart + " " + errorEnd );
+
+                        
                     }
                 }
             }
@@ -145,7 +221,64 @@ namespace languagetool_msword10_addin
 
         }
 
-        public static void RemoveAllErrorMarks()
+        private void mySuggestion_click(object sender, EventArgs e)
+        {
+            MessageBox.Show(((Button)sender).Name);
+            //throw new NotImplementedException();
+        }
+
+
+        private String findHiddenData(Word.Selection selection)
+        {
+            //Retrieve hidden data after underlined words.
+            Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
+            if (Doc == null || Doc.ReadOnly)
+            {
+                return "";
+            }
+
+            object findText = "(\\[*\\])";
+            object matchCase = false;
+            object matchWholeWord = false;
+            object matchWildCards = true;
+            object matchSoundsLike = false;
+            object matchAllWordForms = false;
+            object forward = true;
+            object wrap = WdFindWrap.wdFindStop;
+            object format = true;
+            object replaceWithText = "\\1";
+            object replace = WdReplace.wdReplaceNone;
+            object matchKashida = false;
+            object matchDiacritics = false;
+            object matchAlefHamza = false;
+            object matchControl = false;
+                        
+            Word.Range rng = selection.Range;                   
+            rng.Find.ClearFormatting();
+            rng.Find.Font.Hidden = 1;
+            rng.Find.Replacement.ClearFormatting();
+            rng.Find.Replacement.Font.Hidden = 1;
+
+            Globals.ThisAddIn.Application.ScreenUpdating = false;
+            bool isShowingHiddenText = Doc.ActiveWindow.View.ShowHiddenText; //Find & replace work better this way!
+            Doc.ActiveWindow.View.ShowHiddenText = true;
+
+            //execute find and replace
+            bool found = rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord,
+                ref matchWildCards, ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText, ref replace,
+                ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
+
+            String msg = "";
+            if (found && rng.Text!= null)
+            {
+                msg = rng.Text;
+            }
+            Doc.ActiveWindow.View.ShowHiddenText = isShowingHiddenText;
+            Globals.ThisAddIn.Application.ScreenUpdating = true;
+            return msg;
+        }
+
+        public void RemoveAllErrorMarks()
         {
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             if (Doc == null || Doc.ReadOnly)
@@ -154,6 +287,7 @@ namespace languagetool_msword10_addin
             }
             bool isTrackingRevisions = Doc.TrackRevisions;
             Doc.TrackRevisions = false;
+            Globals.ThisAddIn.Application.ScreenUpdating = false; //Find & replace work better this way!
             //options
             object findText = "";
             object replaceWithText = "";
@@ -191,10 +325,13 @@ namespace languagetool_msword10_addin
             rng.Find.Replacement.ClearFormatting();
             rng.Find.Font.Hidden = 1;
             //execute find and replace
+            Doc.ActiveWindow.View.ShowHiddenText = true;
             rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord,
                 ref matchWildCards, ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText, ref replace,
                 ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
+            Doc.ActiveWindow.View.ShowHiddenText = false;
 
+            Globals.ThisAddIn.Application.ScreenUpdating = true;
             Doc.TrackRevisions = isTrackingRevisions;
         }
 
@@ -215,7 +352,7 @@ namespace languagetool_msword10_addin
             return suggestions;
         }
 
-        //S'hauria de fer d'una altra manera!
+        //TODO: Find a better way
         private static String GetLanguageISO(String langObj)
         {
             switch (langObj)
@@ -243,6 +380,41 @@ namespace languagetool_msword10_addin
                 result = reader.ReadToEnd();
             }
             return result;
+        }
+
+        sealed public class ConvertImage : System.Windows.Forms.AxHost
+        {
+            private ConvertImage()
+                : base(null)
+            {
+            }
+
+            public static stdole.IPictureDisp Convert
+                (System.Drawing.Image image)
+            {
+                return (stdole.IPictureDisp)System.
+                    Windows.Forms.AxHost
+                    .GetIPictureDispFromPicture(image);
+            }
+        }
+        private stdole.IPictureDisp getImage()
+        {
+            stdole.IPictureDisp tempImage = null;
+            try
+            {
+                System.Drawing.Icon newIcon =
+                    Properties.Resources.LanguageTool_Logo;
+
+                System.Windows.Forms.ImageList newImageList =
+                    new System.Windows.Forms.ImageList();
+                newImageList.Images.Add(newIcon);
+                tempImage = ConvertImage.Convert(newImageList.Images[0]);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            return tempImage;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
