@@ -76,7 +76,7 @@ namespace languagetool_msword10_addin
 
                 if (selection.Font.Underline == WdUnderline.wdUnderlineWavy)
                 {
-                    Regex regex = new Regex("\\[(.*)\\|(.*)\\]");
+                    Regex regex = new Regex("\\[(.*)\\|(.*)\\|(.*)\\]");
                     Match match = regex.Match(findHiddenData(selection));
                     if (match.Success)
                     {
@@ -86,13 +86,15 @@ namespace languagetool_msword10_addin
                         button1.Enabled = false;
                         button1.Picture = getImage();
                         buttonsIds.Add(button1.Id);
-                        
+
+                        String errorStr = match.Groups[3].Value;
+
                         String[] suggestions = match.Groups[2].Value.Split('#');
                         if (suggestions.Length > 0 && suggestions[0].Length > 0)
                         {
                             int i = 0;
                             while (i<suggestions.Length && i< maxSuggestions) { 
-                                Office.CommandBarButton button2 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, suggestions[i], i+2, true);
+                                Office.CommandBarButton button2 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, errorStr, i+2, true);
                                 button2.Tag = "LTSuggestion" + i;
                                 button2.Caption = suggestions[i];
                                 buttonsIds.Add(button2.Id);
@@ -111,32 +113,58 @@ namespace languagetool_msword10_addin
             //Select underlined words and replace with selected suggestion
             Word.Range rng = Globals.ThisAddIn.Application.Selection.Range;
 
+            int currenSelectionStart = rng.Start;
+            int currentSelectionEnd = rng.End;
+
             //Word.Range rng = selection.Range;
             object findText = Type.Missing; object matchCase = Type.Missing; object matchWholeWord = Type.Missing; object matchWildCards = Type.Missing; object matchSoundsLike = Type.Missing;
             object matchAllWordForms = Type.Missing; object forward = Type.Missing; object wrap = Type.Missing; object format = Type.Missing; object replaceWithText = Type.Missing;
             object replace = Type.Missing; object matchKashida = Type.Missing; object matchDiacritics = Type.Missing; object matchAlefHamza = Type.Missing; object matchControl = Type.Missing;
 
-            forward = true;
+            
             rng.Find.ClearFormatting();
             rng.Find.Font.Underline = WdUnderline.wdUnderlineWavy;
-            
-            //execute find and replace
-            bool found = rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards, 
-                ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText, 
+
+            // move forward to find the end of the error
+            forward = true;
+            rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards,
+                ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText,
                 ref replace, ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
             int rangeEnd = rng.End;
 
+            // move backward to find the start of the error
             forward = false;
             rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards,
                 ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText,
                 ref replace, ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
-
             int rangeStart = rng.Start;
 
+            
+            //replace the error with the suggestion searching forward
             rng.End = rangeEnd;
             rng.Start = rangeStart;
-            rng.Font.Underline = WdUnderline.wdUnderlineNone;
-            rng.Text = ctrl.Parameter.ToString();
+
+            forward = true;
+            findText = ctrl.Parameter.ToString();
+            rng.Find.ClearFormatting();
+            rng.Find.Font.Underline = WdUnderline.wdUnderlineWavy;
+            replaceWithText = ctrl.Caption;
+            replace = WdReplace.wdReplaceOne;
+            rng.Find.Replacement.Font.Underline = WdUnderline.wdUnderlineNone;
+            
+
+            bool found = rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards, 
+                ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText, 
+                ref replace, ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
+            
+            
+            /*if (rangeStart<currenSelectionStart && rangeEnd > currentSelectionEnd)
+            {
+                rng.End = rangeEnd;
+                rng.Start = rangeStart;
+                rng.Font.Underline = WdUnderline.wdUnderlineNone;
+                rng.Text = ctrl.Parameter.ToString();
+            }*/
         }
 
         public void CheckActiveDocument()
@@ -173,8 +201,10 @@ namespace languagetool_msword10_addin
                     foreach (Dictionary<string, string> myerror in ParseXMLResults(results).Reverse<Dictionary<string, string>>())
                     {
                         //Select error start and end
-                        int errorStart = para.Range.Start + int.Parse(myerror["offset"]);// + myParaOffset;
-                        int errorEnd = errorStart + int.Parse(myerror["errorlength"]);
+                        int offset = int.Parse(myerror["offset"]);
+                        int errorlength = int.Parse(myerror["errorlength"]);
+                        int errorStart = para.Range.Start + offset;// + myParaOffset;
+                        int errorEnd = errorStart + errorlength;
                         if (errorEnd == prevErrorEnd)  // Mark just one error at the same place
                         {
                             continue;
@@ -199,11 +229,12 @@ namespace languagetool_msword10_addin
                         rng.Font.Underline = WdUnderline.wdUnderlineWavy;
                         rng.Font.UnderlineColor = mycolor;
                         // add hidden data after error
-                        string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "]";
+                        string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] +"|" + myerror["context"].Substring(offset, errorlength) + "]";
                         //myParaOffset += errorData.Length;
                         Word.Range newRng = Doc.Range(errorEnd, errorEnd);
                         newRng.Text = errorData;
                         newRng.Font.Hidden = 1;
+                        newRng.Font.Color = WdColor.wdColorRed;
                         // Store previous start and end values
                         prevErrorEnd = errorEnd;
                         prevErrorStart = errorStart;
@@ -216,17 +247,10 @@ namespace languagetool_msword10_addin
             }
             catch (Exception ex)
             {
-                // Handle exception if for some reason the document is not available.
+                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
         }
-
-        private void mySuggestion_click(object sender, EventArgs e)
-        {
-            MessageBox.Show(((Button)sender).Name);
-            //throw new NotImplementedException();
-        }
-
 
         private String findHiddenData(Word.Selection selection)
         {
