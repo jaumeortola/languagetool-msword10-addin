@@ -225,7 +225,7 @@ namespace languagetool_msword10_addin
                         rng.Font.Underline = WdUnderline.wdUnderlineWavy;
                         rng.Font.UnderlineColor = mycolor;
                         // add hidden data after error. Format: [<error message>|replacement1#replacement2#replacement3...|<error string>]
-                        string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] +"|" + myerror["context"].Substring(offset, errorlength) + "]";
+                        string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] +"|" + myerror["context"].Substring(int.Parse(myerror["contextoffset"]), errorlength) + "]";
                         //myParaOffset += errorData.Length;
                         Word.Range newRng = Doc.Range(errorEnd, errorEnd);
                         newRng.Text = errorData;
@@ -235,7 +235,7 @@ namespace languagetool_msword10_addin
                         prevErrorEnd = errorEnd;
                         prevErrorStart = errorStart;
                         // Track revisions again
-                        Doc.TrackRevisions = isTrackingRevisions;                  
+                        Doc.TrackRevisions = isTrackingRevisions;          
                     }
                 }
             }
@@ -243,6 +243,8 @@ namespace languagetool_msword10_addin
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
+
+        //TODO: Show a message when there are no errors
 
         }
 
