@@ -56,10 +56,7 @@ namespace languagetool_msword10_addin
             {
                 return taskPaneValue;
             }
-        }
-
-        public object Controls { get; private set; }
-        
+        }        
 
         public void application_WindowBeforeRightClick(Word.Selection selection, ref bool Cancel)
         {
@@ -148,9 +145,9 @@ namespace languagetool_msword10_addin
             findText = ctrl.Parameter.ToString();
             rng.Find.ClearFormatting();
             rng.Find.Font.Underline = WdUnderline.wdUnderlineWavy;
-            replaceWithText = ctrl.Caption;
-            replace = WdReplace.wdReplaceOne;
-            rng.Find.Replacement.Font.Underline = WdUnderline.wdUnderlineNone;
+            //replaceWithText = ctrl.Caption;
+            replace = WdReplace.wdReplaceNone; // WdReplace.wdReplaceOne;
+            //rng.Find.Replacement.Font.Underline = WdUnderline.wdUnderlineNone;
             
 
             bool found = rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards, 
@@ -158,13 +155,14 @@ namespace languagetool_msword10_addin
                 ref replace, ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
             
             
-            /*if (rangeStart<currenSelectionStart && rangeEnd > currentSelectionEnd)
+            if (found && rng.Start<currenSelectionStart && rng.End > currentSelectionEnd
+                && rng.Start>=rangeStart && rng.End<=rangeEnd)
             {
-                rng.End = rangeEnd;
-                rng.Start = rangeStart;
+                //rng.End = rangeEnd;
+                //rng.Start = rangeStart;
                 rng.Font.Underline = WdUnderline.wdUnderlineNone;
-                rng.Text = ctrl.Parameter.ToString();
-            }*/
+                rng.Text = ctrl.Caption;
+            }
         }
 
         public void CheckActiveDocument()
@@ -190,12 +188,10 @@ namespace languagetool_msword10_addin
                     String paraStr = para.Range.Text.ToString();
                     String lang = GetLanguageISO(para.Range.LanguageID.ToString());
                     String uriString = LTServer + "?language=" + lang + "&text=" + WebUtility.UrlEncode(paraStr);
-                    uriString = uriString.Replace("%C2%A0", "+"); // ????
+                    uriString = uriString.Replace("%C2%A0", "+"); // Why?
                     Uri uri = new Uri(uriString);
                     String results = GetResultsFrom(uri);
-
                     //int myParaOffset = 0; // Not necessary if results are processed in reverse order
-                    //int myTopOffset = 0;
                     int prevErrorStart = -1;
                     int prevErrorEnd = -1;
                     foreach (Dictionary<string, string> myerror in ParseXMLResults(results).Reverse<Dictionary<string, string>>())
@@ -228,20 +224,18 @@ namespace languagetool_msword10_addin
                         // unerline errors
                         rng.Font.Underline = WdUnderline.wdUnderlineWavy;
                         rng.Font.UnderlineColor = mycolor;
-                        // add hidden data after error
+                        // add hidden data after error. Format: [<error message>|replacement1#replacement2#replacement3...|<error string>]
                         string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] +"|" + myerror["context"].Substring(offset, errorlength) + "]";
                         //myParaOffset += errorData.Length;
                         Word.Range newRng = Doc.Range(errorEnd, errorEnd);
                         newRng.Text = errorData;
                         newRng.Font.Hidden = 1;
                         newRng.Font.Color = WdColor.wdColorRed;
-                        // Store previous start and end values
+                        //Store previous start and end values
                         prevErrorEnd = errorEnd;
                         prevErrorStart = errorStart;
                         // Track revisions again
-                        Doc.TrackRevisions = isTrackingRevisions;
-
-                        
+                        Doc.TrackRevisions = isTrackingRevisions;                  
                     }
                 }
             }
