@@ -249,7 +249,7 @@ namespace languagetool_msword10_addin
                 // Track revisions again
                 Doc.TrackRevisions = isTrackingRevisions;
             }
-            rangeToCheck.GrammarChecked = true; // Waw! This is not a hack. Bravo Microsoft!
+            rangeToCheck.GrammarChecked = true; // Wow! This is not a hack. Bravo Microsoft!
         }
 
         public void checkActiveDocument()
