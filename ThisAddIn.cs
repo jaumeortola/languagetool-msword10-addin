@@ -51,7 +51,7 @@ namespace languagetool_msword10_addin
 
         private void application_DocumentBeforeClose(Word.Document Doc, ref bool Cancel)
         {
-            RemoveAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content);
+            removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content);
         } //TODO: do the same before saving the document
 
         private void taskPaneValue_VisibleChanged(object sender, System.EventArgs e)
@@ -157,7 +157,20 @@ namespace languagetool_msword10_addin
                 rng.Text = ctrl.Caption;
                 rng.Font.Underline = WdUnderline.wdUnderlineNone;
             }
-            //TODO: select error when there are errors juxtaposed
+            else
+            {
+                //Select error when there are errors juxtaposed
+                String textToSearch = rng.Text;
+                int indexFound = textToSearch.IndexOf(ctrl.Parameter.ToString());
+                if (indexFound >= 0)
+                {
+                    rng.Start += indexFound;
+                    rng.End = rng.Start + textToSearch.Length;
+                    rng.Text = ctrl.Caption;
+                    rng.Font.Underline = WdUnderline.wdUnderlineNone;
+                }
+            }
+            
 
             /*forward = true;
             findText = ctrl.Parameter.ToString();
@@ -209,14 +222,14 @@ namespace languagetool_msword10_addin
                 return;
             }
 
-            RemoveAllErrorMarks(rangeToCheck); 
+            removeAllErrorMarks(rangeToCheck); 
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
-            String paraStr = rangeToCheck.Text.ToString();
+            String textToCheck = rangeToCheck.Text.ToString();
             String lang = GetLanguageISO(rangeToCheck.LanguageID.ToString());
-            String uriString = LTServer + "?language=" + lang + "&text=" + WebUtility.UrlEncode(paraStr);
-            uriString = uriString.Replace("%C2%A0", "+"); // Why?
-            Uri uri = new Uri(uriString);
-            String results = GetResultsFrom(uri);
+            
+            //String results = GetResultsFrom(uri);
+            String checkOptions = "";
+            String results = getResultsFromServer(lang, textToCheck, checkOptions);
             //int myParaOffset = 0; // Not necessary if results are processed in reverse order
             int prevErrorStart = -1;
             int prevErrorEnd = -1;
@@ -253,7 +266,7 @@ namespace languagetool_msword10_addin
                 // add hidden data after error. Format: [<error message>|replacement1#replacement2#replacement3...|<error string>]
                 string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "|" + myerror["context"].Substring(int.Parse(myerror["contextoffset"]), errorlength) + "]";
                 //myParaOffset += errorData.Length;
-                Word.Range newRng = Doc.Range(errorEnd, errorEnd);
+                Word.Range newRng = Doc.Range(errorEnd, errorEnd); //make it safer!
                 newRng.Text = errorData;
                 newRng.Font.Hidden = 1;
                 newRng.Font.Color = WdColor.wdColorRed;
@@ -265,7 +278,7 @@ namespace languagetool_msword10_addin
             }
         }
 
-        public void CheckActiveDocument()
+        public void checkActiveDocument()
         {
             //Checks the whole document
             //TODO: checking only parts of the document from the cursor
@@ -277,7 +290,7 @@ namespace languagetool_msword10_addin
                 return;
             }
 
-            RemoveAllErrorMarks(Doc.Content);
+            removeAllErrorMarks(Doc.Content);
             try
             {
                 //checks the whole document by paragraphs
@@ -351,7 +364,7 @@ namespace languagetool_msword10_addin
             return msg;
         }
 
-        public void RemoveAllErrorMarks(Word.Range rng)
+        public void removeAllErrorMarks(Word.Range rng)
         {
             if (string.IsNullOrWhiteSpace(rng.Text))
             {
@@ -443,20 +456,31 @@ namespace languagetool_msword10_addin
             }
         }
 
-        private static string GetResultsFrom(Uri address)
+        private string getResultsFromServer(String lang, String textToCheck, String checkOptions)
         {
+            String uriString = LTServer + "?language=" + lang + "&text=" + WebUtility.UrlEncode(textToCheck);
+            uriString = uriString.Replace("%C2%A0", "+"); // Why?
+            Uri uri = new Uri(uriString);
             string result = "";
-            // Create the web request  
-            System.Net.HttpWebRequest request = System.Net.WebRequest.Create(address) as System.Net.HttpWebRequest;
-            // Get response  
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            try
             {
-                // Get the response stream  
-                StreamReader reader = new StreamReader(response.GetResponseStream(), System.Text.Encoding.UTF8);
-                // Read the whole contents and return as a string  
-                result = reader.ReadToEnd();
+                // Create the web request  
+                System.Net.HttpWebRequest request = System.Net.WebRequest.Create(uri) as System.Net.HttpWebRequest;
+                // Get response  
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                {
+                    // Get the response stream  
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), System.Text.Encoding.UTF8);
+                    // Read the whole contents and return as a string  
+                    result = reader.ReadToEnd();
+                }
+                return result;
             }
-            return result;
+            catch 
+            {
+                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: " + LTServer + "."); // + ex.Message + "," + ex.StackTrace
+            }
+            return "";
         }
 
         sealed public class ConvertImage : System.Windows.Forms.AxHost
