@@ -33,22 +33,26 @@ namespace languagetool_msword10_addin
             application.WindowBeforeRightClick +=
                 new Word.ApplicationEvents4_WindowBeforeRightClickEventHandler(application_WindowBeforeRightClick);
             application.DocumentBeforeClose += new Word.ApplicationEvents4_DocumentBeforeCloseEventHandler(application_DocumentBeforeClose);
+            application.WindowSelectionChange += new Word.ApplicationEvents4_WindowSelectionChangeEventHandler(application_SelectionChange);
 
             application.CustomizationContext = application.ActiveDocument;
 
             taskPaneControl1 = new TaskPaneControl();
-            taskPaneValue = this.CustomTaskPanes.Add(
-                taskPaneControl1, "Revisió amb LanguageTool");
-            taskPaneValue.VisibleChanged +=
-                new EventHandler(taskPaneValue_VisibleChanged);
+            taskPaneValue = this.CustomTaskPanes.Add(taskPaneControl1, "Revisió amb LanguageTool");
+            taskPaneValue.VisibleChanged += new EventHandler(taskPaneValue_VisibleChanged);
             taskPaneValue.Visible = false;
             taskPaneValue.Width = 300;
+        }
+
+        private void application_SelectionChange(Selection Sel)
+        {
+            checkCurrentParagraph();
         }
 
         private void application_DocumentBeforeClose(Word.Document Doc, ref bool Cancel)
         {
             RemoveAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content);
-        }
+        } //TODO: do the same before saving the document
 
         private void taskPaneValue_VisibleChanged(object sender, System.EventArgs e)
         {
@@ -200,6 +204,11 @@ namespace languagetool_msword10_addin
 
         private void checkRange(Word.Range rangeToCheck)
         {
+            if (string.IsNullOrWhiteSpace(rangeToCheck.Text))
+            {
+                return;
+            }
+
             RemoveAllErrorMarks(rangeToCheck); 
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             String paraStr = rangeToCheck.Text.ToString();
@@ -344,6 +353,10 @@ namespace languagetool_msword10_addin
 
         public void RemoveAllErrorMarks(Word.Range rng)
         {
+            if (string.IsNullOrWhiteSpace(rangeToCheck.Text))
+            {
+                return;
+            }
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             if (Doc == null || Doc.ReadOnly)
             {
