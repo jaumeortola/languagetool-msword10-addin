@@ -32,7 +32,7 @@ namespace languagetool_msword10_addin
             application = this.Application;
             application.WindowBeforeRightClick +=
                 new Word.ApplicationEvents4_WindowBeforeRightClickEventHandler(application_WindowBeforeRightClick);
-            application.DocumentBeforeClose += new Word.ApplicationEvents4_DocumentBeforeCloseEventHandler(application_DocumentBeforeClose);
+            application.DocumentBeforeSave += new Word.ApplicationEvents4_DocumentBeforeSaveEventHandler(application_DocumentBeforeSave);
             application.WindowSelectionChange += new Word.ApplicationEvents4_WindowSelectionChangeEventHandler(application_SelectionChange);
 
             application.CustomizationContext = application.ActiveDocument;
@@ -49,10 +49,10 @@ namespace languagetool_msword10_addin
             checkCurrentParagraph();
         }
 
-        private void application_DocumentBeforeClose(Word.Document Doc, ref bool Cancel)
+        private void application_DocumentBeforeSave(Word.Document Doc, ref bool SaveAsUI, ref bool Cancel)
         {
             removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content);
-        } //TODO: do the same before saving the document
+        }
 
         private void taskPaneValue_VisibleChanged(object sender, System.EventArgs e)
         {
@@ -117,6 +117,10 @@ namespace languagetool_msword10_addin
 
         public void LTbutton_Click(Office.CommandBarButton ctrl, ref bool cancel)
         {
+            if (ctrl == null)
+            {
+                return;
+            }
             //Select underlined words and replace with selected suggestion
             Word.Range rng = Globals.ThisAddIn.Application.Selection.Range;
 
