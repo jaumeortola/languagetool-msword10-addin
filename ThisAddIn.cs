@@ -353,7 +353,7 @@ namespace languagetool_msword10_addin
 
         public void RemoveAllErrorMarks(Word.Range rng)
         {
-            if (string.IsNullOrWhiteSpace(rangeToCheck.Text))
+            if (string.IsNullOrWhiteSpace(rng.Text))
             {
                 return;
             }
