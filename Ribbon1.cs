@@ -15,17 +15,17 @@ namespace languagetool_msword10_addin
 
         private void button1_Click(object sender, RibbonControlEventArgs e)
         {
-            //System.Windows.Forms.MessageBox.Show("Has fet clic en el botó de revisió. Revisant...");
-            //languagetool_msword10_addin.ThisAddIn.CheckActiveDocument();
             Globals.ThisAddIn.CheckActiveDocument();
-            
+        }
+
+        private void button3_Click(object sender, RibbonControlEventArgs e)
+        {
+            Globals.ThisAddIn.checkCurrentParagraph();
         }
 
         private void button2_Click(object sender, RibbonControlEventArgs e)
         {
-            //languagetool_msword10_addin.ThisAddIn.RemoveAllErrorMarks();
-            Globals.ThisAddIn.RemoveAllErrorMarks();
-
+            Globals.ThisAddIn.RemoveAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content);
         }
         private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
         {
