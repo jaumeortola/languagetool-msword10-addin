@@ -46,7 +46,10 @@ namespace languagetool_msword10_addin
 
         private void application_SelectionChange(Selection sel)
         {
-            checkCurrentParagraph();
+            if (!sel.Range.GrammarChecked)
+            {
+                checkCurrentParagraph();
+            }
         }
 
         private void application_DocumentBeforeSave(Word.Document Doc, ref bool SaveAsUI, ref bool Cancel)
@@ -246,6 +249,7 @@ namespace languagetool_msword10_addin
                 // Track revisions again
                 Doc.TrackRevisions = isTrackingRevisions;
             }
+            rangeToCheck.GrammarChecked = true; // Waw! This is not a hack. Bravo Microsoft!
         }
 
         public void checkActiveDocument()
