@@ -44,7 +44,7 @@ namespace languagetool_msword10_addin
             taskPaneValue.Width = 300;
         }
 
-        private void application_SelectionChange(Selection Sel)
+        private void application_SelectionChange(Selection sel)
         {
             checkCurrentParagraph();
         }
@@ -150,56 +150,22 @@ namespace languagetool_msword10_addin
                 ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText,
                 ref replace, ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
             int rangeStart = rng.Start;
-
-            
-            //replace the error with the suggestion searching forward
+           
+            //replace the error with the suggestion 
             rng.End = rangeEnd;
             rng.Start = rangeStart;
-
-            if (rng.Text == ctrl.Parameter.ToString())
+            String errorToReplace = ctrl.Parameter.ToString();
+            String textToSearch = rng.Text;
+            if (string.IsNullOrWhiteSpace(errorToReplace) || string.IsNullOrWhiteSpace(textToSearch))
+                return;
+            int indexFound = textToSearch.IndexOf(errorToReplace);
+            if (indexFound >= 0)
             {
+                rng.Start += indexFound;
+                rng.End = rng.Start + errorToReplace.Length;
                 rng.Text = ctrl.Caption;
                 rng.Font.Underline = WdUnderline.wdUnderlineNone;
             }
-            else
-            {
-                //Select error when there are errors juxtaposed
-                String textToSearch = rng.Text;
-                int indexFound = textToSearch.IndexOf(ctrl.Parameter.ToString());
-                if (indexFound >= 0)
-                {
-                    rng.Start += indexFound;
-                    rng.End = rng.Start + textToSearch.Length;
-                    rng.Text = ctrl.Caption;
-                    rng.Font.Underline = WdUnderline.wdUnderlineNone;
-                }
-            }
-            
-
-            /*forward = true;
-            findText = ctrl.Parameter.ToString();
-            wrap = WdFindWrap.wdFindStop;
-            matchCase = true;
-            rng.Find.ClearFormatting();
-            rng.Find.Font.Underline = WdUnderline.wdUnderlineWavy;
-            replaceWithText = ctrl.Caption;
-            replace = WdReplace.wdReplaceNone; // WdReplace.wdReplaceOne;
-            rng.Find.Replacement.Font.Underline = WdUnderline.wdUnderlineNone;
-            
-
-            bool found = rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards, 
-                ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText, 
-                ref replace, ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
-            */
-
-            /*if (found && rng.Start<currenSelectionStart && rng.End > currentSelectionEnd
-                && rng.Start>=rangeStart && rng.End<=rangeEnd)
-            {
-                //rng.End = rangeEnd;
-                //rng.Start = rangeStart;
-                rng.Font.Underline = WdUnderline.wdUnderlineNone;
-                rng.Text = ctrl.Caption;
-            }*/
         }
 
 
