@@ -15,7 +15,7 @@ namespace languagetool_msword10_addin
 
         private void button1_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.CheckActiveDocument();
+            Globals.ThisAddIn.checkActiveDocument();
         }
 
         private void button3_Click(object sender, RibbonControlEventArgs e)
@@ -25,7 +25,7 @@ namespace languagetool_msword10_addin
 
         private void button2_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.RemoveAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content);
+            Globals.ThisAddIn.removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content);
         }
         private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
         {
