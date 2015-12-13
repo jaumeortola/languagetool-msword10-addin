@@ -21,7 +21,9 @@ namespace languagetool_msword10_addin
     public partial class ThisAddIn
     {
         private readonly int maxSuggestions = 10;
-        private readonly String LTServer = "https://www.softcatala.org/languagetool/api/checkDocument";
+        //private readonly String LTServer = "https://www.softcatala.org/languagetool/api/checkDocument";
+        private readonly String LTServer = "http://localhost:8081/";
+        private readonly String defaultLanguage = "ca"; //to be used when paragraph language is undefined
         Word.Application application;
         private TaskPaneControl taskPaneControl1;
         private Microsoft.Office.Tools.CustomTaskPane taskPaneValue;
@@ -54,7 +56,7 @@ namespace languagetool_msword10_addin
 
         private void application_DocumentBeforeSave(Word.Document Doc, ref bool SaveAsUI, ref bool Cancel)
         {
-            removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content);
+            removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content); //?
         }
 
         private void taskPaneValue_VisibleChanged(object sender, System.EventArgs e)
@@ -206,7 +208,10 @@ namespace languagetool_msword10_addin
             //int myParaOffset = 0; // Not necessary if results are processed in reverse order
             int prevErrorStart = -1;
             int prevErrorEnd = -1;
-            foreach (Dictionary<string, string> myerror in ParseXMLResults(results).Reverse<Dictionary<string, string>>())
+            List<Dictionary<string, string>> parsedResults = ParseXMLResults(results);
+            if (parsedResults == null)
+                return;
+            foreach (Dictionary<string, string> myerror in parsedResults.Reverse<Dictionary<string, string>>())  
             {
                 //Select error start and end
                 int offset = int.Parse(myerror["offset"]);
@@ -255,9 +260,13 @@ namespace languagetool_msword10_addin
         public void checkActiveDocument()
         {
             //Checks the whole document
-            //TODO: checking only parts of the document from the cursor
             //TODO: avoid spelling errors in footnote references
             //TODO: Show a message when there are no errors
+            //TODO: Check sentences in other languages inside a paragraph
+            //TODO: Check text inside footnotes
+            //TODO: Check in background
+            //TODO: mark GrammarChecked = false when there is some change. Use hooks.
+            //TODO: GrammarChecked = true when checking the whole document?
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             if (Doc == null || Doc.ReadOnly)
             {
@@ -401,6 +410,8 @@ namespace languagetool_msword10_addin
         
         private static List<Dictionary<string, string>> ParseXMLResults(String xmlString)
         {
+            if (string.IsNullOrWhiteSpace(xmlString))
+                return null;
             XElement xml = XElement.Parse(xmlString);
             var suggestions = new List<Dictionary<string, string>>();
 
@@ -417,8 +428,10 @@ namespace languagetool_msword10_addin
         }
 
         //TODO: Find a better way
-        private static String GetLanguageISO(String langObj)
+        private String GetLanguageISO(String langObj)
         {
+            if (langObj.StartsWith("wdSpanish"))
+                return "es";
             switch (langObj)
             {
                 case "wdCatalan":
@@ -426,7 +439,7 @@ namespace languagetool_msword10_addin
                 case "wdEnglishUS":
                     return "en-US";
                 default:
-                    return ("");
+                    return (defaultLanguage);
             }
         }
 
