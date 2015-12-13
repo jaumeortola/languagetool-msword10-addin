@@ -27,7 +27,6 @@ namespace languagetool_msword10_addin
         Word.Application application;
         private TaskPaneControl taskPaneControl1;
         private Microsoft.Office.Tools.CustomTaskPane taskPaneValue;
-        private List<int> buttonsIds = new List<int>();
         
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
@@ -36,7 +35,7 @@ namespace languagetool_msword10_addin
                 new Word.ApplicationEvents4_WindowBeforeRightClickEventHandler(application_WindowBeforeRightClick);
             application.DocumentBeforeSave += new Word.ApplicationEvents4_DocumentBeforeSaveEventHandler(application_DocumentBeforeSave);
             application.WindowSelectionChange += new Word.ApplicationEvents4_WindowSelectionChangeEventHandler(application_SelectionChange);
-
+            application.DocumentOpen += new Word.ApplicationEvents4_DocumentOpenEventHandler(application_DocumenOpen);
             application.CustomizationContext = application.ActiveDocument;
 
             taskPaneControl1 = new TaskPaneControl();
@@ -44,6 +43,11 @@ namespace languagetool_msword10_addin
             taskPaneValue.VisibleChanged += new EventHandler(taskPaneValue_VisibleChanged);
             taskPaneValue.Visible = false;
             taskPaneValue.Width = 300;
+        }
+
+        private void application_DocumenOpen(Word.Document Doc)
+        {
+            //checkActiveDocument(); //do it in background
         }
 
         private void application_SelectionChange(Selection sel)
@@ -56,7 +60,7 @@ namespace languagetool_msword10_addin
 
         private void application_DocumentBeforeSave(Word.Document Doc, ref bool SaveAsUI, ref bool Cancel)
         {
-            removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content); //?
+            // removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content); //?
         }
 
         private void taskPaneValue_VisibleChanged(object sender, System.EventArgs e)
@@ -75,16 +79,18 @@ namespace languagetool_msword10_addin
 
         public void application_WindowBeforeRightClick(Word.Selection selection, ref bool Cancel)
         {
+            /*String s = "";
+            foreach (Office.CommandBar cb in application.CommandBars)
+            {
+                s += cb.Name + ", ";
+            }
+            System.Windows.Forms.MessageBox.Show("CommandBars: " + s);*/
+
             if (selection != null && !String.IsNullOrEmpty(selection.Text))
             {
                 string selectionText = selection.Text;
-                Office.CommandBar commandBar = application.CommandBars["Text"];
-
-                foreach (int buttonId in buttonsIds)
-                {
-                    commandBar.FindControl(Type.Missing, buttonId, Type.Missing , false, false).Delete();
-                }
-                buttonsIds.Clear();
+                Office.CommandBar commandBar = application.CommandBars["Text"];          
+                commandBar.Reset();
 
                 if (selection.Font.Underline == WdUnderline.wdUnderlineWavy)
                 {
@@ -97,10 +103,8 @@ namespace languagetool_msword10_addin
                         button1.Caption = match.Groups[1].Value;
                         button1.Enabled = false;
                         button1.Picture = getImage();
-                        buttonsIds.Add(button1.Id);
 
                         String errorStr = match.Groups[3].Value;
-
                         String[] suggestions = match.Groups[2].Value.Split('#');
                         if (!string.IsNullOrWhiteSpace(suggestions[0]))
                         {
@@ -109,7 +113,6 @@ namespace languagetool_msword10_addin
                                 Office.CommandBarButton button2 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, errorStr, i+2, true);
                                 button2.Tag = "LTSuggestion" + i;
                                 button2.Caption = suggestions[i];
-                                buttonsIds.Add(button2.Id);
                                 button2.Click +=  new Office._CommandBarButtonEvents_ClickEventHandler(LTbutton_Click);
                                 i++;
                             }
@@ -184,10 +187,13 @@ namespace languagetool_msword10_addin
             }
             
             Word.Range initRng = Globals.ThisAddIn.Application.Selection.Range;
-            int rngStart = initRng.Paragraphs.First.Range.Start;
+            /*int rngStart = initRng.Paragraphs.First.Range.Start;
             int rngEnd = initRng.Paragraphs.Last.Range.End;
             Word.Range rangeToCheck = Doc.Range(rngStart, rngEnd);
-            checkRange(rangeToCheck);
+            checkRange(rangeToCheck);*/
+            initRng.Start = initRng.Paragraphs.First.Range.Start;
+            initRng.End = initRng.Paragraphs.Last.Range.End;
+            checkRange(initRng);
         }
 
         private void checkRange(Word.Range rangeToCheck)
@@ -208,6 +214,7 @@ namespace languagetool_msword10_addin
             //int myParaOffset = 0; // Not necessary if results are processed in reverse order
             int prevErrorStart = -1;
             int prevErrorEnd = -1;
+            int rangeToCheckStart = rangeToCheck.Start;
             List<Dictionary<string, string>> parsedResults = ParseXMLResults(results);
             if (parsedResults == null)
                 return;
@@ -216,13 +223,15 @@ namespace languagetool_msword10_addin
                 //Select error start and end
                 int offset = int.Parse(myerror["offset"]);
                 int errorlength = int.Parse(myerror["errorlength"]);
-                int errorStart = rangeToCheck.Start + offset;// + myParaOffset;
+                int errorStart = rangeToCheckStart + offset;// + myParaOffset;
                 int errorEnd = errorStart + errorlength;
                 if (errorEnd == prevErrorEnd)  // Mark just one error at the same place
                 {
                     continue;
                 }
-                Word.Range rng = Doc.Range(errorStart, errorEnd);
+                Word.Range rng = rangeToCheck;
+                rng.Start = errorStart;
+                rng.End = errorEnd;
                 // choose color for underline
                 Word.WdColor mycolor = Word.WdColor.wdColorBlue;
                 switch (myerror["locqualityissuetype"])
@@ -244,10 +253,10 @@ namespace languagetool_msword10_addin
                 // add hidden data after error. Format: [<error message>|replacement1#replacement2#replacement3...|<error string>]
                 string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "|" + myerror["context"].Substring(int.Parse(myerror["contextoffset"]), errorlength) + "]";
                 //myParaOffset += errorData.Length;
-                Word.Range newRng = Doc.Range(errorEnd, errorEnd); //make it safer!
-                newRng.Text = errorData;
-                newRng.Font.Hidden = 1;
-                newRng.Font.Color = WdColor.wdColorRed;
+                rng.Start = errorEnd;
+                rng.Text = errorData;
+                rng.Font.Hidden = 1;
+                rng.Font.Color = WdColor.wdColorRed;
                 //Store previous start and end values
                 prevErrorEnd = errorEnd;
                 prevErrorStart = errorStart;
@@ -353,6 +362,7 @@ namespace languagetool_msword10_addin
             {
                 return;
             }
+            rng.GrammarChecked = false;
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             if (Doc == null || Doc.ReadOnly)
             {
