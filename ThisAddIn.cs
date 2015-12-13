@@ -27,7 +27,8 @@ namespace languagetool_msword10_addin
         Word.Application application;
         private TaskPaneControl taskPaneControl1;
         private Microsoft.Office.Tools.CustomTaskPane taskPaneValue;
-        
+        private string[] comandBarNames = new string[] { "Text", "Footnotes", "Lists" };
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             application = this.Application;
@@ -79,42 +80,41 @@ namespace languagetool_msword10_addin
 
         public void application_WindowBeforeRightClick(Word.Selection selection, ref bool Cancel)
         {
-            /*String s = "";
-            foreach (Office.CommandBar cb in application.CommandBars)
-            {
-                s += cb.Name + ", ";
-            }
-            System.Windows.Forms.MessageBox.Show("CommandBars: " + s);*/
-
+ 
             if (selection != null && !String.IsNullOrEmpty(selection.Text))
             {
                 string selectionText = selection.Text;
-                Office.CommandBar commandBar = application.CommandBars["Text"];          
-                commandBar.Reset();
-
                 if (selection.Font.Underline == WdUnderline.wdUnderlineWavy)
                 {
                     Regex regex = new Regex("\\[(.*)\\|(.*)\\|(.*)\\]");
                     Match match = regex.Match(findHiddenData(selection));
                     if (match.Success)
                     {
-                        Office.CommandBarButton button1 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, "info_error", 1, true);
-                        button1.Tag = "LTMessage";
-                        button1.Caption = match.Groups[1].Value;
-                        button1.Enabled = false;
-                        button1.Picture = getImage();
-
                         String errorStr = match.Groups[3].Value;
                         String[] suggestions = match.Groups[2].Value.Split('#');
-                        if (!string.IsNullOrWhiteSpace(suggestions[0]))
+                        foreach (String comandBarName in comandBarNames)
                         {
-                            int i = 0;
-                            while (i<suggestions.Length && i< maxSuggestions) { 
-                                Office.CommandBarButton button2 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, errorStr, i+2, true);
-                                button2.Tag = "LTSuggestion" + i;
-                                button2.Caption = suggestions[i];
-                                button2.Click +=  new Office._CommandBarButtonEvents_ClickEventHandler(LTbutton_Click);
-                                i++;
+                            Office.CommandBar commandBar = application.CommandBars[comandBarName];
+                            commandBar.Reset();
+
+                            // message button
+                            Office.CommandBarButton button1 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, "info_error", 1, true);
+                            button1.Tag = "LTMessage";
+                            button1.Caption = match.Groups[1].Value;
+                            button1.Enabled = false;
+                            button1.Picture = getImage();
+                            
+                            //replacement buttons
+                            if (!string.IsNullOrWhiteSpace(suggestions[0]))
+                            {
+                                int i = 0;
+                                while (i<suggestions.Length && i< maxSuggestions) { 
+                                    Office.CommandBarButton button2 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, errorStr, i+2, true);
+                                    button2.Tag = "LTSuggestion" + i;
+                                    button2.Caption = suggestions[i];
+                                    button2.Click +=  new Office._CommandBarButtonEvents_ClickEventHandler(LTbutton_Click);
+                                    i++;
+                                }
                             }
                         }
                     }
@@ -174,6 +174,11 @@ namespace languagetool_msword10_addin
                 rng.Text = ctrl.Caption;
                 rng.Font.Underline = WdUnderline.wdUnderlineNone;
             }
+            foreach (String comandBarName in comandBarNames)
+            {
+                Office.CommandBar commandBar = application.CommandBars[comandBarName];
+                commandBar.Reset();
+            }
         }
 
 
@@ -184,13 +189,8 @@ namespace languagetool_msword10_addin
             if (Doc == null || Doc.ReadOnly)
             {
                 return;
-            }
-            
+            }           
             Word.Range initRng = Globals.ThisAddIn.Application.Selection.Range;
-            /*int rngStart = initRng.Paragraphs.First.Range.Start;
-            int rngEnd = initRng.Paragraphs.Last.Range.End;
-            Word.Range rangeToCheck = Doc.Range(rngStart, rngEnd);
-            checkRange(rangeToCheck);*/
             initRng.Start = initRng.Paragraphs.First.Range.Start;
             initRng.End = initRng.Paragraphs.Last.Range.End;
             checkRange(initRng);
@@ -202,13 +202,10 @@ namespace languagetool_msword10_addin
             {
                 return;
             }
-
             removeAllErrorMarks(rangeToCheck); 
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             String textToCheck = rangeToCheck.Text.ToString();
             String lang = GetLanguageISO(rangeToCheck.LanguageID.ToString());
-            
-            //String results = GetResultsFrom(uri);
             String checkOptions = "";
             String results = getResultsFromServer(lang, textToCheck, checkOptions);
             //int myParaOffset = 0; // Not necessary if results are processed in reverse order
@@ -229,7 +226,7 @@ namespace languagetool_msword10_addin
                 {
                     continue;
                 }
-                Word.Range rng = rangeToCheck;
+                Word.Range rng = rangeToCheck.Duplicate;
                 rng.Start = errorStart;
                 rng.End = errorEnd;
                 // choose color for underline
@@ -275,7 +272,7 @@ namespace languagetool_msword10_addin
             //TODO: Check text inside footnotes
             //TODO: Check in background
             //TODO: mark GrammarChecked = false when there is some change. Use hooks.
-            //TODO: GrammarChecked = true when checking the whole document?
+            //TODO: check footnotes when checking the whole document
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             if (Doc == null || Doc.ReadOnly)
             {
