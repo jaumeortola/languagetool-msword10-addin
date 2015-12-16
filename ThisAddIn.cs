@@ -191,7 +191,9 @@ namespace languagetool_msword10_addin
                 rng.End = rng.Start + errorToReplace.Length;
                 rng.Text = ctrl.Caption;
                 rng.Font.Underline = WdUnderline.wdUnderlineNone;
+                rng.Paragraphs.First.Range.GrammarChecked = false;
             }
+            // remove buttons in command bars
             foreach (String comandBarName in comandBarNames)
             {
                 Office.CommandBar commandBar = application.CommandBars[comandBarName];
@@ -211,6 +213,10 @@ namespace languagetool_msword10_addin
             Word.Range initRng = Globals.ThisAddIn.Application.Selection.Range;
             initRng.Start = initRng.Paragraphs.First.Range.Start;
             initRng.End = initRng.Paragraphs.Last.Range.End;
+            if (initRng.Text.Equals("\u0002 \r"))  // avoid checking empty footnotes
+            {
+                return;
+            }
             checkRange(initRng);
         }
 
@@ -224,7 +230,7 @@ namespace languagetool_msword10_addin
             {
                 return;
             }
-            removeAllErrorMarks(rangeToCheck); 
+            removeErrorMarks(rangeToCheck); 
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             String textToCheck = rangeToCheck.Text.ToString();
             String lang = GetLanguageISO(rangeToCheck.LanguageID.ToString());
@@ -285,30 +291,24 @@ namespace languagetool_msword10_addin
             rangeToCheck.GrammarChecked = true; // Wow! This is not a hack. Bravo Microsoft!
         }
 
+        //Checks the whole document including footnotes
         public void checkActiveDocument()
         {
-            //Checks the whole document
-            //TODO: avoid spelling errors in footnote references
-            //TODO: Show a message when there are no errors
-            //TODO: Check sentences in other languages inside a paragraph
-            //TODO: Check text inside footnotes
+            //TODO: Show a message when there are no errors ??
+            //TODO: Check sentences in other languages inside a paragraph ??
             //TODO: Check in background
-            //TODO: mark GrammarChecked = false when there is some change. Use hooks.
-            //TODO: check footnotes when checking the whole document
+            //TODO: What happens to ctrl+Z (Undo)
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             if (Doc == null || Doc.ReadOnly)
             {
                 return;
             }
-
-            removeAllErrorMarks(Doc.Content);
             try
             {
                 //checks the whole document by paragraphs
-                //TODO: find a better way to divide do document in parts
+                //TODO: find a better way to divide the document in larger parts
                 Word.Paragraph firstPara = Doc.Paragraphs.First;
                 int numParagraphs = Doc.Paragraphs.Count;
-
                 for (int i = 1; i <= numParagraphs; i++)
                 {
                     Word.Paragraph para = firstPara.Next(i - 1);
@@ -318,6 +318,15 @@ namespace languagetool_msword10_addin
                         checkRange(myrange);
                     }
                 }
+                //check footnotes
+                for (int i = 0; i<Doc.Footnotes.Count; i++)
+                {
+                    if (!string.IsNullOrWhiteSpace(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range.Text))
+                    {
+                        checkRange(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range);
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -375,7 +384,22 @@ namespace languagetool_msword10_addin
             return msg;
         }
 
-        public void removeAllErrorMarks(Word.Range rng)
+        public void removeAllErrorMarks()
+        {
+            Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
+            removeErrorMarks(Doc.Content);
+            //check footnotes
+            for (int i = 0; i < Doc.Footnotes.Count; i++)
+            {
+                if (!string.IsNullOrWhiteSpace(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range.Text))
+                {
+                    removeErrorMarks(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range);
+                }
+            }
+
+        }
+
+        public void removeErrorMarks(Word.Range rng)
         {
             if (string.IsNullOrWhiteSpace(rng.Text))
             {
@@ -472,10 +496,15 @@ namespace languagetool_msword10_addin
             }
         }
 
-        private string getResultsFromServer(String lang, String textToCheck, String checkOptions)
+        private string getResultsFromServer(string lang, string textToCheck, string checkOptions)
         {
-            String uriString = getLTServer() + "?language=" + lang + "&text=" + WebUtility.UrlEncode(textToCheck);
-            uriString = uriString.Replace("%C2%A0", "+"); // Why?
+            if (string.IsNullOrWhiteSpace(textToCheck)) {
+                return "";
+            }
+
+            textToCheck = textToCheck.Replace("\u0002", "*"); //char used for footnote references 
+            string uriString = getLTServer() + "?language=" + lang + "&text=" + WebUtility.UrlEncode(textToCheck);
+            uriString = uriString.Replace("%C2%A0", "+"); // replace non-breaking space. Why?
             Uri uri = new Uri(uriString);
             string result = "";
             try

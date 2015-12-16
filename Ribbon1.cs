@@ -25,7 +25,7 @@ namespace languagetool_msword10_addin
 
         private void button2_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content);
+            Globals.ThisAddIn.removeAllErrorMarks();
         }
         private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
         {
