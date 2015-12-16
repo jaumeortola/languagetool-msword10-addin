@@ -16,5 +16,11 @@ namespace languagetool_msword10_addin
         {
             InitializeComponent();
         }
+
+        private void serverComboBoxChanged(object sender, EventArgs e)
+        {
+            Globals.ThisAddIn.setLTServer(this.comboBox1.Text.ToString());
+        }
+
     }
 }

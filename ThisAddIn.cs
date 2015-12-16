@@ -16,13 +16,17 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Text.RegularExpressions;
 
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
+
 namespace languagetool_msword10_addin
 {
     public partial class ThisAddIn
     {
         private readonly int maxSuggestions = 10;
         //private readonly String LTServer = "https://www.softcatala.org/languagetool/api/checkDocument";
-        private readonly String LTServer = "http://localhost:8081/";
+        private String LTServer = "http://localhost:8081/";
         private readonly String defaultLanguage = "ca"; //to be used when paragraph language is undefined
         Word.Application application;
         private TaskPaneControl taskPaneControl1;
@@ -32,18 +36,22 @@ namespace languagetool_msword10_addin
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             application = this.Application;
+            application.CustomizationContext = application.ActiveDocument;
             application.WindowBeforeRightClick +=
                 new Word.ApplicationEvents4_WindowBeforeRightClickEventHandler(application_WindowBeforeRightClick);
             application.DocumentBeforeSave += new Word.ApplicationEvents4_DocumentBeforeSaveEventHandler(application_DocumentBeforeSave);
             application.WindowSelectionChange += new Word.ApplicationEvents4_WindowSelectionChangeEventHandler(application_SelectionChange);
             application.DocumentOpen += new Word.ApplicationEvents4_DocumentOpenEventHandler(application_DocumenOpen);
-            application.CustomizationContext = application.ActiveDocument;
+            
 
             taskPaneControl1 = new TaskPaneControl();
             taskPaneValue = this.CustomTaskPanes.Add(taskPaneControl1, "Revisió amb LanguageTool");
             taskPaneValue.VisibleChanged += new EventHandler(taskPaneValue_VisibleChanged);
             taskPaneValue.Visible = false;
             taskPaneValue.Width = 300;
+
+            hookId = SetHook(procedure);
+
         }
 
         private void application_DocumenOpen(Word.Document Doc)
@@ -76,7 +84,17 @@ namespace languagetool_msword10_addin
             {
                 return taskPaneValue;
             }
-        }        
+        }
+
+        public string getLTServer()
+        {
+            return LTServer;
+        }
+
+        public void setLTServer(string serverName)
+        {
+            LTServer = serverName;
+        }
 
         public void application_WindowBeforeRightClick(Word.Selection selection, ref bool Cancel)
         {
@@ -198,6 +216,10 @@ namespace languagetool_msword10_addin
 
         private void checkRange(Word.Range rangeToCheck)
         {
+            if (!taskPaneControl1.checkBox1.Checked)
+            { 
+                return;
+            }
             if (string.IsNullOrWhiteSpace(rangeToCheck.Text))
             {
                 return;
@@ -452,7 +474,7 @@ namespace languagetool_msword10_addin
 
         private string getResultsFromServer(String lang, String textToCheck, String checkOptions)
         {
-            String uriString = LTServer + "?language=" + lang + "&text=" + WebUtility.UrlEncode(textToCheck);
+            String uriString = getLTServer() + "?language=" + lang + "&text=" + WebUtility.UrlEncode(textToCheck);
             uriString = uriString.Replace("%C2%A0", "+"); // Why?
             Uri uri = new Uri(uriString);
             string result = "";
@@ -472,11 +494,63 @@ namespace languagetool_msword10_addin
             }
             catch 
             {
-                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: " + LTServer + "."); // + ex.Message + "," + ex.StackTrace
+                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: " + getLTServer() + "."); // + ex.Message + "," + ex.StackTrace
             }
             return "";
         }
 
+        private const int WH_KEYBOARD_LL = 13;
+        private const int WM_KEYDOWN = 0x0100;
+
+        private static IntPtr hookId = IntPtr.Zero;
+        private delegate IntPtr HookProcedure(int nCode, IntPtr wParam, IntPtr lParam);
+        private static HookProcedure procedure = HookCallback;
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr SetWindowsHookEx(int idHook, HookProcedure lpfn, IntPtr hMod, uint dwThreadId);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+        private static IntPtr SetHook(HookProcedure procedure)
+        {
+            using (Process process = Process.GetCurrentProcess())
+            using (ProcessModule module = process.MainModule)
+                return SetWindowsHookEx(WH_KEYBOARD_LL, procedure, GetModuleHandle(module.ModuleName), 0);
+        }
+
+
+        private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+        {
+            if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
+            {
+                int pointerCode = Marshal.ReadInt32(lParam);
+                if (pointerCode == 162 || pointerCode == 160)
+                {
+                    return CallNextHookEx(hookId, nCode, wParam, lParam);
+                }
+                string pressedKey = ((Keys)pointerCode).ToString();
+                //Do some sort of processing on key press
+                Globals.ThisAddIn.application.CustomizationContext = Globals.ThisAddIn.application.ActiveDocument;
+                //do something with current document
+                if (pressedKey.Equals("Return")) {
+                    Word.Range initRng = Globals.ThisAddIn.Application.Selection.Range;
+                    Paragraph previousPara = initRng.Paragraphs.First.Previous(0);
+                    if (previousPara != null)
+                    {
+                        Globals.ThisAddIn.checkRange(previousPara.Range);
+                    }
+                }
+            }
+            return CallNextHookEx(hookId, nCode, wParam, lParam);
+        }
+        
         sealed public class ConvertImage : System.Windows.Forms.AxHost
         {
             private ConvertImage()
@@ -514,6 +588,7 @@ namespace languagetool_msword10_addin
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+            UnhookWindowsHookEx(hookId);
         }
 
         #region VSTO generated code
