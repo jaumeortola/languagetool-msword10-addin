@@ -31,7 +31,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -65,25 +64,12 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Servidor de LanguageTool:";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(15, 15);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(114, 17);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "Activa la correcció";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // TaskPaneControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.statusStrip1);
@@ -100,6 +86,5 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.CheckBox checkBox1;
     }
 }

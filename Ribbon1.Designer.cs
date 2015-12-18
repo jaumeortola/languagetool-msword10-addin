@@ -40,6 +40,7 @@
             this.button2 = this.Factory.CreateRibbonButton();
             this.toggleButton1 = this.Factory.CreateRibbonToggleButton();
             this.button3 = this.Factory.CreateRibbonButton();
+            this.checkBox1 = this.Factory.CreateRibbonCheckBox();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // group1
             // 
+            this.group1.Items.Add(this.checkBox1);
             this.group1.Items.Add(this.button1);
             this.group1.Items.Add(this.button2);
             this.group1.Items.Add(this.toggleButton1);
@@ -84,6 +86,12 @@
             this.button3.Name = "button3";
             this.button3.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button3_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Label = "Revisa";
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.checkBox1_Click);
+            // 
             // Ribbon1
             // 
             this.Name = "Ribbon1";
@@ -106,6 +114,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton toggleButton1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button3;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox1;
     }
 
     partial class ThisRibbonCollection

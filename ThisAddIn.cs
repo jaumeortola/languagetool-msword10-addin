@@ -58,7 +58,7 @@ namespace languagetool_msword10_addin
         {
             //checkActiveDocument(); //do it in background
             var thread = new Thread(() =>
-            { 
+            {
                 checkActiveDocument();
             });
             thread.Start();
@@ -227,75 +227,78 @@ namespace languagetool_msword10_addin
 
         private void checkRange(Word.Range rangeToCheck)
         {
-            if (!taskPaneControl1.checkBox1.Checked)
-            { 
+            //var thread = new Thread(() =>
+            //{
+                if (!Globals.Ribbons.Ribbon1.checkBox1.Checked)
                 return;
-            }
-            if (string.IsNullOrWhiteSpace(rangeToCheck.Text))
-            {
-                return;
-            }
-            removeErrorMarks(rangeToCheck); 
-            Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
-            String textToCheck = rangeToCheck.Text.ToString();
-            String lang = GetLanguageISO(rangeToCheck.LanguageID.ToString());
-            String checkOptions = "";
-            String results = getResultsFromServer(lang, textToCheck, checkOptions);
-            //int myParaOffset = 0; // Not necessary if results are processed in reverse order
-            int prevErrorStart = -1;
-            int prevErrorEnd = -1;
-            int rangeToCheckStart = rangeToCheck.Start;
-            List<Dictionary<string, string>> parsedResults = ParseXMLResults(results);
-            if (parsedResults == null)
-                return;
-            foreach (Dictionary<string, string> myerror in parsedResults.Reverse<Dictionary<string, string>>())  
-            {
-                //Select error start and end
-                int offset = int.Parse(myerror["offset"]);
-                int errorlength = int.Parse(myerror["errorlength"]);
-                int errorStart = rangeToCheckStart + offset;// + myParaOffset;
-                int errorEnd = errorStart + errorlength;
-                if (errorEnd == prevErrorEnd)  // Mark just one error at the same place
-                {
-                    continue;
-                }
-                Word.Range rng = rangeToCheck.Duplicate;
-                rng.Start = errorStart;
-                rng.End = errorEnd;
-                // choose color for underline
-                Word.WdColor mycolor = Word.WdColor.wdColorBlue;
-                switch (myerror["locqualityissuetype"])
-                {
-                    case "misspelling":
-                        mycolor = Word.WdColor.wdColorRed;
-                        break;
-                    case "style":
-                    case "locale-violation":
-                        mycolor = Word.WdColor.wdColorGreen;
-                        break;
-                }
-                // do not track changes
+                if (string.IsNullOrWhiteSpace(rangeToCheck.Text))
+                    return;
+                if (rangeToCheck.GrammarChecked)
+                    return;
+                Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
                 bool isTrackingRevisions = Doc.TrackRevisions;
                 Doc.TrackRevisions = false;
-                // unerline errors
-                rng.Font.Underline = WdUnderline.wdUnderlineWavy;
-                rng.Font.UnderlineColor = mycolor;
-                // add hidden data after error. Format: [<error message>|replacement1#replacement2#replacement3...|<error string>]
-                string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "|" + myerror["context"].Substring(int.Parse(myerror["contextoffset"]), errorlength) + "]";
-                //myParaOffset += errorData.Length;
-                rng.Start = errorEnd;
+                removeErrorMarks(rangeToCheck);
                 Globals.ThisAddIn.Application.ScreenUpdating = false;
-                rng.Text = errorData;
-                rng.Font.Hidden = 1;
-                rng.Font.Color = WdColor.wdColorRed;
-                Globals.ThisAddIn.Application.ScreenUpdating = true;
-                //Store previous start and end values
-                prevErrorEnd = errorEnd;
-                prevErrorStart = errorStart;
-                // Track revisions again
+                String textToCheck = rangeToCheck.Text.ToString();
+                String lang = GetLanguageISO(rangeToCheck.LanguageID.ToString());
+                String checkOptions = "";
+                String results = getResultsFromServer(lang, textToCheck, checkOptions);
+                //int myParaOffset = 0; // Not necessary if results are processed in reverse order
+                int prevErrorStart = -1;
+                int prevErrorEnd = -1;
+                int rangeToCheckStart = rangeToCheck.Start;
+                List<Dictionary<string, string>> parsedResults = ParseXMLResults(results);
+                if (parsedResults == null)
+                    return;
+                foreach (Dictionary<string, string> myerror in parsedResults.Reverse<Dictionary<string, string>>())  
+                {
+                    //Select error start and end
+                    int offset = int.Parse(myerror["offset"]);
+                    int errorlength = int.Parse(myerror["errorlength"]);
+                    int errorStart = rangeToCheckStart + offset;// + myParaOffset;
+                    int errorEnd = errorStart + errorlength;
+                    // Mark just one error at the same place and avoid overlaping errors
+                    if (prevErrorEnd > -1 && errorEnd >= prevErrorEnd)  
+                    {
+                        continue;
+                    }
+                    Word.Range rng = rangeToCheck.Duplicate;
+                    rng.Start = errorStart;
+                    rng.End = errorEnd;
+                    // choose color for underline
+                    Word.WdColor mycolor = Word.WdColor.wdColorBlue;
+                    switch (myerror["locqualityissuetype"])
+                    {
+                        case "misspelling":
+                            mycolor = Word.WdColor.wdColorRed;
+                            break;
+                        case "style":
+                        case "locale-violation":
+                            mycolor = Word.WdColor.wdColorGreen;
+                            break;
+                    }
+                    
+                    // unerline errors
+                    rng.Font.Underline = WdUnderline.wdUnderlineWavy;
+                    rng.Font.UnderlineColor = mycolor;
+                    // add hidden data after error. Format: [<error message>|replacement1#replacement2#replacement3...|<error string>]
+                    string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "|" + myerror["context"].Substring(int.Parse(myerror["contextoffset"]), errorlength) + "]";
+                    //myParaOffset += errorData.Length;
+                    rng.Start = errorEnd;
+                    rng.Text = errorData;
+                    rng.Font.Hidden = 1;
+                    rng.Font.Color = WdColor.wdColorRed;
+                    //Store previous start and end values
+                    prevErrorEnd = errorEnd;
+                    prevErrorStart = errorStart;
+                    // Track revisions again
+                }
+                rangeToCheck.GrammarChecked = true;
                 Doc.TrackRevisions = isTrackingRevisions;
-            }
-            rangeToCheck.GrammarChecked = true; // Wow! This is not a hack. Bravo Microsoft!
+                Globals.ThisAddIn.Application.ScreenUpdating = true;
+            //});
+            //thread.Start();
         }
 
         //Checks the whole document including footnotes
@@ -303,16 +306,24 @@ namespace languagetool_msword10_addin
         {
             //TODO: Show a message when there are no errors ??
             //TODO: Check sentences in other languages inside a paragraph ??
-            //TODO: Check in background
             //TODO: What happens to ctrl+Z (Undo)
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
-            if (Doc == null || Doc.ReadOnly)
+            if (Doc == null || Doc.ReadOnly || !Globals.Ribbons.Ribbon1.checkBox1.Checked)
             {
                 return;
             }
             try
             {
                 //checks the whole document by paragraphs
+
+                //check footnotes
+                for (int i = 0; i < Doc.Footnotes.Count; i++)
+                {
+                    if (!string.IsNullOrWhiteSpace(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range.Text))
+                    {
+                        checkRange(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range);
+                    }
+                }
                 //TODO: find a better way to divide the document in larger parts
                 Word.Paragraph firstPara = Doc.Paragraphs.First;
                 int numParagraphs = Doc.Paragraphs.Count;
@@ -325,15 +336,6 @@ namespace languagetool_msword10_addin
                         checkRange(myrange);
                     }
                 }
-                //check footnotes
-                for (int i = 0; i<Doc.Footnotes.Count; i++)
-                {
-                    if (!string.IsNullOrWhiteSpace(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range.Text))
-                    {
-                        checkRange(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range);
-                    }
-                }
-
             }
             catch (Exception ex)
             {
@@ -393,6 +395,7 @@ namespace languagetool_msword10_addin
 
         public void removeAllErrorMarks()
         {
+            //TODO could be quicker with WdFindWrap.wdFindContinue
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             removeErrorMarks(Doc.Content);
             //check footnotes
@@ -412,15 +415,13 @@ namespace languagetool_msword10_addin
             {
                 return;
             }
-            rng.GrammarChecked = false;
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             if (Doc == null || Doc.ReadOnly)
             {
                 return;
             }
             bool isTrackingRevisions = Doc.TrackRevisions;
-            Doc.TrackRevisions = false;
-            Globals.ThisAddIn.Application.ScreenUpdating = false; //Find & replace work better this way!
+            Doc.TrackRevisions = false;            
             //options
             object findText = "";
             object replaceWithText = "";
@@ -449,23 +450,24 @@ namespace languagetool_msword10_addin
                 ref matchWildCards, ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText, ref replace,
                 ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
             //Remove hidden data
-            findText = "*";
+            findText = "";
             replaceWithText = "";
-            matchWildCards = true;
+            //matchWildCards = true;
             replace = WdReplace.wdReplaceAll;
             wrap = WdFindWrap.wdFindStop;
             rng.Find.ClearFormatting();
             rng.Find.Replacement.ClearFormatting();
             rng.Find.Font.Hidden = 1;
             //execute find and replace
-            Doc.ActiveWindow.View.ShowHiddenText = true;
+            Globals.ThisAddIn.Application.ScreenUpdating = false; 
+            Doc.ActiveWindow.View.ShowHiddenText = true;  //Find & replace work better this way!
             rng.Find.Execute(ref findText, ref matchCase, ref matchWholeWord,
                 ref matchWildCards, ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText, ref replace,
                 ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
             Doc.ActiveWindow.View.ShowHiddenText = false;
-
             Globals.ThisAddIn.Application.ScreenUpdating = true;
             Doc.TrackRevisions = isTrackingRevisions;
+            rng.GrammarChecked = false;
         }
         
         private static List<Dictionary<string, string>> ParseXMLResults(String xmlString)
@@ -530,7 +532,7 @@ namespace languagetool_msword10_addin
             }
             catch 
             {
-                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: " + getLTServer() + "."); // + ex.Message + "," + ex.StackTrace
+                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: " + getLTServer() + ".");
             }
             return "";
         }

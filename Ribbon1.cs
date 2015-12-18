@@ -18,6 +18,18 @@ namespace languagetool_msword10_addin
             Globals.ThisAddIn.checkActiveDocument();
         }
 
+        private void checkBox1_Click(object sender, RibbonControlEventArgs e)
+        {
+            if (this.checkBox1.Checked)
+            {
+                Globals.ThisAddIn.checkActiveDocument();
+            }
+            else
+            {
+                Globals.ThisAddIn.removeAllErrorMarks();
+            }
+        }
+
         private void button3_Click(object sender, RibbonControlEventArgs e)
         {
             Globals.ThisAddIn.checkParagraphsInSelection();
