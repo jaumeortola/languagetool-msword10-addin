@@ -20,7 +20,7 @@ namespace languagetool_msword10_addin
 
         private void button3_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.checkCurrentParagraph();
+            Globals.ThisAddIn.checkParagraphsInSelection();
         }
 
         private void button2_Click(object sender, RibbonControlEventArgs e)

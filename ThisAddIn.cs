@@ -57,13 +57,18 @@ namespace languagetool_msword10_addin
         private void application_DocumenOpen(Word.Document Doc)
         {
             //checkActiveDocument(); //do it in background
+            var thread = new Thread(() =>
+            { 
+                checkActiveDocument();
+            });
+            thread.Start();
         }
 
         private void application_SelectionChange(Selection sel)
         {
             if (!sel.Range.GrammarChecked)
             {
-                checkCurrentParagraph();
+                checkParagraphsInSelection();
             }
         }
 
@@ -202,7 +207,7 @@ namespace languagetool_msword10_addin
         }
 
 
-        public void checkCurrentParagraph()
+        public void checkParagraphsInSelection()
         {
             //Checks whole paragraphs in the current selection.            
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
@@ -279,9 +284,11 @@ namespace languagetool_msword10_addin
                 string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "|" + myerror["context"].Substring(int.Parse(myerror["contextoffset"]), errorlength) + "]";
                 //myParaOffset += errorData.Length;
                 rng.Start = errorEnd;
+                Globals.ThisAddIn.Application.ScreenUpdating = false;
                 rng.Text = errorData;
                 rng.Font.Hidden = 1;
                 rng.Font.Color = WdColor.wdColorRed;
+                Globals.ThisAddIn.Application.ScreenUpdating = true;
                 //Store previous start and end values
                 prevErrorEnd = errorEnd;
                 prevErrorStart = errorStart;
