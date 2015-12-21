@@ -15,29 +15,29 @@ namespace languagetool_msword10_addin
 
         private void button1_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.checkActiveDocument();
+            ThisAddIn.checkActiveDocument();
         }
 
         private void checkBox1_Click(object sender, RibbonControlEventArgs e)
         {
             if (this.checkBox1.Checked)
             {
-                Globals.ThisAddIn.checkActiveDocument();
+                ThisAddIn.checkActiveDocument();
             }
             else
             {
-                Globals.ThisAddIn.removeAllErrorMarks();
+                ThisAddIn.removeAllErrorMarks();
             }
         }
 
         private void button3_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.checkParagraphsInSelection();
+            ThisAddIn.checkParagraphsInSelection();
         }
 
         private void button2_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.removeAllErrorMarks();
+            ThisAddIn.removeAllErrorMarks();
         }
         private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
         {
