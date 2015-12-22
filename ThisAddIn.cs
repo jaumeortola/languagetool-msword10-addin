@@ -146,6 +146,15 @@ namespace languagetool_msword10_addin
                         }
                     }
                 }
+                else
+                {
+                    // remove buttons in command bars
+                    foreach (String comandBarName in comandBarNames)
+                    {
+                        Office.CommandBar commandBar = application.CommandBars[comandBarName];
+                        commandBar.Reset();
+                    }
+                }
 
             }
         }
@@ -268,6 +277,9 @@ namespace languagetool_msword10_addin
                 //Select error start and end
                 int offset = int.Parse(myerror["offset"]);
                 int errorlength = int.Parse(myerror["errorlength"]);
+                string errorStr = myerror["context"].Substring(int.Parse(myerror["contextoffset"]), errorlength);
+                if (errorStr.Equals(",*") || errorStr.Equals(";*")) //avoid errors in footnote references
+                    continue;
                 int errorStart = rangeToCheckStart + offset;// + myParaOffset;
                 int errorEnd = errorStart + errorlength;
                 // Mark just one error at the same place and avoid overlaping errors
@@ -298,7 +310,7 @@ namespace languagetool_msword10_addin
                 //rng.Font.UnderlineColor = mycolor;
                 rng.HighlightColorIndex = myColorIndex;
                 // add hidden data after error. Format: [<error message>|replacement1#replacement2#replacement3...|<error string>]
-                string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "|" + myerror["context"].Substring(int.Parse(myerror["contextoffset"]), errorlength) + "]";
+                string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "|" + errorStr + "]";
                 //myParaOffset += errorData.Length;
                 rng.Start = errorEnd;
                 rng.Text = errorData;
@@ -324,39 +336,33 @@ namespace languagetool_msword10_addin
             {
                 return;
             }
-            try
+            //checks the whole document by paragraphs
+            var thread = new Thread(() =>
             {
-                //checks the whole document by paragraphs
-                var thread = new Thread(() =>
+                //check footnotes
+                for (int i = 0; i < Doc.Footnotes.Count; i++)
                 {
-                    //check footnotes
-                    for (int i = 0; i < Doc.Footnotes.Count; i++)
+                    if (!string.IsNullOrWhiteSpace(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range.Text))
                     {
-                        if (!string.IsNullOrWhiteSpace(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range.Text))
-                        {
-                            checkRange(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range);
-                            Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range.GrammarChecked = true;
-                        }
+                        checkRange(Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range);
+                        Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range.GrammarChecked = true;
                     }
-                    //TODO: find a better way to divide the document in larger parts
-                    Word.Paragraph firstPara = Doc.Paragraphs.First;
-                    int numParagraphs = Doc.Paragraphs.Count;
-                    for (int i = 1; i <= numParagraphs; i++)
+                }
+                //TODO: find a better way to divide the document in larger parts
+                Word.Paragraph firstPara = Doc.Paragraphs.First;
+                int numParagraphs = Doc.Paragraphs.Count;
+                for (int i = 1; i <= numParagraphs; i++)
+                {
+                    Word.Paragraph para = firstPara.Next(i - 1);
+                    Word.Range myrange = para.Range;
+                    if (!string.IsNullOrWhiteSpace(myrange.Text.ToString()))
                     {
-                        Word.Paragraph para = firstPara.Next(i - 1);
-                        Word.Range myrange = para.Range;
-                        if (!string.IsNullOrWhiteSpace(myrange.Text.ToString()))
-                        {
-                            checkRange(myrange);
-                        }
+                        checkRange(myrange);
                     }
-                });
+                    myrange.GrammarChecked = true;
+                }
+            });
                 thread.Start();
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message + "," + ex.StackTrace);
-            }
         }
 
         private String findHiddenData(Word.Selection selection)
