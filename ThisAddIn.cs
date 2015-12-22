@@ -336,9 +336,11 @@ namespace languagetool_msword10_addin
             {
                 return;
             }
+            WaitForm myWaitForm = new WaitForm();
+            myWaitForm.ShowDialog();
             //checks the whole document by paragraphs
-            var thread = new Thread(() =>
-            {
+            //var thread = new Thread(() =>
+            //{
                 //check footnotes
                 for (int i = 0; i < Doc.Footnotes.Count; i++)
                 {
@@ -348,6 +350,7 @@ namespace languagetool_msword10_addin
                         Doc.Footnotes[i + Doc.Footnotes.StartingNumber].Range.GrammarChecked = true;
                     }
                 }
+                //checkRange(Doc.Content);
                 //TODO: find a better way to divide the document in larger parts
                 Word.Paragraph firstPara = Doc.Paragraphs.First;
                 int numParagraphs = Doc.Paragraphs.Count;
@@ -361,8 +364,11 @@ namespace languagetool_msword10_addin
                     }
                     myrange.GrammarChecked = true;
                 }
-            });
-                thread.Start();
+            //});
+            //thread.Start();
+            myWaitForm.setMessage("Revisió acabada!");
+            myWaitForm.ShowDialog();
+
         }
 
         private String findHiddenData(Word.Selection selection)
