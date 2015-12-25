@@ -11,6 +11,7 @@
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
+            this.checkBox1.Checked = Properties.Settings.Default.CheckWhileWriting;
         }
 
         /// <summary> 

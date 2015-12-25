@@ -78,7 +78,7 @@ namespace languagetool_msword10_addin
 
         private void application_DocumentBeforeSave(Word.Document Doc, ref bool SaveAsUI, ref bool Cancel)
         {
-            // removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content); //?
+            removeAllErrorMarks();  // Also in auto-saving?
         }
 
         public void application_WindowBeforeRightClick(Word.Selection selection, ref bool Cancel)

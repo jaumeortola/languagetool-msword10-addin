@@ -20,6 +20,8 @@ namespace languagetool_msword10_addin
 
         private void checkBox1_Click(object sender, RibbonControlEventArgs e)
         {
+            Properties.Settings.Default.CheckWhileWriting = this.checkBox1.Checked;
+            Properties.Settings.Default.Save();
             if (this.checkBox1.Checked)
             {
                 ThisAddIn.checkActiveDocument();
@@ -45,11 +47,6 @@ namespace languagetool_msword10_addin
             LTSettingsForm myLTSettingsForm = new LTSettingsForm();
             myLTSettingsForm.ShowDialog();
         }
-        /*private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
-{
-   Globals.ThisAddIn.TaskPane.Visible = ((RibbonToggleButton)sender).Checked;
-}*/
-
     }
 }
 

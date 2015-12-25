@@ -119,5 +119,17 @@ namespace languagetool_msword10_addin.Properties {
                 this["TypographyRulesEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CheckWhileWriting {
+            get {
+                return ((bool)(this["CheckWhileWriting"]));
+            }
+            set {
+                this["CheckWhileWriting"] = value;
+            }
+        }
     }
 }
