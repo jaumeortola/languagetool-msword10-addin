@@ -20,6 +20,21 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 
+
+/*TODO:
+
+    Check what happens:
+    - Tracking revisions
+    - Ctrl+Z
+    - Copy & paste
+    - opening, saving, auto-saving documents
+    
+    - checking in background
+    - license
+    - get language names and codes from server
+
+*/
+
 namespace languagetool_msword10_addin
 {
     public partial class ThisAddIn
@@ -488,7 +503,7 @@ namespace languagetool_msword10_addin
         private static string getLanguageCode(string langID)
         {
             if (langID.StartsWith("wdSpanish"))
-                return "es-ES";
+                return "es";
             if (langID.StartsWith("wdFrench"))
                 return "fr-FR";
             switch (langID)
