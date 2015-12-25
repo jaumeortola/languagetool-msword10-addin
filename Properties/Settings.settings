@@ -1,7 +1,30 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="languagetool_msword10_addin.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LTServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:8081/</Value>
+    </Setting>
+    <Setting Name="DefaultLanguage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ca-ES</Value>
+    </Setting>
+    <Setting Name="CatalanUserPreferences" Type="System.String" Scope="User">
+      <Value Profile="(Default)">general</Value>
+    </Setting>
+    <Setting Name="EnabledRules" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DisabledRules" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LTServerOptions" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:8081/;https://languagetool.org:8081/;https://www.softcatala.org/languagetool/api/checkDocument/</Value>
+    </Setting>
+    <Setting Name="CatalanPreferencesOptions" Type="System.String" Scope="User">
+      <Value Profile="(Default)">general;valencià;valencià (accentuació general);balear</Value>
+    </Setting>
+    <Setting Name="TypographyRulesEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

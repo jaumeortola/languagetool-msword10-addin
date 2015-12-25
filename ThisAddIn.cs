@@ -25,12 +25,8 @@ namespace languagetool_msword10_addin
     public partial class ThisAddIn
     {
         private readonly int maxSuggestions = 10;
-        //private readonly String LTServer = "https://www.softcatala.org/languagetool/api/checkDocument";
-        private String LTServer = "http://localhost:8081/";
-        private readonly String defaultLanguage = "ca"; //to be used when paragraph language is undefined
+        
         Word.Application application;
-        private TaskPaneControl taskPaneControl1;
-        private Microsoft.Office.Tools.CustomTaskPane taskPaneValue;
         private string[] comandBarNames = new string[] { "Text", "Footnotes", "Lists" };
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
@@ -43,13 +39,6 @@ namespace languagetool_msword10_addin
             application.WindowSelectionChange += new Word.ApplicationEvents4_WindowSelectionChangeEventHandler(application_SelectionChange);
             application.DocumentOpen += new Word.ApplicationEvents4_DocumentOpenEventHandler(application_DocumenOpen);
             
-
-            taskPaneControl1 = new TaskPaneControl();
-            taskPaneValue = this.CustomTaskPanes.Add(taskPaneControl1, "Revisió amb LanguageTool");
-            taskPaneValue.VisibleChanged += new EventHandler(taskPaneValue_VisibleChanged);
-            taskPaneValue.Visible = false;
-            taskPaneValue.Width = 300;
-
             hookId = SetHook(procedure);
 
         }
@@ -75,30 +64,6 @@ namespace languagetool_msword10_addin
         private void application_DocumentBeforeSave(Word.Document Doc, ref bool SaveAsUI, ref bool Cancel)
         {
             // removeAllErrorMarks(Globals.ThisAddIn.Application.ActiveDocument.Content); //?
-        }
-
-        private void taskPaneValue_VisibleChanged(object sender, System.EventArgs e)
-        {
-            Globals.Ribbons.Ribbon1.toggleButton1.Checked =
-                taskPaneValue.Visible;
-        }
-
-        public Microsoft.Office.Tools.CustomTaskPane TaskPane
-        {
-            get
-            {
-                return taskPaneValue;
-            }
-        }
-
-        public static string getLTServer()
-        {
-            return Globals.ThisAddIn.LTServer;
-        }
-
-        public static void setLTServer(string serverName)
-        {
-            Globals.ThisAddIn.LTServer = serverName;
         }
 
         public void application_WindowBeforeRightClick(Word.Selection selection, ref bool Cancel)
@@ -262,9 +227,7 @@ namespace languagetool_msword10_addin
                 return;
             Globals.ThisAddIn.Application.ScreenUpdating = false;
             String textToCheck = rangeToCheck.Text.ToString();
-            String lang = GetLanguageISO(rangeToCheck.LanguageID.ToString());
-            String checkOptions = "";
-            String results = getResultsFromServer(lang, textToCheck, checkOptions);
+            String results = getResultsFromServer(rangeToCheck.LanguageID.ToString(), textToCheck);
             //int myParaOffset = 0; // Not necessary if results are processed in reverse order
             int prevErrorStart = -1;
             int prevErrorEnd = -1;
@@ -336,11 +299,11 @@ namespace languagetool_msword10_addin
             {
                 return;
             }
-            WaitForm myWaitForm = new WaitForm();
-            myWaitForm.ShowDialog();
+            //WaitForm myWaitForm = new WaitForm();
+            //myWaitForm.ShowDialog();
             //checks the whole document by paragraphs
-            //var thread = new Thread(() =>
-            //{
+            var thread = new Thread(() =>
+            {
                 //check footnotes
                 for (int i = 0; i < Doc.Footnotes.Count; i++)
                 {
@@ -364,10 +327,10 @@ namespace languagetool_msword10_addin
                     }
                     myrange.GrammarChecked = true;
                 }
-            //});
-            //thread.Start();
-            myWaitForm.setMessage("Revisió acabada!");
-            myWaitForm.ShowDialog();
+            });
+            thread.Start();
+            //myWaitForm.setMessage("Revisió acabada!");
+            //myWaitForm.ShowDialog();
 
         }
 
@@ -522,42 +485,83 @@ namespace languagetool_msword10_addin
             return suggestions;
         }
 
-        //TODO: Find a better way
-        private static String GetLanguageISO(String langObj)
+        private static string getLanguageCode(string langID)
         {
-            if (langObj.StartsWith("wdSpanish"))
-                return "es";
-            switch (langObj)
+            if (langID.StartsWith("wdSpanish"))
+                return "es-ES";
+            if (langID.StartsWith("wdFrench"))
+                return "fr-FR";
+            switch (langID)
             {
                 case "wdCatalan":
-                    return "ca";
+                    if (Properties.Settings.Default.CatalanUserPreferences.StartsWith("valencià"))
+                        return "ca-ES-valencia";
+                    else
+                        return "ca-ES";
                 case "wdEnglishUS":
                     return "en-US";
                 default:
-                    return (Globals.ThisAddIn.defaultLanguage);
+                    return (Properties.Settings.Default.DefaultLanguage);
             }
         }
 
-        private static string getResultsFromServer(string lang, string textToCheck, string checkOptions)
+        private static string getUrlParameters(string langID)
+        {
+            string enabledRules = "";
+            string disabledRules = "";
+            string urlParameters = "";
+            if (langID.Equals("wdCatalan")) {
+                switch (Properties.Settings.Default.CatalanUserPreferences)
+                {
+                    case "general":
+                        enabledRules += ",EXIGEIX_PLURALS_S";
+                        break;
+                    case "valencià":
+                        break;
+                    case "valencià (accentuació general)":
+                        disabledRules += ",EXIGEIX_ACCENTUACIO_VALENCIANA";
+                        enabledRules += ",EXIGEIX_ACCENTUACIO_GENERAL";
+                        break;
+                    case "balear":
+                        enabledRules += ",EXIGEIX_VERBS_BALEARS";
+                        disabledRules += ",EXIGEIX_VERBS_CENTRAL";
+                        break;
+                }
+                if (Properties.Settings.Default.TypographyRulesEnabled)
+                {
+                    enabledRules += ",PRIORITZAR_COMETES,GUIONET_GUIO,COMETES_TIPOGRAFIQUES," 
+                        +" GUIO_SENSE_ESPAI,APOSTROF_TIPOGRAFIC,PUNTS_SUSPENSIUS,EVITA_EXCLAMACIO_INICIAL";
+                }
+            }
+            if (disabledRules.Length > 0)
+                urlParameters += "&disabled=" + disabledRules;
+            if (enabledRules.Length > 0)
+                urlParameters += "&enabled=" + enabledRules;
+            return urlParameters;
+        }
+        private static string getResultsFromServer(string langID, string textToCheck)
         {
             if (string.IsNullOrWhiteSpace(textToCheck)) {
                 return "";
             }
 
             textToCheck = textToCheck.Replace("\u0002", "*"); //char used for footnote references 
-            string uriString = getLTServer() + "?language=" + lang + "&text=" + WebUtility.UrlEncode(textToCheck);
+            string uriString = Properties.Settings.Default.LTServer + "?language=" + getLanguageCode(langID) 
+                + "&text=" + WebUtility.UrlEncode(textToCheck) + getUrlParameters(langID);
             uriString = uriString.Replace("%C2%A0", "+"); // replace non-breaking space. Why?
-            Uri uri = new Uri(uriString);
+            Uri uri = new Uri(uriString); //TODO set a limit of length
             string result = "";
             try
             {
                 // Create the web request  
-                System.Net.HttpWebRequest request = System.Net.WebRequest.Create(uri) as System.Net.HttpWebRequest;
+                System.Net.HttpWebRequest request = System.Net.WebRequest.Create(uri) 
+                    as System.Net.HttpWebRequest;
                 // Get response  
                 using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
                 {
                     // Get the response stream  
-                    StreamReader reader = new StreamReader(response.GetResponseStream(), System.Text.Encoding.UTF8);
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), 
+                        System.Text.Encoding.UTF8);
                     // Read the whole contents and return as a string  
                     result = reader.ReadToEnd();
                 }
@@ -565,7 +569,8 @@ namespace languagetool_msword10_addin
             }
             catch 
             {
-                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: " + getLTServer() + ".");
+                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: " 
+                    + Properties.Settings.Default.LTServer + ".");
             }
             return "";
         }

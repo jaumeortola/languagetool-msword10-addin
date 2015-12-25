@@ -39,10 +39,16 @@ namespace languagetool_msword10_addin
         {
             ThisAddIn.removeAllErrorMarks();
         }
-        private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
+
+        private void LTSettings_onclick(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.TaskPane.Visible = ((RibbonToggleButton)sender).Checked;
+            LTSettingsForm myLTSettingsForm = new LTSettingsForm();
+            myLTSettingsForm.ShowDialog();
         }
+        /*private void toggleButton1_Click(object sender, RibbonControlEventArgs e)
+{
+   Globals.ThisAddIn.TaskPane.Visible = ((RibbonToggleButton)sender).Checked;
+}*/
 
     }
 }

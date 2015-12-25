@@ -22,5 +22,102 @@ namespace languagetool_msword10_addin.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8081/")]
+        public string LTServer {
+            get {
+                return ((string)(this["LTServer"]));
+            }
+            set {
+                this["LTServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ca-ES")]
+        public string DefaultLanguage {
+            get {
+                return ((string)(this["DefaultLanguage"]));
+            }
+            set {
+                this["DefaultLanguage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("general")]
+        public string CatalanUserPreferences {
+            get {
+                return ((string)(this["CatalanUserPreferences"]));
+            }
+            set {
+                this["CatalanUserPreferences"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string EnabledRules {
+            get {
+                return ((string)(this["EnabledRules"]));
+            }
+            set {
+                this["EnabledRules"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DisabledRules {
+            get {
+                return ((string)(this["DisabledRules"]));
+            }
+            set {
+                this["DisabledRules"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8081/;https://languagetool.org:8081/;https://www.softcatala.org/" +
+            "languagetool/api/checkDocument/")]
+        public string LTServerOptions {
+            get {
+                return ((string)(this["LTServerOptions"]));
+            }
+            set {
+                this["LTServerOptions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("general;valencià;valencià (accentuació general);balear")]
+        public string CatalanPreferencesOptions {
+            get {
+                return ((string)(this["CatalanPreferencesOptions"]));
+            }
+            set {
+                this["CatalanPreferencesOptions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TypographyRulesEnabled {
+            get {
+                return ((bool)(this["TypographyRulesEnabled"]));
+            }
+            set {
+                this["TypographyRulesEnabled"] = value;
+            }
+        }
     }
 }
