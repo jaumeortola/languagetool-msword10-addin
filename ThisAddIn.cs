@@ -90,7 +90,7 @@ namespace languagetool_msword10_addin
                 //if (selection.Font.Underline == WdUnderline.wdUnderlineWavy)
                 if (selection.Range.HighlightColorIndex == WdColorIndex.wdTurquoise ||
                     selection.Range.HighlightColorIndex == WdColorIndex.wdBrightGreen ||
-                    selection.Range.HighlightColorIndex == WdColorIndex.wdRed 
+                    selection.Range.HighlightColorIndex == WdColorIndex.wdPink 
                     )
                 {
                     Regex regex = new Regex("\\[(.*)\\|(.*)\\|(.*)\\]");
@@ -275,7 +275,7 @@ namespace languagetool_msword10_addin
                 {
                     case "misspelling":
                         //mycolor = Word.WdColor.wdColorRed;
-                        myColorIndex = WdColorIndex.wdRed;
+                        myColorIndex = WdColorIndex.wdPink;
                         break;
                     case "style":
                     case "locale-violation":
