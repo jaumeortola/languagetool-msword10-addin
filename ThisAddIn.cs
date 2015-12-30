@@ -42,7 +42,7 @@ namespace languagetool_msword10_addin
 {
     public partial class ThisAddIn
     {
-        private readonly int maxSuggestions = 10;
+        private readonly int maxSuggestions = 12;
         
         Word.Application application;
         private string[] comandBarNames = new string[] { "Text", "Footnotes", "Lists" };
@@ -118,7 +118,7 @@ namespace languagetool_msword10_addin
                             if (!string.IsNullOrWhiteSpace(suggestions[0]))
                             {
                                 int i = 0;
-                                while (i<suggestions.Length && i< maxSuggestions) { 
+                                while (i<suggestions.Length && i < maxSuggestions) { 
                                     Office.CommandBarButton button2 = (Office.CommandBarButton)commandBar.Controls.Add(Office.MsoControlType.msoControlButton, 1, errorStr, i+2, true);
                                     button2.Tag = "LTSuggestion" + i;
                                     button2.Caption = suggestions[i];
@@ -291,7 +291,7 @@ namespace languagetool_msword10_addin
                 //rng.Font.UnderlineColor = mycolor;
                 rng.HighlightColorIndex = myColorIndex;
                 // add hidden data after error. Format: [<error message>|replacement1#replacement2#replacement3...|<error string>]
-                string errorData = "[" + myerror["msg"] + "|" + myerror["replacements"] + "|" + errorStr + "]";
+                string errorData = "[" + myerror["msg"] + "|" + getReplacementsLimit(myerror["replacements"]) + "|" + errorStr + "]";
                 //myParaOffset += errorData.Length;
                 rng.Start = errorEnd;
                 rng.Text = errorData;
@@ -307,6 +307,23 @@ namespace languagetool_msword10_addin
             Globals.ThisAddIn.Application.ScreenUpdating = true;
             //});
             //thread.Start();
+        }
+
+        private static string getReplacementsLimit(string initReplacements)
+        {
+            string finalReplacements = "";
+            if (initReplacements.Length > 0)
+            {
+                string[] myReplacements = initReplacements.Split('#');
+                finalReplacements = myReplacements[0];
+                int i = 1;
+                while (i < myReplacements.Length && i < Globals.ThisAddIn.maxSuggestions)
+                {
+                    finalReplacements += "#" + myReplacements[i];
+                    i++;
+                }
+            }
+            return finalReplacements;
         }
 
         //Checks the whole document including footnotes
