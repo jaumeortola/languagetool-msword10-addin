@@ -38,12 +38,14 @@ namespace languagetool_msword10_addin
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.TypographyRulesEnabled = new System.Windows.Forms.CheckBox();
+            this.comboBoxLanguages = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 166);
+            this.label1.Location = new System.Drawing.Point(12, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 13);
             this.label1.TabIndex = 2;
@@ -54,7 +56,7 @@ namespace languagetool_msword10_addin
             this.comboBoxLTServer.BackColor = System.Drawing.Color.White;
             this.comboBoxLTServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLTServer.FormattingEnabled = true;
-            this.comboBoxLTServer.Location = new System.Drawing.Point(15, 182);
+            this.comboBoxLTServer.Location = new System.Drawing.Point(15, 131);
             this.comboBoxLTServer.Name = "comboBoxLTServer";
             this.comboBoxLTServer.Size = new System.Drawing.Size(386, 21);
             this.comboBoxLTServer.TabIndex = 1;
@@ -62,18 +64,18 @@ namespace languagetool_msword10_addin
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 19);
+            this.label2.Location = new System.Drawing.Point(12, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 13);
+            this.label2.Size = new System.Drawing.Size(161, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Preferències de revisió";
+            this.label2.Text = "Preferències de revisió en català";
             // 
             // comboBoxPreferences
             // 
             this.comboBoxPreferences.BackColor = System.Drawing.Color.White;
             this.comboBoxPreferences.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPreferences.FormattingEnabled = true;
-            this.comboBoxPreferences.Location = new System.Drawing.Point(12, 35);
+            this.comboBoxPreferences.Location = new System.Drawing.Point(15, 39);
             this.comboBoxPreferences.Name = "comboBoxPreferences";
             this.comboBoxPreferences.Size = new System.Drawing.Size(233, 21);
             this.comboBoxPreferences.TabIndex = 1;
@@ -101,18 +103,38 @@ namespace languagetool_msword10_addin
             // TypographyRulesEnabled
             // 
             this.TypographyRulesEnabled.AutoSize = true;
-            this.TypographyRulesEnabled.Location = new System.Drawing.Point(12, 73);
+            this.TypographyRulesEnabled.Location = new System.Drawing.Point(295, 43);
             this.TypographyRulesEnabled.Name = "TypographyRulesEnabled";
             this.TypographyRulesEnabled.Size = new System.Drawing.Size(73, 17);
             this.TypographyRulesEnabled.TabIndex = 5;
             this.TypographyRulesEnabled.Text = "Tipografia";
             this.TypographyRulesEnabled.UseVisualStyleBackColor = true;
             // 
+            // comboBoxLanguages
+            // 
+            this.comboBoxLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLanguages.FormattingEnabled = true;
+            this.comboBoxLanguages.Location = new System.Drawing.Point(15, 185);
+            this.comboBoxLanguages.Name = "comboBoxLanguages";
+            this.comboBoxLanguages.Size = new System.Drawing.Size(158, 21);
+            this.comboBoxLanguages.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 167);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Llengua per defecte";
+            // 
             // LTSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 262);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBoxLanguages);
             this.Controls.Add(this.TypographyRulesEnabled);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -140,5 +162,7 @@ namespace languagetool_msword10_addin
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox TypographyRulesEnabled;
+        private System.Windows.Forms.ComboBox comboBoxLanguages;
+        private System.Windows.Forms.Label label3;
     }
 }

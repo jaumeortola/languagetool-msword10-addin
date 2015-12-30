@@ -15,6 +15,12 @@ namespace languagetool_msword10_addin
         public LTSettingsForm()
         {
             InitializeComponent();
+
+            foreach (KeyValuePair<string, string> entry in ThisAddIn.getLanguagesFromServer())
+            {
+                this.comboBoxLanguages.Items.Add(entry.Value); //+ " "+entry.Key+""
+            }
+            this.comboBoxLanguages.Text = Properties.Settings.Default.DefaultLanguage;
             this.comboBoxPreferences.Items.AddRange(
                 Properties.Settings.Default.CatalanPreferencesOptions.Split(';'));
             this.comboBoxPreferences.Text = Properties.Settings.Default.CatalanUserPreferences;
@@ -37,6 +43,7 @@ namespace languagetool_msword10_addin
             Properties.Settings.Default.LTServer = this.comboBoxLTServer.Text;
             Properties.Settings.Default.CatalanUserPreferences = this.comboBoxPreferences.Text;
             Properties.Settings.Default.TypographyRulesEnabled = this.TypographyRulesEnabled.Checked;
+            Properties.Settings.Default.DefaultLanguage = this.comboBoxLanguages.Text;
             Properties.Settings.Default.Save();
             this.Close();
         }

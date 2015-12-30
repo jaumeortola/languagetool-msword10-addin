@@ -31,7 +31,10 @@ using System.Threading;
     
     - checking in background
     - license
-    - get language names and codes from server
+    - map language codes from MS Word to ISO codes
+
+  DONE:
+      - get language names and codes from server 
 
 */
 
@@ -504,8 +507,6 @@ namespace languagetool_msword10_addin
         {
             if (langID.StartsWith("wdSpanish"))
                 return "es";
-            if (langID.StartsWith("wdFrench"))
-                return "fr-FR";
             switch (langID)
             {
                 case "wdCatalan":
@@ -515,9 +516,22 @@ namespace languagetool_msword10_addin
                         return "ca-ES";
                 case "wdEnglishUS":
                     return "en-US";
-                default:
-                    return (Properties.Settings.Default.DefaultLanguage);
+                case "wdEnglishUK":
+                    return "en-UK";
+                case "wdFrench":
+                    return "fr";
+                case "wdGerman":
+                    return "de-DE";
+                case "wdItalian":
+                    return "it";
+                case "wdPolish":
+                    return "pl-PL";
+                case "wdByelorussian":
+                    return "be";
+                case "wdPortuguese":
+                    return "pt-PT";
             }
+            return (Properties.Settings.Default.DefaultLanguage);
         }
 
         private static string getUrlParameters(string langID)
@@ -588,6 +602,42 @@ namespace languagetool_msword10_addin
                     + Properties.Settings.Default.LTServer + ".");
             }
             return "";
+        }
+
+        public static Dictionary<string, string> getLanguagesFromServer()
+        {
+            string xmlResults = "";
+            string uri = Properties.Settings.Default.LTServer + "Languages";
+            try
+            {
+                // Create the web request  
+                System.Net.HttpWebRequest request = System.Net.WebRequest.Create(uri)
+                    as System.Net.HttpWebRequest;
+                // Get response  
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                {
+                    // Get the response stream  
+                    StreamReader reader = new StreamReader(response.GetResponseStream(),
+                        System.Text.Encoding.UTF8);
+                    // Read the whole contents and return as a string  
+                    xmlResults = reader.ReadToEnd();
+                }
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: "
+                    + Properties.Settings.Default.LTServer + ".");
+            }
+
+            if (string.IsNullOrWhiteSpace(xmlResults))
+                return null;
+            XElement xml = XElement.Parse(xmlResults);
+            var languages = new Dictionary<string, string>();
+            foreach (var lang in xml.Descendants("language"))
+            {
+                languages.Add(lang.Attribute("name").Value, lang.Attribute("abbrWithVariant").Value);
+            }
+            return languages;
         }
 
         private const int WH_KEYBOARD_LL = 13;
