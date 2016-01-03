@@ -237,7 +237,7 @@ namespace languagetool_msword10_addin
                 return;
             Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
             //Doc.ActiveWindow.View.ShowHiddenText = false;  //peta si el quadre de cerca està obert
-            bool isTrackingRevisions = Doc.TrackRevisions;
+            bool isTrackingRevisions = Doc.TrackRevisions; //peta si el quadre de cerca està obert
             Doc.TrackRevisions = false;
             
             removeErrorMarks(rangeToCheck);
@@ -291,7 +291,7 @@ namespace languagetool_msword10_addin
                 //rng.Font.UnderlineColor = mycolor;
                 rng.HighlightColorIndex = myColorIndex;
                 // add hidden data after error. Format: [<error message>|replacement1#replacement2#replacement3...|<error string>]
-                string errorData = "[" + myerror["msg"] + "|" + getReplacementsLimit(myerror["replacements"]) + "|" + errorStr + "]";
+                string errorData = "[" + myerror["msg"] + "|" + getLimitedReplacements(myerror["replacements"]) + "|" + errorStr + "]";
                 //myParaOffset += errorData.Length;
                 rng.Start = errorEnd;
                 rng.Text = errorData;
@@ -309,7 +309,7 @@ namespace languagetool_msword10_addin
             //thread.Start();
         }
 
-        private static string getReplacementsLimit(string initReplacements)
+        private static string getLimitedReplacements(string initReplacements)
         {
             string finalReplacements = "";
             if (initReplacements.Length > 0)
@@ -422,7 +422,7 @@ namespace languagetool_msword10_addin
         public static void removeAllErrorMarks()
         {
             //TODO could be quicker with WdFindWrap.wdFindContinue
-            Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
+            Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument; //peta...
             removeErrorMarks(Doc.Content);
             //check footnotes
             for (int i = 0; i < Doc.Footnotes.Count; i++)
@@ -594,7 +594,8 @@ namespace languagetool_msword10_addin
             textToCheck = textToCheck.Replace("\u0002", "*"); //char used for footnote references 
             string uriString = Properties.Settings.Default.LTServer + "?language=" + getLanguageCode(langID) 
                 + "&text=" + WebUtility.UrlEncode(textToCheck) + getUrlParameters(langID);
-            uriString = uriString.Replace("%C2%A0", "+"); // replace non-breaking space. Why?
+            //uriString = uriString.Replace("%C2%A0", "+"); // replace non-breaking space. Why?
+            uriString = uriString.Replace("%0B", "%A0"); // replace "vertical-tab". Why?
             Uri uri = new Uri(uriString); //TODO set a limit of length
             string result = "";
             try
