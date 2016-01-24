@@ -47,6 +47,19 @@ namespace languagetool_msword10_addin
         Word.Application application;
         private string[] comandBarNames = new string[] { "Text", "Footnotes", "Lists" };
 
+        static public CheckingForm myCheckingForm = new CheckingForm();
+        static public List<Dictionary<string, string>> parsedResultsCurrentPara;
+        static public int errorNumberCurrentPara;
+        static public Word.Range rangeToCheck;
+        static public int rangeToCheckStart;
+        static public int accumulatedOffset;
+        static public int errorOffset;
+        static public int errorLength;
+        static public bool updatedContext;
+        static public bool preparingDialog;
+        static public int contextLength;
+        static public int contextOffset;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             application = this.Application;
@@ -61,6 +74,192 @@ namespace languagetool_msword10_addin
 
         }
 
+
+        /****** Check with Dialog******/
+
+        public static void checkCurrentParagraph()
+        {
+            Microsoft.Office.Interop.Word.Document Doc = Globals.ThisAddIn.Application.ActiveDocument;
+            if (Doc == null || Doc.ReadOnly)
+                return;
+            rangeToCheck = Globals.ThisAddIn.Application.Selection.Range;
+            rangeToCheck.Start = rangeToCheck.Paragraphs.First.Range.Start;
+            rangeToCheck.End = rangeToCheck.Paragraphs.First.Range.End;
+            rangeToCheckStart = rangeToCheck.Start;
+            if (rangeToCheck.Text.Equals("\u0002 \r"))  // avoid checking empty footnotes
+            {
+                parsedResultsCurrentPara = null;
+                return;
+            }
+            String textToCheck = rangeToCheck.Text.ToString();
+            String results = getResultsFromServer(rangeToCheck.LanguageID.ToString(), textToCheck);
+            parsedResultsCurrentPara = ParseXMLResults(results);
+            accumulatedOffset = 0;
+            errorNumberCurrentPara = 0;
+        }
+
+        public static void prepareDialog()
+        {
+            if (parsedResultsCurrentPara != null 
+                && errorNumberCurrentPara >= parsedResultsCurrentPara.Count)
+            {
+                Word.Range newRange = rangeToCheck;
+                int desiredRangeStart = rangeToCheck.Paragraphs.Last.Range.End + 1;
+                newRange.Start = desiredRangeStart;
+                newRange.End = newRange.Start;
+                if (newRange.Start < desiredRangeStart)
+                {
+                    myCheckingForm.Hide();
+                    return;
+                }
+                newRange.Select();
+                checkCurrentParagraph();
+            }
+            if (parsedResultsCurrentPara == null
+                || errorNumberCurrentPara >= parsedResultsCurrentPara.Count)
+            {
+                myCheckingForm.Hide();
+                return;
+            }
+
+            Dictionary<string, string> myerror = parsedResultsCurrentPara[errorNumberCurrentPara];
+
+            errorOffset = int.Parse(myerror["offset"]);
+
+            int beforeLength = int.Parse(myerror["contextoffset"]);
+            errorLength = int.Parse(myerror["errorlength"]);
+            int afterLength = myerror["context"].Length - errorLength - beforeLength;
+
+            string beforeErrorStr = myerror["context"].Substring(0, beforeLength);
+            string errorStr = myerror["context"].Substring(beforeLength, errorLength);
+            string afterErrorStr = myerror["context"].Substring(beforeLength + errorLength, afterLength);
+
+            contextLength = beforeLength + errorLength + afterLength;
+            contextOffset = errorOffset - beforeLength;
+
+            Word.Range rangeToReplace = rangeToCheck;
+            rangeToReplace.Start = rangeToCheckStart + accumulatedOffset + errorOffset;
+            rangeToReplace.End = rangeToReplace.Start + errorLength;
+            rangeToReplace.Select();
+
+            if (rangeToReplace.Text != errorStr)
+            {
+                errorNumberCurrentPara++;
+                prepareDialog();
+                return;
+            }
+
+            preparingDialog = true;
+
+            myCheckingForm.contextTextBox.Clear();
+            myCheckingForm.contextTextBox.Text = "";
+            myCheckingForm.suggestionsBox.Items.Clear();
+
+            System.Drawing.Color myErrorColor = Color.Blue;
+            switch (myerror["locqualityissuetype"])
+            {
+                case "misspelling":
+                    myErrorColor = Color.Red;
+                    break;
+                case "style":
+                case "registrer":
+                case "locale-violation":
+                    myErrorColor = Color.Green;
+                    break;
+            }
+            myCheckingForm.contextTextBox.SelectionFont = new System.Drawing.Font("Microsoft Sans Serif", 9f, FontStyle.Regular);  //Algunes vegades peta ací. Per què? perquè no hi ha res seleccionat?
+            myCheckingForm.contextTextBox.SelectionColor = Color.Black;
+            myCheckingForm.contextTextBox.AppendText(beforeErrorStr);
+            myCheckingForm.contextTextBox.SelectionFont = new System.Drawing.Font("Microsoft Sans Serif", 9f, FontStyle.Bold);
+            myCheckingForm.contextTextBox.SelectionColor = myErrorColor;
+            myCheckingForm.contextTextBox.AppendText(errorStr);
+            myCheckingForm.contextTextBox.SelectionFont = new System.Drawing.Font("Microsoft Sans Serif", 9f, FontStyle.Regular);
+            myCheckingForm.contextTextBox.SelectionColor = Color.Black;
+            myCheckingForm.contextTextBox.AppendText(afterErrorStr);
+            updatedContext = false;
+
+            myCheckingForm.messageBox.Text = myerror["msg"];
+
+            if (myerror["replacements"].Length > 0)
+            {
+                string[] myReplacements = myerror["replacements"].Split('#');
+                int i = 0;
+                while (i < myReplacements.Length && i < Globals.ThisAddIn.maxSuggestions)
+                {
+                    myCheckingForm.suggestionsBox.Items.Add(myReplacements[i]);
+                    i++;
+                }
+                myCheckingForm.suggestionsBox.SetSelected(0, true);
+                myCheckingForm.changeSuggestion.Enabled = true;
+            } else
+            {
+                myCheckingForm.changeSuggestion.Enabled = false;
+            }
+            preparingDialog = false;
+            myCheckingForm.suggestionsBox.Enabled = true;
+        }
+        public static void checkOnDialogStart()
+        {
+            checkCurrentParagraph();
+            prepareDialog();
+            if (parsedResultsCurrentPara == null
+                || parsedResultsCurrentPara.Count < 1)
+            {
+                WaitForm myWaitForm = new WaitForm();
+                myWaitForm.setMessage("No s'han trobat errors.");
+                myWaitForm.ShowDialog();
+            }
+            else
+            {
+                myCheckingForm.suggestionsBox.Enabled = true;
+                myCheckingForm.ShowDialog();
+            }
+            
+        }
+
+        public static void checkOnDialogChange(string replacement)
+        {
+            
+            Word.Range rangeToReplace = rangeToCheck;
+            if (!updatedContext)
+            {
+                rangeToReplace.Start = rangeToCheckStart + accumulatedOffset + errorOffset;
+                rangeToReplace.End = rangeToReplace.Start + errorLength;
+                rangeToReplace.Text = replacement;
+                accumulatedOffset += replacement.Length - errorLength;
+            }
+            else
+            {
+                string updatedContext = myCheckingForm.contextTextBox.Text;
+                if (updatedContext.StartsWith("..."))
+                {
+                    contextLength = contextLength - 3;
+                    contextOffset = contextOffset + 3;
+                    updatedContext = updatedContext.Substring(3);
+                }
+                if (updatedContext.EndsWith("..."))
+                {
+                    contextLength = contextLength - 3;
+                    updatedContext = updatedContext.Substring(0, updatedContext.Length - 3);
+                }
+                rangeToReplace.Start = rangeToCheckStart + accumulatedOffset + contextOffset;
+                rangeToReplace.End = rangeToReplace.Start + contextLength;
+                rangeToReplace.Text = updatedContext;
+                accumulatedOffset += updatedContext.Length - contextLength;
+            }
+            rangeToReplace.Select();
+            
+            errorNumberCurrentPara++;
+            prepareDialog();
+        }
+
+        internal static void checkOnDialogIgnore()
+        {
+            errorNumberCurrentPara++;
+            prepareDialog();
+        }
+
+        // End of Check with Dialog
         private void application_DocumenOpen(Word.Document Doc)
         {
             //checkActiveDocument(); //do it in background
@@ -73,10 +272,10 @@ namespace languagetool_msword10_addin
 
         private void application_SelectionChange(Selection sel)
         {
-            if (!sel.Range.GrammarChecked)
+            /*if (!sel.Range.GrammarChecked)
             {
                 checkParagraphsInSelection();
-            }
+            }*/
         }
 
         private void application_DocumentBeforeSave(Word.Document Doc, ref bool SaveAsUI, ref bool Cancel)

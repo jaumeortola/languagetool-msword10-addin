@@ -47,6 +47,11 @@ namespace languagetool_msword10_addin
             LTSettingsForm myLTSettingsForm = new LTSettingsForm();
             myLTSettingsForm.ShowDialog();
         }
+
+        private void button4_onclick(object sender, RibbonControlEventArgs e)
+        {
+            ThisAddIn.checkOnDialogStart();
+        }
     }
 }
 

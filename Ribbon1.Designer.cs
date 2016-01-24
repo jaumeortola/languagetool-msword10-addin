@@ -42,6 +42,7 @@
             this.button2 = this.Factory.CreateRibbonButton();
             this.button3 = this.Factory.CreateRibbonButton();
             this.LTSettings = this.Factory.CreateRibbonButton();
+            this.button4 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +61,7 @@
             this.group1.Items.Add(this.button2);
             this.group1.Items.Add(this.button3);
             this.group1.Items.Add(this.LTSettings);
+            this.group1.Items.Add(this.button4);
             this.group1.Label = "LanguageTool";
             this.group1.Name = "group1";
             // 
@@ -93,6 +95,13 @@
             this.LTSettings.Name = "LTSettings";
             this.LTSettings.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LTSettings_onclick);
             // 
+            // button4
+            // 
+            this.button4.KeyTip = "C";
+            this.button4.Label = "Revisa (diàleg)";
+            this.button4.Name = "button4";
+            this.button4.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button4_onclick);
+            // 
             // Ribbon1
             // 
             this.Name = "Ribbon1";
@@ -116,6 +125,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button3;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton LTSettings;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button4;
     }
 
     partial class ThisRibbonCollection
