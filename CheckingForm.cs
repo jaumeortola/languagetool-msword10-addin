@@ -34,7 +34,10 @@ namespace languagetool_msword10_addin
         {
             ThisAddIn.checkOnDialogIgnore();
         }
-
+        private void ignoreAlwaysSuggestion_Click(object sender, EventArgs e)
+        {
+            ThisAddIn.checkOnDialogIgnoreAlways();
+        }
         private void cancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -50,6 +53,11 @@ namespace languagetool_msword10_addin
                 this.changeSuggestion.Enabled = true;
                 this.suggestionsBox.SelectedItems.Clear();
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(((LinkLabel.Link)e.Link.LinkData).LinkData.ToString());
         }
 
     }

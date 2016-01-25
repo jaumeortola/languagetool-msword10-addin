@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.messageBox = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // suggestionsBox
@@ -58,7 +60,7 @@
             // changeSuggestion
             // 
             this.changeSuggestion.Enabled = false;
-            this.changeSuggestion.Location = new System.Drawing.Point(287, 180);
+            this.changeSuggestion.Location = new System.Drawing.Point(280, 180);
             this.changeSuggestion.Name = "changeSuggestion";
             this.changeSuggestion.Size = new System.Drawing.Size(100, 23);
             this.changeSuggestion.TabIndex = 2;
@@ -68,9 +70,9 @@
             // 
             // ignoreSuggestion
             // 
-            this.ignoreSuggestion.Location = new System.Drawing.Point(288, 209);
+            this.ignoreSuggestion.Location = new System.Drawing.Point(280, 210);
             this.ignoreSuggestion.Name = "ignoreSuggestion";
-            this.ignoreSuggestion.Size = new System.Drawing.Size(99, 25);
+            this.ignoreSuggestion.Size = new System.Drawing.Size(100, 23);
             this.ignoreSuggestion.TabIndex = 3;
             this.ignoreSuggestion.Text = "Ignora";
             this.ignoreSuggestion.UseVisualStyleBackColor = true;
@@ -97,19 +99,42 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(288, 240);
+            this.button1.Location = new System.Drawing.Point(280, 270);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 25);
+            this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 6;
             this.button1.Text = "Cancel·la";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.cancel_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(280, 240);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Ignora sempre";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.ignoreAlwaysSuggestion_Click);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(277, 112);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(78, 13);
+            this.linkLabel1.TabIndex = 8;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Més informació";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // CheckingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 310);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.messageBox);
             this.Controls.Add(this.label1);
@@ -134,5 +159,7 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.RichTextBox messageBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

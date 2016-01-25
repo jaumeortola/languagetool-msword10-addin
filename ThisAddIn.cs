@@ -23,18 +23,8 @@ using System.Threading;
 
 /*TODO:
 
-    Check what happens:
-    - Tracking revisions
-    - Ctrl+Z
-    - Copy & paste
-    - opening, saving, auto-saving documents
-    
-    - checking in background
     - license
     - map language codes from MS Word to ISO codes
-
-  DONE:
-      - get language names and codes from server 
 
 */
 
@@ -43,9 +33,6 @@ namespace languagetool_msword10_addin
     public partial class ThisAddIn
     {
         private readonly int maxSuggestions = 12;
-        
-        Word.Application application;
-        private string[] comandBarNames = new string[] { "Text", "Footnotes", "Lists" };
 
         static public CheckingForm myCheckingForm = new CheckingForm();
         static public List<Dictionary<string, string>> parsedResultsCurrentPara;
@@ -59,12 +46,11 @@ namespace languagetool_msword10_addin
         static public bool preparingDialog;
         static public int contextLength;
         static public int contextOffset;
+        static public List<string> ignoredWords;
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            application = this.Application;
-            application.CustomizationContext = application.ActiveDocument;
-
+            ignoredWords = new List<string>();
         }
 
 
@@ -93,7 +79,7 @@ namespace languagetool_msword10_addin
 
         public static void prepareDialog()
         {
-            if (parsedResultsCurrentPara != null 
+            while (parsedResultsCurrentPara != null 
                 && errorNumberCurrentPara >= parsedResultsCurrentPara.Count)
             {
                 Word.Range newRange = rangeToCheck;
@@ -135,7 +121,8 @@ namespace languagetool_msword10_addin
             rangeToReplace.End = rangeToReplace.Start + errorLength;
             rangeToReplace.Select();
 
-            if (rangeToReplace.Text != errorStr)
+            if (rangeToReplace.Text != errorStr 
+                || ignoredWords.Contains(rangeToReplace.Text))
             {
                 errorNumberCurrentPara++;
                 prepareDialog();
@@ -160,7 +147,7 @@ namespace languagetool_msword10_addin
                     myErrorColor = Color.Green;
                     break;
             }
-            myCheckingForm.contextTextBox.SelectionFont = new System.Drawing.Font("Microsoft Sans Serif", 9f, FontStyle.Regular);  //Algunes vegades peta ací. Per què? perquè no hi ha res seleccionat?
+            myCheckingForm.contextTextBox.SelectionFont = new System.Drawing.Font("Microsoft Sans Serif", 9f, FontStyle.Regular); 
             myCheckingForm.contextTextBox.SelectionColor = Color.Black;
             myCheckingForm.contextTextBox.AppendText(beforeErrorStr);
             myCheckingForm.contextTextBox.SelectionFont = new System.Drawing.Font("Microsoft Sans Serif", 9f, FontStyle.Bold);
@@ -172,6 +159,19 @@ namespace languagetool_msword10_addin
             updatedContext = false;
 
             myCheckingForm.messageBox.Text = myerror["msg"];
+            if (myerror.ContainsKey("url") && myerror["url"].ToString().Length > 3)
+            {
+                LinkLabel.Link link = new LinkLabel.Link();
+                link.LinkData = myerror["url"];
+                myCheckingForm.linkLabel1.Text = "Més informació";
+                myCheckingForm.linkLabel1.Links.Add(0, 14, link);
+            } else
+            {
+                myCheckingForm.linkLabel1.Text = "";
+                myCheckingForm.linkLabel1.Links.Clear();
+            }
+            
+
 
             if (myerror["replacements"].Length > 0)
             {
@@ -193,6 +193,7 @@ namespace languagetool_msword10_addin
         }
         public static void checkOnDialogStart()
         {
+            ignoredWords.Clear();
             checkCurrentParagraph();
             prepareDialog();
             if (parsedResultsCurrentPara == null
@@ -252,9 +253,19 @@ namespace languagetool_msword10_addin
             prepareDialog();
         }
 
+        internal static void checkOnDialogIgnoreAlways()
+        {
+            Word.Range rangeToIgnore = rangeToCheck;
+            rangeToIgnore.Start = rangeToCheckStart + accumulatedOffset + errorOffset;
+            rangeToIgnore.End = rangeToIgnore.Start + errorLength;
+            ignoredWords.Add(rangeToIgnore.Text);
+            errorNumberCurrentPara++;
+            prepareDialog();
+        }
+
         // End of Check with Dialog
-                
-        
+
+
         private static List<Dictionary<string, string>> ParseXMLResults(String xmlString)
         {
             if (string.IsNullOrWhiteSpace(xmlString))
@@ -397,8 +408,8 @@ namespace languagetool_msword10_addin
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: "
-                    + Properties.Settings.Default.LTServer + ".");
+                //System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: "
+                //    + Properties.Settings.Default.LTServer + ".");
             }
 
             var languages = new Dictionary<string, string>();
