@@ -17,7 +17,7 @@ For now it has been tested only in Microsoft Word 2010.
 * The possible errors and suggestions for replacement are shown in a dialog box.
 
 ### Known limitations
-* The errors are not underlined or highlighted in the text. This is a desirable feature, but it is too difficult to implement without causing unwanted effects on the functioning of MS Word. 
+* The errors are not underlined or highlighted in the text. This is a desirable feature, but it is too difficult to implement without causing unwanted effects on the operation of MS Word. 
 
 ### License
 * This add-in is freely available under the LGPL 2.1 or later.
