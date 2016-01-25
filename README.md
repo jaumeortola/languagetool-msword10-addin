@@ -5,7 +5,7 @@ Microsoft Word add-in for [LanguageTool](www.languagetool.org). LanguageTool is 
 The current implementation is in Catalan and has setup options specific to Catalan.  
 
 ### Requirements
-* Download [Languagetool](www.languagetool.org) and run it in [server mode](http://wiki.languagetool.org/http-server) (default port: 8081). Alternatively, you can use public APIs in languagetool.org or softcatala.org.
+* Download [Languagetool](https://www.languagetool.org) and run it in [server mode](http://wiki.languagetool.org/http-server) (default port: 8081). Alternatively, you can use public APIs in languagetool.org or softcatala.org.
 * Download last release, unzip and install.
 
 ### Tested
