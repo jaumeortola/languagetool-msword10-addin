@@ -7,6 +7,7 @@ Aquesta implementació està en català i té opcions de configuració específi
 ### Instal·lació
 * Descarregueu [Languagetool](https://www.languagetool.org) (versió com a programa independent) i executeu-lo en [mode servidor](http://wiki.languagetool.org/http-server) (port per defecte: 8081). Alternativament, podeu usar alguna API pública de LanguageTool com languagetool.org o softcatala.org.
 * Baixeu [l'última versió](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) del complement, descomprimiu i instal·leu.
+* De moment, la versió publicada no està signada amb el certificat apropiat, i això pot causar algun problema a l'hora d'instal·lar el complement. 
 
 ### Versions de MS Word
 De moment només s'ha provat per a Microsoft Word 2010. 
@@ -21,7 +22,7 @@ De moment només s'ha provat per a Microsoft Word 2010.
 
 ### Llicència
 * LGPL 2.1 o posterior.
-* La versió publicada (encara) no està signada amb el certificat apropiat.
+
 
 ---
 ![Generalitat de Catalunya](/languagetool-msword10-addin/Resources/suportGenCat.png "Generalitat de Catalunya")
