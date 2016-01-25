@@ -2,20 +2,23 @@
 
 Microsoft Word add-in for [LanguageTool](www.languagetool.org). LanguageTool is an open source proof-reading program with support for more than 20 languages.
 
+The current implementation is in Catalan and has setup options specific to Catalan.  
+
 ### Requirements
-* Download [Languagetool](www.languagetool.org) and run it in [server mode](http://wiki.languagetool.org/http-server).
+* Download [Languagetool](www.languagetool.org) and run it in [server mode](http://wiki.languagetool.org/http-server) (default port: 8081). Alternatively, you can use public APIs in languagetool.org or softcatala.org.
+* Download last release, unzip and install.
 
 ### Tested
-For now it has ben tested only in Microsoft Word 2010. 
+For now it has been tested only in Microsoft Word 2010. 
 
 ### How it works
-* The text is send to the LanguageTool server by paragraphs where it is analyzed. 
-* Possible spelling, grammar and style errors are highlighted using the "highlight" feature of MS Word.
-* A right-click on the highlighted words shows a message and a list of possible replacements. 
+* In MS Word, the LanguageTool group can be found under the "Add-ins" menu. There are just two buttons: Check (to start checking) and Settings. 
+* The text is sent to the LanguageTool server by paragraphs where it is analyzed. 
+* The possible errors and suggestions for replacement are shown in a dialog box.
 
 ### Known limitations
-* The "highlight" feature of MS Word is no longer usable together with the add-in. 
-* Information about the errors is stored in hidden fields inside the text. 
-* Support for long documents (i. e. checking in background) is not complete.  
+* The errors are not underlined or highlighted in the text. This is a desirable feature, but it is too difficult to implement without causing unwanted effects on the functioning of MS Word. 
 
-### Licence
+### License
+* This add-in is freely available under the LGPL 2.1 or later.
+* The release version is not (yet) signed with an appropriate certificate.
