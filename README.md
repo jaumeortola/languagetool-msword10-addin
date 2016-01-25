@@ -1,27 +1,27 @@
-# languagetool-msword10-addin
+# LanguageTool per a MS Word (català)
 
-Microsoft Word add-in for [LanguageTool](https://www.languagetool.org). LanguageTool is an open source proof-reading program with support for more than 20 languages.
+[LanguageTool](https://www.languagetool.org) és un programa de revisió lingüística de codi obert per a més de 20 llengües. Amb aquest complement ("add-in") el podreu fer servir en el Microsoft Word. 
 
-The current implementation is in Catalan and has setup options specific to Catalan.  
+Aquesta implementació està en català i té opcions de configuració específiques per a aquesta llengua. Però també es pot servir amb les altres llengües que tenen suport en LanguageTool.
 
-### Installation
-* Download [Languagetool](https://www.languagetool.org) (desktop version) and run it in [server mode](http://wiki.languagetool.org/http-server) (default port: 8081). Alternatively, you can use public APIs in languagetool.org or softcatala.org.
-* Download the [last release](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest), unzip and install.
+### Instal·lació
+* Descarregueu [Languagetool](https://www.languagetool.org) (versió com a programa independent) i executeu-lo en [mode servidor](http://wiki.languagetool.org/http-server) (port per defecte: 8081). Alternativament, podeu usar alguna API pública de LanguageTool com languagetool.org o softcatala.org.
+* Baixeu [l'última versió](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) del complement, descomprimiu i instal·leu.
 
-### Versions of MS Word
-For now it has been tested only in Microsoft Word 2010. 
+### Versions de MS Word
+De moment només s'ha provat per a Microsoft Word 2010. 
 
-### How it works
-* In MS Word, the LanguageTool group can be found under the "Add-ins" menu. There are just two buttons: Check (to start checking) and Settings. 
-* The text is sent to the LanguageTool server by paragraphs where it is analyzed. 
-* The possible errors and suggestions for replacement are shown in a dialog box.
+### Com funciona
+* En el MS Word podeu trobar el grup de botons de LanguageTool group en el menú "Complements". Només hi ha dos botons: Revisa (per a començar la revisió) i Opcions. 
+* El text s'envia al servidor de LanguageTool per paràgrafs on és analitzat. 
+* Els possibles errors i suggeriments es mostren en un quadre de diàleg. 
 
-### Known limitations
-* The errors are not underlined or highlighted in the text. This is a desirable feature, but it is too difficult to implement without causing unwanted effects on the operation of MS Word. 
+### Limitacions
+* Els errors no són subratllats o ressaltats en el text a mesura que s'escriu. Aquesta funció és desitjable, però amb la tecnologia usada en aquest projecte no es pot implementar sense causar efectes no volguts en el funcionament del MS Word.  
 
-### License
-* This add-in is freely available under the LGPL 2.1 or later.
-* The release version is not (yet) signed with an appropriate certificate.
+### Llicència
+* LGPL 2.1 o posterior.
+* La versió publicada (encara) no està signada amb el certificat apropiat.
 
 ---
 ![Generalitat de Catalunya](/languagetool-msword10-addin/Resources/suportGenCat.png "Generalitat de Catalunya")
