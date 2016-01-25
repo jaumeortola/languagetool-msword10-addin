@@ -33,10 +33,6 @@ namespace languagetool_msword10_addin
             this.Refresh();
         }
 
-        private void LTSettingsForm_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void saveSettings_Click(object sender, EventArgs e)
         {

@@ -11,7 +11,6 @@
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
-            this.checkBox1.Checked = Properties.Settings.Default.CheckWhileWriting;
         }
 
         /// <summary> 
@@ -37,10 +36,6 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.checkBox1 = this.Factory.CreateRibbonCheckBox();
-            this.button1 = this.Factory.CreateRibbonButton();
-            this.button2 = this.Factory.CreateRibbonButton();
-            this.button3 = this.Factory.CreateRibbonButton();
             this.LTSettings = this.Factory.CreateRibbonButton();
             this.button4 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
@@ -56,38 +51,10 @@
             // 
             // group1
             // 
-            this.group1.Items.Add(this.checkBox1);
-            this.group1.Items.Add(this.button1);
-            this.group1.Items.Add(this.button2);
-            this.group1.Items.Add(this.button3);
-            this.group1.Items.Add(this.LTSettings);
             this.group1.Items.Add(this.button4);
+            this.group1.Items.Add(this.LTSettings);
             this.group1.Label = "LanguageTool";
             this.group1.Name = "group1";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.Label = "Revisa";
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.checkBox1_Click);
-            // 
-            // button1
-            // 
-            this.button1.Label = "Revisa tot el document";
-            this.button1.Name = "button1";
-            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Label = "Neteja les marques.";
-            this.button2.Name = "button2";
-            this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Label = "Revisa paràgrafs seleccionats";
-            this.button3.Name = "button3";
-            this.button3.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button3_Click);
             // 
             // LTSettings
             // 
@@ -98,7 +65,7 @@
             // button4
             // 
             this.button4.KeyTip = "C";
-            this.button4.Label = "Revisa (diàleg)";
+            this.button4.Label = "Revisa";
             this.button4.Name = "button4";
             this.button4.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button4_onclick);
             // 
@@ -120,10 +87,6 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button3;
-        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton LTSettings;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button4;
     }

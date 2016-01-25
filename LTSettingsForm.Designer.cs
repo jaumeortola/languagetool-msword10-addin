@@ -147,7 +147,6 @@ namespace languagetool_msword10_addin
             this.Name = "LTSettingsForm";
             this.Text = "Configuració de LanguageTool";
             this.TransparencyKey = System.Drawing.Color.Transparent;
-            this.Load += new System.EventHandler(this.LTSettingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

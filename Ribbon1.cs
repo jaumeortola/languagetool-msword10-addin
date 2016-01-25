@@ -13,34 +13,7 @@ namespace languagetool_msword10_addin
             
         }
 
-        private void button1_Click(object sender, RibbonControlEventArgs e)
-        {
-            ThisAddIn.checkActiveDocument();
-        }
 
-        private void checkBox1_Click(object sender, RibbonControlEventArgs e)
-        {
-            Properties.Settings.Default.CheckWhileWriting = this.checkBox1.Checked;
-            Properties.Settings.Default.Save();
-            if (this.checkBox1.Checked)
-            {
-                ThisAddIn.checkActiveDocument();
-            }
-            else
-            {
-                ThisAddIn.removeAllErrorMarks();
-            }
-        }
-
-        private void button3_Click(object sender, RibbonControlEventArgs e)
-        {
-            ThisAddIn.checkParagraphsInSelection();
-        }
-
-        private void button2_Click(object sender, RibbonControlEventArgs e)
-        {
-            ThisAddIn.removeAllErrorMarks();
-        }
 
         private void LTSettings_onclick(object sender, RibbonControlEventArgs e)
         {
