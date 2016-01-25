@@ -38,19 +38,20 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.languageBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // suggestionsBox
             // 
             this.suggestionsBox.FormattingEnabled = true;
-            this.suggestionsBox.Location = new System.Drawing.Point(23, 180);
+            this.suggestionsBox.Location = new System.Drawing.Point(23, 217);
             this.suggestionsBox.Name = "suggestionsBox";
             this.suggestionsBox.Size = new System.Drawing.Size(245, 121);
             this.suggestionsBox.TabIndex = 0;
             // 
             // contextTextBox
             // 
-            this.contextTextBox.Location = new System.Drawing.Point(23, 12);
+            this.contextTextBox.Location = new System.Drawing.Point(23, 37);
             this.contextTextBox.Name = "contextTextBox";
             this.contextTextBox.Size = new System.Drawing.Size(245, 94);
             this.contextTextBox.TabIndex = 1;
@@ -60,7 +61,7 @@
             // changeSuggestion
             // 
             this.changeSuggestion.Enabled = false;
-            this.changeSuggestion.Location = new System.Drawing.Point(280, 180);
+            this.changeSuggestion.Location = new System.Drawing.Point(280, 217);
             this.changeSuggestion.Name = "changeSuggestion";
             this.changeSuggestion.Size = new System.Drawing.Size(100, 23);
             this.changeSuggestion.TabIndex = 2;
@@ -70,7 +71,7 @@
             // 
             // ignoreSuggestion
             // 
-            this.ignoreSuggestion.Location = new System.Drawing.Point(280, 210);
+            this.ignoreSuggestion.Location = new System.Drawing.Point(280, 247);
             this.ignoreSuggestion.Name = "ignoreSuggestion";
             this.ignoreSuggestion.Size = new System.Drawing.Size(100, 23);
             this.ignoreSuggestion.TabIndex = 3;
@@ -81,7 +82,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 162);
+            this.label1.Location = new System.Drawing.Point(20, 199);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 4;
@@ -91,15 +92,15 @@
             // 
             this.messageBox.BackColor = System.Drawing.SystemColors.Control;
             this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.messageBox.Location = new System.Drawing.Point(23, 112);
+            this.messageBox.Location = new System.Drawing.Point(23, 137);
             this.messageBox.Name = "messageBox";
-            this.messageBox.Size = new System.Drawing.Size(245, 47);
+            this.messageBox.Size = new System.Drawing.Size(245, 59);
             this.messageBox.TabIndex = 5;
             this.messageBox.Text = "";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(280, 270);
+            this.button1.Location = new System.Drawing.Point(280, 307);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 6;
@@ -109,7 +110,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(280, 240);
+            this.button2.Location = new System.Drawing.Point(280, 277);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 23);
             this.button2.TabIndex = 7;
@@ -120,7 +121,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(277, 112);
+            this.linkLabel1.Location = new System.Drawing.Point(277, 137);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(78, 13);
             this.linkLabel1.TabIndex = 8;
@@ -128,11 +129,22 @@
             this.linkLabel1.Text = "Més informació";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // languageBox
+            // 
+            this.languageBox.BackColor = System.Drawing.SystemColors.Control;
+            this.languageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.languageBox.Location = new System.Drawing.Point(23, 10);
+            this.languageBox.Name = "languageBox";
+            this.languageBox.Size = new System.Drawing.Size(191, 21);
+            this.languageBox.TabIndex = 9;
+            this.languageBox.Text = "";
+            // 
             // CheckingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 310);
+            this.ClientSize = new System.Drawing.Size(402, 360);
+            this.Controls.Add(this.languageBox);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -161,5 +173,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         public System.Windows.Forms.LinkLabel linkLabel1;
+        public System.Windows.Forms.RichTextBox languageBox;
     }
 }

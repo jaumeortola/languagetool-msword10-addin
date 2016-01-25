@@ -47,6 +47,7 @@ namespace languagetool_msword10_addin
         static public int contextLength;
         static public int contextOffset;
         static public List<string> ignoredWords;
+        static public string correctionLanguageCode;
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
@@ -170,8 +171,8 @@ namespace languagetool_msword10_addin
                 myCheckingForm.linkLabel1.Text = "";
                 myCheckingForm.linkLabel1.Links.Clear();
             }
+            myCheckingForm.languageBox.Text = "Llengua de correcció: " + correctionLanguageCode;
             
-
 
             if (myerror["replacements"].Length > 0)
             {
@@ -355,9 +356,9 @@ namespace languagetool_msword10_addin
             if (string.IsNullOrWhiteSpace(textToCheck)) {
                 return "";
             }
-
+            correctionLanguageCode = getLanguageCode(langID);
             textToCheck = textToCheck.Replace("\u0002", "*"); //char used for footnote references 
-            string uriString = Properties.Settings.Default.LTServer + "?language=" + getLanguageCode(langID) 
+            string uriString = Properties.Settings.Default.LTServer + "?language=" + correctionLanguageCode
                 + "&text=" + WebUtility.UrlEncode(textToCheck) + getUrlParameters(langID);
             //uriString = uriString.Replace("%C2%A0", "+"); // replace non-breaking space. Why?
             uriString = uriString.Replace("%0B", "%A0"); // replace "vertical-tab". Why?
