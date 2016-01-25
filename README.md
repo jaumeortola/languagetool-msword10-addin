@@ -4,11 +4,11 @@ Microsoft Word add-in for [LanguageTool](https://www.languagetool.org). Language
 
 The current implementation is in Catalan and has setup options specific to Catalan.  
 
-### Requirements
+### Installation
 * Download [Languagetool](https://www.languagetool.org) (desktop version) and run it in [server mode](http://wiki.languagetool.org/http-server) (default port: 8081). Alternatively, you can use public APIs in languagetool.org or softcatala.org.
 * Download [last release](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest), unzip and install.
 
-### Tested
+### Versions of MS Word
 For now it has been tested only in Microsoft Word 2010. 
 
 ### How it works
