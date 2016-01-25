@@ -1,11 +1,11 @@
 # languagetool-msword10-addin
 
-Microsoft Word add-in for [LanguageTool](www.languagetool.org). LanguageTool is an open source proof-reading program with support for more than 20 languages.
+Microsoft Word add-in for [LanguageTool](https://www.languagetool.org). LanguageTool is an open source proof-reading program with support for more than 20 languages.
 
 The current implementation is in Catalan and has setup options specific to Catalan.  
 
 ### Requirements
-* Download [Languagetool](https://www.languagetool.org) and run it in [server mode](http://wiki.languagetool.org/http-server) (default port: 8081). Alternatively, you can use public APIs in languagetool.org or softcatala.org.
+* Download [Languagetool](https://www.languagetool.org) (desktop version) and run it in [server mode](http://wiki.languagetool.org/http-server) (default port: 8081). Alternatively, you can use public APIs in languagetool.org or softcatala.org.
 * Download last release, unzip and install.
 
 ### Tested
