@@ -22,3 +22,7 @@ For now it has been tested only in Microsoft Word 2010.
 ### License
 * This add-in is freely available under the LGPL 2.1 or later.
 * The release version is not (yet) signed with an appropriate certificate.
+
+---
+![Generalitat de Catalunya](/languagetool-msword10-addin/Resources/suportGenCat.png "Generalitat de Catalunya")
+
