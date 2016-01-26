@@ -14,7 +14,7 @@ Aquesta implementació està en català i té opcions de configuració específi
 De moment només s'ha provat en Microsoft Word 2010 (Windows). 
 
 ### Com funciona
-* En el MS Word podeu trobar el grup de botons de LanguageTool group en el menú "Complements". Només hi ha dos botons: Revisa (per a començar la revisió) i Opcions. 
+* En el MS Word podeu trobar el grup de botons de LanguageTool group en el menú "Complements". Només hi ha dos botons: Revisa (per a començar la revisió des del paràgraf actual) i Opcions. 
 * El text s'envia al servidor de LanguageTool per paràgrafs on és analitzat. 
 * Els possibles errors i suggeriments es mostren en un quadre de diàleg. 
 
@@ -43,7 +43,7 @@ The current implementation is in Catalan and has setup options specific to Catal
 * The add-in has been tested only in Microsoft Word 2010. 
 
 ### How it works
-* In MS Word, the LanguageTool group can be found under the "Add-ins" menu. There are just two buttons: Check (to start checking) and Settings.
+* In MS Word, the LanguageTool group can be found under the "Add-ins" menu. There are just two buttons: Check (to start checking from the current paragraph) and Settings.
 * The text is sent to the LanguageTool server by paragraphs where it is analyzed.
 * The possible errors and suggestions for replacement are shown in a dialog box.
 
