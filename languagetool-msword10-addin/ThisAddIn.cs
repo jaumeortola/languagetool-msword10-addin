@@ -385,8 +385,56 @@ namespace languagetool_msword10_addin
             return "";
         }
 
-        public static Dictionary<string, string> getLanguagesFromServer()
+        public static Dictionary<string, string> getLanguagesList()
         {
+            var languages = new Dictionary<string, string>();
+            languages.Add("Asturian", "ast-ES");
+            languages.Add("Belarusian", "be-BY");
+            languages.Add("Breton", "br-FR");
+            languages.Add("Catalan", "ca-ES");
+            languages.Add("Catalan (Valencian)", "ca-ES-valencia");
+            languages.Add("Chinese", "zh-CN");
+            languages.Add("Danish", "da-DK");
+            languages.Add("Dutch", "nl");
+            languages.Add("English", "en");
+            languages.Add("English (Australian)", "en-AU");
+            languages.Add("English (Canadian)", "en-CA");
+            languages.Add("English (GB)", "en-GB");
+            languages.Add("English (New Zealand)", "en-NZ");
+            languages.Add("English (South African)", "en-ZA");
+            languages.Add("English (US)", "en-US");
+            languages.Add("Esperanto", "eo");
+            languages.Add("French", "fr");
+            languages.Add("Galician", "gl-ES");
+            languages.Add("German", "de");
+            languages.Add("German (Austria)", "de-AT");
+            languages.Add("German (Germany)", "de-DE");
+            languages.Add("German (Swiss)", "de-CH");
+            languages.Add("Greek", "el-GR");
+            languages.Add("Icelandic", "is-IS");
+            languages.Add("Italian", "it");
+            languages.Add("Japanese", "ja-JP");
+            languages.Add("Khmer", "km-KH");
+            languages.Add("Lithuanian", "lt-LT");
+            languages.Add("Malayalam", "ml-IN");
+            languages.Add("Persian", "fa");
+            languages.Add("Polish", "pl-PL");
+            languages.Add("Portuguese", "pt");
+            languages.Add("Portuguese (Brazil)", "pt-BR");
+            languages.Add("Portuguese (Portugal)", "pt-PT");
+            languages.Add("Romanian", "ro-RO");
+            languages.Add("Russian", "ru-RU");
+            languages.Add("Simple German", "de-DE-x-simple-language");
+            languages.Add("Slovak", "sk-SK");
+            languages.Add("Slovenian", "sl-SI");
+            languages.Add("Spanish", "es");
+            languages.Add("Swedish", "sv");
+            languages.Add("Tagalog", "tl-PH");
+            languages.Add("Tamil", "ta-IN");
+            languages.Add("Ukrainian", "uk-UA");
+            return languages;
+
+            /* gets the list of available languages from the server (it is sometimes slow)
             string xmlResults = "";
             string uri = Properties.Settings.Default.LTServer + "Languages";
             try
@@ -408,21 +456,14 @@ namespace languagetool_msword10_addin
             {
                 //System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: "
                 //    + Properties.Settings.Default.LTServer + ".");
-            }
-
-            var languages = new Dictionary<string, string>();
-            if (string.IsNullOrWhiteSpace(xmlResults))
-            {
-                languages.Add("English", "en");
-                languages.Add("Catalan", "ca-ES");
-            }
-            else
-            {
+            }        
+            if (!string.IsNullOrWhiteSpace(xmlResults))
+            {            
                 XElement xml = XElement.Parse(xmlResults);
                 foreach (var lang in xml.Descendants("language"))
                     languages.Add(lang.Attribute("name").Value, lang.Attribute("abbrWithVariant").Value);
-            }
-            return languages;
+            }*/
+            
         }
 
               
