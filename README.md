@@ -1,3 +1,4 @@
+(See below in [English](#english))
 # LanguageTool per a MS Word (català)
 
 [LanguageTool](https://www.languagetool.org) és un programa de revisió lingüística de codi obert per a més de 20 llengües. Amb aquest complement ("add-in") el podreu fer servir en el Microsoft Word (per a Windows). 
@@ -25,7 +26,7 @@ De moment només s'ha provat en Microsoft Word 2010 (Windows).
 
 ---
 
-# LanguageTool for MS Word (English)
+# <a name="english"></a>LanguageTool for MS Word (English)
 
 
 [LanguageTool](https://www.languagetool.org) is an open source proof-reading program with support for more than 20 languages. With this add-in you can use it in Microsoft Word (Windows OS).
