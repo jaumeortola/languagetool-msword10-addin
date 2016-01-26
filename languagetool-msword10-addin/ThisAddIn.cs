@@ -22,10 +22,7 @@ using System.Threading;
 
 
 /*TODO:
-
-    - license
-    - map language codes from MS Word to ISO codes
-
+    - map all language codes from MS Word to ISO codes
 */
 
 namespace languagetool_msword10_addin
