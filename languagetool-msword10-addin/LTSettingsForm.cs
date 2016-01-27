@@ -16,7 +16,7 @@ namespace languagetool_msword10_addin
         {
             InitializeComponent();
 
-            foreach (KeyValuePair<string, string> entry in ThisAddIn.getLanguagesList())   //TODO make secure
+            foreach (KeyValuePair<string, string> entry in ThisAddIn.getLanguagesList())
             {
                 this.comboBoxLanguages.Items.Add(entry.Value); //+ " "+entry.Key+""
             }

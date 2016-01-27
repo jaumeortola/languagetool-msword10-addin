@@ -40,12 +40,17 @@ namespace languagetool_msword10_addin
             this.TypographyRulesEnabled = new System.Windows.Forms.CheckBox();
             this.comboBoxLanguages = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 115);
+            this.label1.Location = new System.Drawing.Point(12, 81);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 13);
             this.label1.TabIndex = 2;
@@ -56,9 +61,9 @@ namespace languagetool_msword10_addin
             this.comboBoxLTServer.BackColor = System.Drawing.Color.White;
             this.comboBoxLTServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLTServer.FormattingEnabled = true;
-            this.comboBoxLTServer.Location = new System.Drawing.Point(15, 131);
+            this.comboBoxLTServer.Location = new System.Drawing.Point(15, 97);
             this.comboBoxLTServer.Name = "comboBoxLTServer";
-            this.comboBoxLTServer.Size = new System.Drawing.Size(386, 21);
+            this.comboBoxLTServer.Size = new System.Drawing.Size(385, 21);
             this.comboBoxLTServer.TabIndex = 1;
             // 
             // label2
@@ -82,9 +87,9 @@ namespace languagetool_msword10_addin
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(98, 227);
+            this.button1.Location = new System.Drawing.Point(228, 151);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(75, 21);
             this.button1.TabIndex = 3;
             this.button1.Text = "Desa";
             this.button1.UseVisualStyleBackColor = true;
@@ -92,9 +97,9 @@ namespace languagetool_msword10_addin
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(249, 227);
+            this.button2.Location = new System.Drawing.Point(326, 151);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(75, 21);
             this.button2.TabIndex = 4;
             this.button2.Text = "Cancel·la";
             this.button2.UseVisualStyleBackColor = true;
@@ -114,7 +119,7 @@ namespace languagetool_msword10_addin
             // 
             this.comboBoxLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLanguages.FormattingEnabled = true;
-            this.comboBoxLanguages.Location = new System.Drawing.Point(15, 185);
+            this.comboBoxLanguages.Location = new System.Drawing.Point(15, 151);
             this.comboBoxLanguages.Name = "comboBoxLanguages";
             this.comboBoxLanguages.Size = new System.Drawing.Size(158, 21);
             this.comboBoxLanguages.TabIndex = 6;
@@ -122,17 +127,46 @@ namespace languagetool_msword10_addin
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 167);
+            this.label3.Location = new System.Drawing.Point(12, 133);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Llengua per defecte";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::languagetool_msword10_addin.Properties.Resources.suportGenCat;
+            this.pictureBox1.Location = new System.Drawing.Point(212, 213);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(188, 61);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::languagetool_msword10_addin.Properties.Resources.logo_riurau_150;
+            this.pictureBox2.Location = new System.Drawing.Point(15, 225);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(150, 37);
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label4.Location = new System.Drawing.Point(15, 195);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(385, 2);
+            this.label4.TabIndex = 10;
+            // 
             // LTSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 262);
+            this.ClientSize = new System.Drawing.Size(413, 283);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxLanguages);
             this.Controls.Add(this.TypographyRulesEnabled);
@@ -147,6 +181,8 @@ namespace languagetool_msword10_addin
             this.Name = "LTSettingsForm";
             this.Text = "Configuració de LanguageTool";
             this.TransparencyKey = System.Drawing.Color.Transparent;
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +199,8 @@ namespace languagetool_msword10_addin
         private System.Windows.Forms.CheckBox TypographyRulesEnabled;
         private System.Windows.Forms.ComboBox comboBoxLanguages;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label4;
     }
 }
