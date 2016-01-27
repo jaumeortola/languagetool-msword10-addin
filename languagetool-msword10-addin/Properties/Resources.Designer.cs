@@ -73,6 +73,16 @@ namespace languagetool_msword10_addin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LanguageToolBig {
+            get {
+                object obj = ResourceManager.GetObject("LanguageToolBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logo_riurau_150 {
             get {
                 object obj = ResourceManager.GetObject("logo_riurau_150", resourceCulture);
@@ -86,6 +96,16 @@ namespace languagetool_msword10_addin.Properties {
         internal static System.Drawing.Bitmap suportGenCat {
             get {
                 object obj = ResourceManager.GetObject("suportGenCat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WMF_Agora_Settings_424242_svg {
+            get {
+                object obj = ResourceManager.GetObject("WMF-Agora-Settings_424242.svg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

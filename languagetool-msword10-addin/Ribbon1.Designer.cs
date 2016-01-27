@@ -36,8 +36,8 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.LTSettings = this.Factory.CreateRibbonButton();
             this.button4 = this.Factory.CreateRibbonButton();
+            this.LTSettings = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -56,18 +56,24 @@
             this.group1.Label = "LanguageTool";
             this.group1.Name = "group1";
             // 
-            // LTSettings
-            // 
-            this.LTSettings.Label = "Configuració";
-            this.LTSettings.Name = "LTSettings";
-            this.LTSettings.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LTSettings_onclick);
-            // 
             // button4
             // 
+            this.button4.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button4.Image = global::languagetool_msword10_addin.Properties.Resources.LanguageToolBig;
             this.button4.KeyTip = "C";
             this.button4.Label = "Revisa";
             this.button4.Name = "button4";
+            this.button4.ShowImage = true;
             this.button4.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button4_onclick);
+            // 
+            // LTSettings
+            // 
+            this.LTSettings.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.LTSettings.Image = global::languagetool_msword10_addin.Properties.Resources.WMF_Agora_Settings_424242_svg;
+            this.LTSettings.Label = "Configuració";
+            this.LTSettings.Name = "LTSettings";
+            this.LTSettings.ShowImage = true;
+            this.LTSettings.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LTSettings_onclick);
             // 
             // Ribbon1
             // 
