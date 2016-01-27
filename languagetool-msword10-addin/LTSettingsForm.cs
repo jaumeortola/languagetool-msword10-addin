@@ -18,7 +18,7 @@ namespace languagetool_msword10_addin
 
             foreach (KeyValuePair<string, string> entry in ThisAddIn.getLanguagesList())
             {
-                this.comboBoxLanguages.Items.Add(entry.Value); //+ " "+entry.Key+""
+                this.comboBoxLanguages.Items.Add(entry.Key); 
             }
             this.comboBoxLanguages.Text = Properties.Settings.Default.DefaultLanguage;
             this.comboBoxPreferences.Items.AddRange(

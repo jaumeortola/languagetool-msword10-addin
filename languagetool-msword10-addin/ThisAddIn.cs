@@ -311,7 +311,7 @@ namespace languagetool_msword10_addin
                 case "wdPortuguese":
                     return "pt-PT";
             }
-            return (Properties.Settings.Default.DefaultLanguage);
+            return (getLanguagesList()[Properties.Settings.Default.DefaultLanguage]);
         }
 
         private static string getUrlParameters(string langID)
