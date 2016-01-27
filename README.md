@@ -54,7 +54,7 @@ The current implementation is in Catalan and has setup options specific to Catal
 
 
 ### License
-* LGPL 2.1 o posterior.
+* LGPL 2.1 or later.
 
 
 ---
