@@ -73,7 +73,7 @@ namespace languagetool_msword10_addin
                 newRange.End = newRange.Start;
                 if (newRange.Start < desiredRangeStart)
                 {
-                    myCheckingForm.Hide();
+                    myCheckingForm.finalize();
                     return;
                 }
                 newRange.Select();
@@ -82,7 +82,7 @@ namespace languagetool_msword10_addin
             if (parsedResultsCurrentPara == null
                 || errorNumberCurrentPara >= parsedResultsCurrentPara.Count)
             {
-                myCheckingForm.Hide();
+                myCheckingForm.finalize();
                 return;
             }
 
@@ -113,9 +113,7 @@ namespace languagetool_msword10_addin
                 prepareDialog();
                 return;
             }
-
             preparingDialog = true;
-
             myCheckingForm.contextTextBox.Clear();
             myCheckingForm.contextTextBox.Text = "";
             myCheckingForm.suggestionsBox.Items.Clear();
@@ -184,8 +182,8 @@ namespace languagetool_msword10_addin
             if (parsedResultsCurrentPara == null
                 || parsedResultsCurrentPara.Count < 1)
             {
-                MessageForm myWaitForm = new MessageForm();
-                myWaitForm.ShowDialog();
+                MessageForm myMessageForm = new MessageForm();
+                myMessageForm.ShowDialog();
             }
             else
             {
@@ -196,8 +194,7 @@ namespace languagetool_msword10_addin
         }
 
         public static void checkOnDialogChange(string replacement)
-        {
-            
+        {          
             Word.Range rangeToReplace = rangeToCheck;
             if (!updatedContext)
             {

@@ -295,7 +295,7 @@
     <value>Llengua</value>
   </data>
   <data name="Languagetool_settings" xml:space="preserve">
-    <value>Configuració de LanguageTool</value>
+    <value>Opcions de LanguageTool</value>
   </data>
   <data name="message" xml:space="preserve">
     <value>Missatge</value>
@@ -313,7 +313,7 @@
     <value>Revisió lingüística amb LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Configuració</value>
+    <value>Opcions</value>
   </data>
   <data name="suggestions" xml:space="preserve">
     <value>Suggeriments</value>

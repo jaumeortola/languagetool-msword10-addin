@@ -49,7 +49,7 @@ namespace languagetool_msword10_addin
         }
         private void cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.finalize();
         }
 
         private void textUpdated(object sender, EventArgs e)
@@ -67,6 +67,14 @@ namespace languagetool_msword10_addin
         private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(((LinkLabel.Link)e.Link.LinkData).LinkData.ToString());
+        }
+
+        public void finalize()
+        {
+            this.Hide();
+            Globals.ThisAddIn.Application.Selection.Move();
+            Globals.ThisAddIn.Application.ActiveWindow.SetFocus();
+
         }
 
     }
