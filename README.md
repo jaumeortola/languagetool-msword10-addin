@@ -8,7 +8,6 @@ Aquesta implementació està en català i té opcions de configuració específi
 ### Instal·lació
 * Descarregueu [Languagetool](https://www.languagetool.org) (versió com a programa independent) i executeu-lo en [mode servidor](http://wiki.languagetool.org/http-server) (port per defecte: 8081). Alternativament, podeu usar alguna API pública de LanguageTool com languagetool.org o softcatala.org.
 * Baixeu [l'última versió](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) del complement, descomprimiu i instal·leu.
-* De moment, la versió publicada no està signada amb el certificat apropiat, i això pot causar algun problema a l'hora d'instal·lar el complement. 
 
 ### Versions de MS Word
 De moment només s'ha provat en Microsoft Word 2010 (Windows). 
@@ -32,13 +31,9 @@ De moment només s'ha provat en Microsoft Word 2010 (Windows).
 
 [LanguageTool](https://www.languagetool.org) is an open source proof-reading program with support for more than 20 languages. With this add-in you can use it in Microsoft Word (Windows OS).
 
-The current implementation is in Catalan and has setup options specific to Catalan.
-
-
 ### Installation
 * Download [Languagetool](https://www.languagetool.org) (desktop version) and run it in [server mode](http://wiki.languagetool.org/http-server) (port by default: 8081). Alternatively, you can use some public LanguageTool API (for instance in  languagetool.org or softcatala.org), but this discouraged specially if you work with long documents.
 * Download [the latest vestion](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) of the add-in, unzip and install.
-* At the moment, the released version is not signed with a certificate, and this can cause some problem when installing the add-in.
 
 ### MS Word versions
 * The add-in has been tested only in Microsoft Word 2010. 
