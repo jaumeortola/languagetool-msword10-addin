@@ -1,25 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Word = Microsoft.Office.Interop.Word;
-using Office = Microsoft.Office.Core;
-using Microsoft.Office.Tools.Word;
 using System.IO;
-using System.Web;
 using System.Net;
-using System.Xml;
-using Microsoft.Office.Interop.Word;
-using Microsoft.Office.Tools;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Text.RegularExpressions;
-
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Threading;
-
+using System.Resources;
 
 /*TODO:
     - map all language codes from MS Word to ISO codes
@@ -168,7 +155,7 @@ namespace languagetool_msword10_addin
                 myCheckingForm.linkLabel1.Text = "";
                 myCheckingForm.linkLabel1.Links.Clear();
             }
-            myCheckingForm.languageBox.Text = "Llengua de correcció: " + correctionLanguageCode;
+            myCheckingForm.languageBox.Text = Resources.WinFormStrings.language + ": " + getLanguageName(correctionLanguageCode);
             
 
             if (myerror["replacements"].Length > 0)
@@ -197,8 +184,7 @@ namespace languagetool_msword10_addin
             if (parsedResultsCurrentPara == null
                 || parsedResultsCurrentPara.Count < 1)
             {
-                WaitForm myWaitForm = new WaitForm();
-                myWaitForm.setMessage("No s'han trobat errors.");
+                MessageForm myWaitForm = new MessageForm();
                 myWaitForm.ShowDialog();
             }
             else
@@ -311,7 +297,7 @@ namespace languagetool_msword10_addin
                 case "wdPortuguese":
                     return "pt-PT";
             }
-            return (getLanguagesList()[Properties.Settings.Default.DefaultLanguage]);
+            return (Properties.Settings.Default.DefaultLanguage);
         }
 
         private static string getUrlParameters(string langID)
@@ -385,53 +371,57 @@ namespace languagetool_msword10_addin
             return "";
         }
 
-        public static Dictionary<string, string> getLanguagesList()
+        public static string getLanguageName(string ISOCode)
         {
-            var languages = new Dictionary<string, string>();
-            languages.Add("Asturian", "ast-ES");
-            languages.Add("Belarusian", "be-BY");
-            languages.Add("Breton", "br-FR");
-            languages.Add("Catalan", "ca-ES");
-            languages.Add("Catalan (Valencian)", "ca-ES-valencia");
-            languages.Add("Chinese", "zh-CN");
-            languages.Add("Danish", "da-DK");
-            languages.Add("Dutch", "nl");
-            languages.Add("English", "en");
-            languages.Add("English (Australian)", "en-AU");
-            languages.Add("English (Canadian)", "en-CA");
-            languages.Add("English (GB)", "en-GB");
-            languages.Add("English (New Zealand)", "en-NZ");
-            languages.Add("English (South African)", "en-ZA");
-            languages.Add("English (US)", "en-US");
-            languages.Add("Esperanto", "eo");
-            languages.Add("French", "fr");
-            languages.Add("Galician", "gl-ES");
-            languages.Add("German", "de");
-            languages.Add("German (Austria)", "de-AT");
-            languages.Add("German (Germany)", "de-DE");
-            languages.Add("German (Swiss)", "de-CH");
-            languages.Add("Greek", "el-GR");
-            languages.Add("Icelandic", "is-IS");
-            languages.Add("Italian", "it");
-            languages.Add("Japanese", "ja-JP");
-            languages.Add("Khmer", "km-KH");
-            languages.Add("Lithuanian", "lt-LT");
-            languages.Add("Malayalam", "ml-IN");
-            languages.Add("Persian", "fa");
-            languages.Add("Polish", "pl-PL");
-            languages.Add("Portuguese", "pt");
-            languages.Add("Portuguese (Brazil)", "pt-BR");
-            languages.Add("Portuguese (Portugal)", "pt-PT");
-            languages.Add("Romanian", "ro-RO");
-            languages.Add("Russian", "ru-RU");
-            languages.Add("Simple German", "de-DE-x-simple-language");
-            languages.Add("Slovak", "sk-SK");
-            languages.Add("Slovenian", "sl-SI");
-            languages.Add("Spanish", "es");
-            languages.Add("Swedish", "sv");
-            languages.Add("Tagalog", "tl-PH");
-            languages.Add("Tamil", "ta-IN");
-            languages.Add("Ukrainian", "uk-UA");
+            return Resources.WinFormStrings.ResourceManager.GetString(ISOCode.Replace("-", "_"));
+        }
+
+        public static List<string> getLanguagesList()
+        {
+            var languages = new List<string>();
+            languages.Add("ast-ES");
+            languages.Add("be-BY");
+            languages.Add("br-FR");
+            languages.Add("ca-ES");
+            languages.Add("ca-ES-valencia");
+            languages.Add("zh-CN");
+            languages.Add("da-DK");
+            languages.Add("nl");
+            languages.Add("en");
+            languages.Add("en-AU");
+            languages.Add("en-CA");
+            languages.Add("en-GB");
+            languages.Add("en-NZ");
+            languages.Add("en-ZA");
+            languages.Add("en-US");
+            languages.Add("eo");
+            languages.Add("fr");
+            languages.Add("gl-ES");
+            languages.Add("de");
+            languages.Add("de-AT");
+            languages.Add("de-DE");
+            languages.Add("de-CH");
+            languages.Add("el-GR");
+            languages.Add("is-IS");
+            languages.Add("it");
+            languages.Add("ja-JP");
+            languages.Add("km-KH");
+            languages.Add("lt-LT");
+            languages.Add("ml-IN");
+            languages.Add("fa");
+            languages.Add("pl-PL");
+            languages.Add("pt");
+            languages.Add("pt-BR");
+            languages.Add("pt-PT");
+            languages.Add("ro-RO");
+            languages.Add("ru-RU");
+            languages.Add("de-DE-x-simple-language");
+            languages.Add("sk-SK");
+            languages.Add("sl-SI");
+            languages.Add("es");
+            languages.Add("sv");
+            languages.Add("tl-PH");
+            languages.Add("ta-IN");
             return languages;
 
             /* gets the list of available languages from the server (it is sometimes slow)

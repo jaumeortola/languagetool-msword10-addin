@@ -15,6 +15,15 @@ namespace languagetool_msword10_addin
         public CheckingForm()
         {
             InitializeComponent();
+            this.changeSuggestion.Text = Resources.WinFormStrings.change;
+            this.ignoreSuggestion.Text = Resources.WinFormStrings.ignore_once;
+            this.label1.Text = Resources.WinFormStrings.suggestions + ":";
+            this.button1.Text = Resources.WinFormStrings.cancel;
+            this.button2.Text = Resources.WinFormStrings.ignore_all;
+            this.linkLabel1.Text = Resources.WinFormStrings.more_information;
+            this.Text = Resources.WinFormStrings.proofreading_with_LanguageTool;
+
+            this.languageBox.Text = "";
         }
 
         private void changeSuggestion_Click(object sender, EventArgs e)

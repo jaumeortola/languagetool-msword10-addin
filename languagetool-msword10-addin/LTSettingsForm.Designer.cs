@@ -31,15 +31,15 @@ namespace languagetool_msword10_addin
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LTSettingsForm));
-            this.label1 = new System.Windows.Forms.Label();
+            this.LT_server_label = new System.Windows.Forms.Label();
             this.comboBoxLTServer = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.checking_options_label = new System.Windows.Forms.Label();
             this.comboBoxPreferences = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.TypographyRulesEnabled = new System.Windows.Forms.CheckBox();
+            this.save_button = new System.Windows.Forms.Button();
+            this.cancel_button = new System.Windows.Forms.Button();
+            this.typography_checkbox = new System.Windows.Forms.CheckBox();
             this.comboBoxLanguages = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.default_language_label = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,91 +47,91 @@ namespace languagetool_msword10_addin
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // LT_server_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 81);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Servidor de LanguageTool:";
+            this.LT_server_label.AutoSize = true;
+            this.LT_server_label.Location = new System.Drawing.Point(12, 70);
+            this.LT_server_label.Name = "LT_server_label";
+            this.LT_server_label.Size = new System.Drawing.Size(113, 13);
+            this.LT_server_label.TabIndex = 2;
+            this.LT_server_label.Text = "LanguageTool Server:";
             // 
             // comboBoxLTServer
             // 
             this.comboBoxLTServer.BackColor = System.Drawing.Color.White;
             this.comboBoxLTServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLTServer.FormattingEnabled = true;
-            this.comboBoxLTServer.Location = new System.Drawing.Point(15, 97);
+            this.comboBoxLTServer.Location = new System.Drawing.Point(15, 86);
             this.comboBoxLTServer.Name = "comboBoxLTServer";
             this.comboBoxLTServer.Size = new System.Drawing.Size(385, 21);
             this.comboBoxLTServer.TabIndex = 1;
             // 
-            // label2
+            // checking_options_label
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Preferències de revisió en català";
+            this.checking_options_label.AutoSize = true;
+            this.checking_options_label.Location = new System.Drawing.Point(13, 133);
+            this.checking_options_label.Name = "checking_options_label";
+            this.checking_options_label.Size = new System.Drawing.Size(91, 13);
+            this.checking_options_label.TabIndex = 0;
+            this.checking_options_label.Text = "Checking Options";
             // 
             // comboBoxPreferences
             // 
             this.comboBoxPreferences.BackColor = System.Drawing.Color.White;
             this.comboBoxPreferences.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPreferences.FormattingEnabled = true;
-            this.comboBoxPreferences.Location = new System.Drawing.Point(15, 39);
+            this.comboBoxPreferences.Location = new System.Drawing.Point(16, 149);
             this.comboBoxPreferences.Name = "comboBoxPreferences";
             this.comboBoxPreferences.Size = new System.Drawing.Size(233, 21);
             this.comboBoxPreferences.TabIndex = 1;
             // 
-            // button1
+            // save_button
             // 
-            this.button1.Location = new System.Drawing.Point(228, 151);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 21);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Desa";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.saveSettings_Click);
+            this.save_button.Location = new System.Drawing.Point(227, 32);
+            this.save_button.Name = "save_button";
+            this.save_button.Size = new System.Drawing.Size(75, 21);
+            this.save_button.TabIndex = 3;
+            this.save_button.Text = "Save";
+            this.save_button.UseVisualStyleBackColor = true;
+            this.save_button.Click += new System.EventHandler(this.saveSettings_Click);
             // 
-            // button2
+            // cancel_button
             // 
-            this.button2.Location = new System.Drawing.Point(326, 151);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 21);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Cancel·la";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.cancelSettings_click);
+            this.cancel_button.Location = new System.Drawing.Point(325, 32);
+            this.cancel_button.Name = "cancel_button";
+            this.cancel_button.Size = new System.Drawing.Size(75, 21);
+            this.cancel_button.TabIndex = 4;
+            this.cancel_button.Text = "Cancel";
+            this.cancel_button.UseVisualStyleBackColor = true;
+            this.cancel_button.Click += new System.EventHandler(this.cancelSettings_click);
             // 
-            // TypographyRulesEnabled
+            // typography_checkbox
             // 
-            this.TypographyRulesEnabled.AutoSize = true;
-            this.TypographyRulesEnabled.Location = new System.Drawing.Point(295, 43);
-            this.TypographyRulesEnabled.Name = "TypographyRulesEnabled";
-            this.TypographyRulesEnabled.Size = new System.Drawing.Size(73, 17);
-            this.TypographyRulesEnabled.TabIndex = 5;
-            this.TypographyRulesEnabled.Text = "Tipografia";
-            this.TypographyRulesEnabled.UseVisualStyleBackColor = true;
+            this.typography_checkbox.AutoSize = true;
+            this.typography_checkbox.Location = new System.Drawing.Point(296, 153);
+            this.typography_checkbox.Name = "typography_checkbox";
+            this.typography_checkbox.Size = new System.Drawing.Size(82, 17);
+            this.typography_checkbox.TabIndex = 5;
+            this.typography_checkbox.Text = "Typography";
+            this.typography_checkbox.UseVisualStyleBackColor = true;
             // 
             // comboBoxLanguages
             // 
             this.comboBoxLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLanguages.FormattingEnabled = true;
-            this.comboBoxLanguages.Location = new System.Drawing.Point(15, 151);
+            this.comboBoxLanguages.Location = new System.Drawing.Point(14, 32);
             this.comboBoxLanguages.Name = "comboBoxLanguages";
             this.comboBoxLanguages.Size = new System.Drawing.Size(158, 21);
             this.comboBoxLanguages.TabIndex = 6;
             // 
-            // label3
+            // default_language_label
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 133);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Llengua per defecte";
+            this.default_language_label.AutoSize = true;
+            this.default_language_label.Location = new System.Drawing.Point(11, 14);
+            this.default_language_label.Name = "default_language_label";
+            this.default_language_label.Size = new System.Drawing.Size(92, 13);
+            this.default_language_label.TabIndex = 7;
+            this.default_language_label.Text = "Default Language";
             // 
             // pictureBox1
             // 
@@ -167,19 +167,19 @@ namespace languagetool_msword10_addin
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.default_language_label);
             this.Controls.Add(this.comboBoxLanguages);
-            this.Controls.Add(this.TypographyRulesEnabled);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.typography_checkbox);
+            this.Controls.Add(this.cancel_button);
+            this.Controls.Add(this.save_button);
             this.Controls.Add(this.comboBoxPreferences);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.checking_options_label);
             this.Controls.Add(this.comboBoxLTServer);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LT_server_label);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LTSettingsForm";
-            this.Text = "Configuració de LanguageTool";
+            this.Text = "LanguageTool Settings";
             this.TransparencyKey = System.Drawing.Color.Transparent;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -190,15 +190,15 @@ namespace languagetool_msword10_addin
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LT_server_label;
         private System.Windows.Forms.ComboBox comboBoxLTServer;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label checking_options_label;
         private System.Windows.Forms.ComboBox comboBoxPreferences;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox TypographyRulesEnabled;
+        private System.Windows.Forms.Button save_button;
+        private System.Windows.Forms.Button cancel_button;
+        private System.Windows.Forms.CheckBox typography_checkbox;
         private System.Windows.Forms.ComboBox comboBoxLanguages;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label default_language_label;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;

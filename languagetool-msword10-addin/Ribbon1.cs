@@ -10,10 +10,9 @@ namespace languagetool_msword10_addin
     {
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
-            
+            this.check_button.Label = Resources.WinFormStrings.check;
+            this.settings_button.Label = Resources.WinFormStrings.settings;
         }
-
-
 
         private void LTSettings_onclick(object sender, RibbonControlEventArgs e)
         {

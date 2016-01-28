@@ -36,8 +36,8 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.button4 = this.Factory.CreateRibbonButton();
-            this.LTSettings = this.Factory.CreateRibbonButton();
+            this.check_button = this.Factory.CreateRibbonButton();
+            this.settings_button = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -51,29 +51,29 @@
             // 
             // group1
             // 
-            this.group1.Items.Add(this.button4);
-            this.group1.Items.Add(this.LTSettings);
+            this.group1.Items.Add(this.check_button);
+            this.group1.Items.Add(this.settings_button);
             this.group1.Label = "LanguageTool";
             this.group1.Name = "group1";
             // 
-            // button4
+            // check_button
             // 
-            this.button4.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button4.Image = global::languagetool_msword10_addin.Properties.Resources.LanguageToolBig;
-            this.button4.KeyTip = "C";
-            this.button4.Label = "Revisa";
-            this.button4.Name = "button4";
-            this.button4.ShowImage = true;
-            this.button4.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button4_onclick);
+            this.check_button.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.check_button.Image = global::languagetool_msword10_addin.Properties.Resources.LanguageToolBig;
+            this.check_button.KeyTip = "C";
+            this.check_button.Label = "Check";
+            this.check_button.Name = "check_button";
+            this.check_button.ShowImage = true;
+            this.check_button.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button4_onclick);
             // 
-            // LTSettings
+            // settings_button
             // 
-            this.LTSettings.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.LTSettings.Image = global::languagetool_msword10_addin.Properties.Resources.WMF_Agora_Settings_424242_svg;
-            this.LTSettings.Label = "Configuració";
-            this.LTSettings.Name = "LTSettings";
-            this.LTSettings.ShowImage = true;
-            this.LTSettings.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LTSettings_onclick);
+            this.settings_button.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.settings_button.Image = global::languagetool_msword10_addin.Properties.Resources.WMF_Agora_Settings_424242_svg;
+            this.settings_button.Label = "Settings";
+            this.settings_button.Name = "settings_button";
+            this.settings_button.ShowImage = true;
+            this.settings_button.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LTSettings_onclick);
             // 
             // Ribbon1
             // 
@@ -93,8 +93,8 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton LTSettings;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button4;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton settings_button;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton check_button;
     }
 
     partial class ThisRibbonCollection

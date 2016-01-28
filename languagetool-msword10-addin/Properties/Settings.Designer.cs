@@ -37,18 +37,6 @@ namespace languagetool_msword10_addin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ca-ES")]
-        public string DefaultLanguage {
-            get {
-                return ((string)(this["DefaultLanguage"]));
-            }
-            set {
-                this["DefaultLanguage"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("general")]
         public string CatalanUserPreferences {
             get {
@@ -129,6 +117,18 @@ namespace languagetool_msword10_addin.Properties {
             }
             set {
                 this["CheckWhileWriting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ca-ES")]
+        public string DefaultLanguage {
+            get {
+                return ((string)(this["DefaultLanguage"]));
+            }
+            set {
+                this["DefaultLanguage"] = value;
             }
         }
     }

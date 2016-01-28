@@ -65,7 +65,7 @@
             this.changeSuggestion.Name = "changeSuggestion";
             this.changeSuggestion.Size = new System.Drawing.Size(100, 23);
             this.changeSuggestion.TabIndex = 2;
-            this.changeSuggestion.Text = "Reemplaça";
+            this.changeSuggestion.Text = "Change";
             this.changeSuggestion.UseVisualStyleBackColor = true;
             this.changeSuggestion.Click += new System.EventHandler(this.changeSuggestion_Click);
             // 
@@ -75,18 +75,18 @@
             this.ignoreSuggestion.Name = "ignoreSuggestion";
             this.ignoreSuggestion.Size = new System.Drawing.Size(100, 23);
             this.ignoreSuggestion.TabIndex = 3;
-            this.ignoreSuggestion.Text = "Ignora";
+            this.ignoreSuggestion.Text = "Ignore once";
             this.ignoreSuggestion.UseVisualStyleBackColor = true;
             this.ignoreSuggestion.Click += new System.EventHandler(this.ignoreSuggestion_Click);
             // 
-            // label1
+            // LT_server_laber
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(20, 199);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Suggeriments";
+            this.label1.Text = "Suggestions";
             // 
             // messageBox
             // 
@@ -104,7 +104,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 6;
-            this.button1.Text = "Cancel·la";
+            this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.cancel_Click);
             // 
@@ -114,7 +114,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 23);
             this.button2.TabIndex = 7;
-            this.button2.Text = "Ignora sempre";
+            this.button2.Text = "Ignore all";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.ignoreAlwaysSuggestion_Click);
             // 
@@ -126,7 +126,7 @@
             this.linkLabel1.Size = new System.Drawing.Size(78, 13);
             this.linkLabel1.TabIndex = 8;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Més informació";
+            this.linkLabel1.Text = "More information";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // languageBox
@@ -156,7 +156,7 @@
             this.Controls.Add(this.suggestionsBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CheckingForm";
-            this.Text = "Revisió ortogràfica i gramatical";
+            this.Text = "Proofreading with LanguageTool";
             this.ResumeLayout(false);
             this.PerformLayout();
 

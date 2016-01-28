@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ast_ES" xml:space="preserve">
+    <value>Asturian</value>
+  </data>
+  <data name="be_BY" xml:space="preserve">
+    <value>Belarusian</value>
+  </data>
+  <data name="br_FR" xml:space="preserve">
+    <value>Breton</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ca_ES" xml:space="preserve">
+    <value>Catalan</value>
+  </data>
+  <data name="ca_ES_valencia" xml:space="preserve">
+    <value>Catalan (Valencian)</value>
+  </data>
+  <data name="checking_options" xml:space="preserve">
+    <value>Checking Options</value>
+  </data>
+  <data name="da_DK" xml:space="preserve">
+    <value>Danish</value>
+  </data>
+  <data name="de" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="default_language" xml:space="preserve">
+    <value>Default Language</value>
+  </data>
+  <data name="de_AT" xml:space="preserve">
+    <value>German (Austria)</value>
+  </data>
+  <data name="de_CH" xml:space="preserve">
+    <value>German (Swiss)</value>
+  </data>
+  <data name="de_DE" xml:space="preserve">
+    <value>German (Germany)</value>
+  </data>
+  <data name="de_DE_x_simple_language" xml:space="preserve">
+    <value>Simple German</value>
+  </data>
+  <data name="el_GR" xml:space="preserve">
+    <value>Greek</value>
+  </data>
+  <data name="en" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="en_AU" xml:space="preserve">
+    <value>English (Australian)</value>
+  </data>
+  <data name="en_CA" xml:space="preserve">
+    <value>English (Canadian)</value>
+  </data>
+  <data name="en_GB" xml:space="preserve">
+    <value>English (GB)</value>
+  </data>
+  <data name="en_NZ" xml:space="preserve">
+    <value>English (New Zealand)</value>
+  </data>
+  <data name="en_US" xml:space="preserve">
+    <value>English (US)</value>
+  </data>
+  <data name="en_ZA" xml:space="preserve">
+    <value>English (South African)</value>
+  </data>
+  <data name="eo" xml:space="preserve">
+    <value>Esperanto</value>
+  </data>
+  <data name="es" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="fa" xml:space="preserve">
+    <value>Persian</value>
+  </data>
+  <data name="fr" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="gl_ES" xml:space="preserve">
+    <value>Galician</value>
+  </data>
+  <data name="grammar" xml:space="preserve">
+    <value>Grammar</value>
+  </data>
+  <data name="is_IS" xml:space="preserve">
+    <value>Icelandic</value>
+  </data>
+  <data name="it" xml:space="preserve">
+    <value>Italian</value>
+  </data>
+  <data name="ja_JP" xml:space="preserve">
+    <value>Japanese</value>
+  </data>
+  <data name="km_KH" xml:space="preserve">
+    <value>Khmer</value>
+  </data>
+  <data name="lt_LT" xml:space="preserve">
+    <value>Lithuanian</value>
+  </data>
+  <data name="LT_server" xml:space="preserve">
+    <value>LanguageTool Server</value>
+  </data>
+  <data name="LT_settings" xml:space="preserve">
+    <value>LanguageTool Settings</value>
+  </data>
+  <data name="ml_IN" xml:space="preserve">
+    <value>Malayalam</value>
+  </data>
+  <data name="nl" xml:space="preserve">
+    <value>Dutch</value>
+  </data>
+  <data name="pl_PL" xml:space="preserve">
+    <value>Polish</value>
+  </data>
+  <data name="pt" xml:space="preserve">
+    <value>Portuguese</value>
+  </data>
+  <data name="pt_BR" xml:space="preserve">
+    <value>Portuguese (Brazil)</value>
+  </data>
+  <data name="pt_PT" xml:space="preserve">
+    <value>Portuguese (Portugal)</value>
+  </data>
+  <data name="ro_RO" xml:space="preserve">
+    <value>Romanian</value>
+  </data>
+  <data name="ru_RU" xml:space="preserve">
+    <value>Russian</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="sk_SK" xml:space="preserve">
+    <value>Slovak</value>
+  </data>
+  <data name="sl_SI" xml:space="preserve">
+    <value>Slovenian</value>
+  </data>
+  <data name="spelling" xml:space="preserve">
+    <value>Spelling</value>
+  </data>
+  <data name="style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="sv" xml:space="preserve">
+    <value>Swedish</value>
+  </data>
+  <data name="ta_IN" xml:space="preserve">
+    <value>Tamil</value>
+  </data>
+  <data name="tl_PH" xml:space="preserve">
+    <value>Tagalog</value>
+  </data>
+  <data name="typography" xml:space="preserve">
+    <value>Tipography</value>
+  </data>
+  <data name="uk_UA" xml:space="preserve">
+    <value>Ukrainian</value>
+  </data>
+  <data name="zh_CN" xml:space="preserve">
+    <value>Chinese</value>
+  </data>
+  <data name="change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="check" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="ignore_all" xml:space="preserve">
+    <value>Ignore All</value>
+  </data>
+  <data name="ignore_once" xml:space="preserve">
+    <value>Ignore Once</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Languagetool_settings" xml:space="preserve">
+    <value>LanguageTool Settings</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="more_information" xml:space="preserve">
+    <value>More information</value>
+  </data>
+  <data name="no_errors_found" xml:space="preserve">
+    <value>No errors were found.</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="proofreading_with_LanguageTool" xml:space="preserve">
+    <value>Proofreading with LanguageTool</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="suggestions" xml:space="preserve">
+    <value>Suggestions</value>
+  </data>
+</root>
