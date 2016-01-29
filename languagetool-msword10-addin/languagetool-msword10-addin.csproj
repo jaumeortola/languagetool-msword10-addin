@@ -34,7 +34,7 @@
     <PublishUrl>C:\Users\Jaume\Documents\MSWord-LanguageTool-Addin\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.10</ApplicationVersion>
+    <ApplicationVersion>1.0.0.11</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -229,6 +229,7 @@
       <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="certificat.pfx" />
     <None Include="languagetool-msword10-addin_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -276,10 +277,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>languagetool-msword10-addin_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>certificat.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0B2E40530626E6CE3FE17B4549F03935A900E33E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>02BF24F2AFC091CF0174B7EB272BC2F82E4714C8</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -64,8 +64,7 @@ namespace languagetool_msword10_addin
 
         public static void prepareDialog()
         {
-            while (parsedResultsCurrentPara != null 
-                && errorNumberCurrentPara >= parsedResultsCurrentPara.Count)
+            while (parsedResultsCurrentPara == null || errorNumberCurrentPara >= parsedResultsCurrentPara.Count)
             {
                 Word.Range newRange = rangeToCheck;
                 int desiredRangeStart = rangeToCheck.Paragraphs.Last.Range.End + 1;
@@ -78,12 +77,6 @@ namespace languagetool_msword10_addin
                 }
                 newRange.Select();
                 checkCurrentParagraph();
-            }
-            if (parsedResultsCurrentPara == null
-                || errorNumberCurrentPara >= parsedResultsCurrentPara.Count)
-            {
-                myCheckingForm.finalize();
-                return;
             }
 
             Dictionary<string, string> myerror = parsedResultsCurrentPara[errorNumberCurrentPara];
