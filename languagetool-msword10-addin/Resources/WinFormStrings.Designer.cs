@@ -637,7 +637,7 @@ namespace languagetool_msword10_addin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tipography.
+        ///   Looks up a localized string similar to Typography.
         /// </summary>
         internal static string typography {
             get {
