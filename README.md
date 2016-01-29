@@ -8,9 +8,10 @@ Aquesta implementació està en català i té opcions de configuració específi
 ### Instal·lació
 * Descarregueu [Languagetool](https://www.languagetool.org) (versió com a programa independent) i executeu-lo en [mode servidor](http://wiki.languagetool.org/http-server) (port per defecte: 8081). Alternativament, podeu usar alguna API pública de LanguageTool com languagetool.org o softcatala.org.
 * Baixeu [l'última versió](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) del complement, descomprimiu i instal·leu.
+* En alguns casos, cal reiniciar l'ordinador. 
 
 ### Versions de MS Word
-De moment només s'ha provat en Microsoft Word 2010 (Windows). 
+S'ha provat en Microsoft Word 2007 i 2010 (Windows). 
 
 ### Com funciona
 * En el MS Word podeu trobar el grup de botons de LanguageTool group en el menú "Complements". Només hi ha dos botons: Revisa (per a començar la revisió des del paràgraf actual) i Opcions. 
@@ -34,9 +35,10 @@ De moment només s'ha provat en Microsoft Word 2010 (Windows).
 ### Installation
 * Download [LanguageTool](https://www.languagetool.org) (desktop version) and run it in [server mode](http://wiki.languagetool.org/http-server) (port by default: 8081). Alternatively, you can use some public LanguageTool API (for instance in languagetool.org or softcatala.org), but this is discouraged specially if you work with long documents.
 * Download [the latest version](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) of the add-in, unzip and install.
+* In some cases you may need to reboot the computer.
 
 ### MS Word versions
-* The add-in has been tested only in Microsoft Word 2010. 
+* The add-in has been tested in Microsoft Word 2007 and 2010. 
 
 ### How it works
 * In MS Word, the LanguageTool group can be found under the "Add-ins" menu. There are just two buttons: Check (to start checking from the current paragraph) and Settings.
