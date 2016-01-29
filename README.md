@@ -32,7 +32,7 @@ De moment només s'ha provat en Microsoft Word 2010 (Windows).
 [LanguageTool](https://www.languagetool.org) is an open source proof-reading program with support for more than 20 languages. With this add-in you can use it in Microsoft Word (Windows OS).
 
 ### Installation
-* Download [LanguageTool](https://www.languagetool.org) (desktop version) and run it in [server mode](http://wiki.languagetool.org/http-server) (port by default: 8081). Alternatively, you can use some public LanguageTool API (for instance in languagetool.org or softcatala.org), but this discouraged specially if you work with long documents.
+* Download [LanguageTool](https://www.languagetool.org) (desktop version) and run it in [server mode](http://wiki.languagetool.org/http-server) (port by default: 8081). Alternatively, you can use some public LanguageTool API (for instance in languagetool.org or softcatala.org), but this is discouraged specially if you work with long documents.
 * Download [the latest version](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) of the add-in, unzip and install.
 
 ### MS Word versions
