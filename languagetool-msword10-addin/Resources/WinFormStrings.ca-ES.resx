@@ -315,4 +315,7 @@
   <data name="suggestions" xml:space="preserve">
     <value>Suggeriments</value>
   </data>
+  <data name="unable_to_connect_to_server" xml:space="preserve">
+    <value>No es pot connectar amb el servidor</value>
+  </data>
 </root>

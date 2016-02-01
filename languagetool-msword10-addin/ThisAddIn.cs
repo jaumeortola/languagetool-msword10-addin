@@ -353,10 +353,13 @@ namespace languagetool_msword10_addin
                 }
                 return result;
             }
-            catch 
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(Resources.WinFormStrings.unable_to_connect_to_server + ": "
-                    + Properties.Settings.Default.LTServer + ".");
+                    + Properties.Settings.Default.LTServer 
+                    + " URL: " + uri.ToString()
+                    + " RESULT: " + result
+                    + " EXCEPTION: " + e.ToString());
             }
             return "";
         }
