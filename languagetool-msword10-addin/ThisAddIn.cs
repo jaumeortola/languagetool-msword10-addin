@@ -355,7 +355,7 @@ namespace languagetool_msword10_addin
             }
             catch 
             {
-                System.Windows.Forms.MessageBox.Show("No es pot contactar amb el servidor: " 
+                System.Windows.Forms.MessageBox.Show(Resources.WinFormStrings.unable_to_connect_to_server + ": "
                     + Properties.Settings.Default.LTServer + ".");
             }
             return "";

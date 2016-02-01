@@ -19,7 +19,7 @@ namespace languagetool_msword10_addin
 
             this.LT_server_label.Text = Resources.WinFormStrings.LT_server;
             this.checking_options_label.Text = Resources.WinFormStrings.checking_options;
-            this.save_button.Text = Resources.WinFormStrings.save;
+            this.save_button.Text = Resources.WinFormStrings.ok;
             this.cancel_button.Text = Resources.WinFormStrings.cancel;
             this.typography_checkbox.Text = Resources.WinFormStrings.typography;
             this.default_language_label.Text = Resources.WinFormStrings.default_language;

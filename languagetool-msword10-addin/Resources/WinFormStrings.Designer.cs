@@ -547,15 +547,6 @@ namespace languagetool_msword10_addin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save.
-        /// </summary>
-        internal static string save {
-            get {
-                return ResourceManager.GetString("save", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string settings {
@@ -651,6 +642,15 @@ namespace languagetool_msword10_addin.Resources {
         internal static string uk_UA {
             get {
                 return ResourceManager.GetString("uk_UA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to connect to server.
+        /// </summary>
+        internal static string unable_to_connect_to_server {
+            get {
+                return ResourceManager.GetString("unable_to_connect_to_server", resourceCulture);
             }
         }
         
