@@ -299,10 +299,10 @@ namespace languagetool_msword10_addin
                     return "pt-PT";
                 case "wdPortugueseBrazil":
                     return "pt-BR";
-                case "wdTraditionalChinese":
+                case "wdSimplifiedChinese":
                     return "zh-CN";
                 case "wdDanish":
-                    return "da-DR";
+                    return "da-DK";
                 case "wdGalician":
                     return "gl-ES";
                 case "wdGreek":
