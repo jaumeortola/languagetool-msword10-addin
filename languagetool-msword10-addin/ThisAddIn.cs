@@ -261,7 +261,7 @@ namespace languagetool_msword10_addin
 
         private static string getLanguageCode(string langID)
         {
-            //Missing: Tagalog, Asturian, Breton
+            //Missing: Tagalog, Asturian, Breton, Esperanto
             switch (langID)
             {
                 case "wdCatalan":
