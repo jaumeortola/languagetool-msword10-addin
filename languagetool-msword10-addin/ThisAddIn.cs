@@ -288,7 +288,7 @@ namespace languagetool_msword10_addin
                 case "wdGermanAustria":
                     return "de-AT";
                 case "wdSwissGerman":
-                    return "de_CH";
+                    return "de-CH";
                 case "wdItalian":
                     return "it";
                 case "wdPolish":
