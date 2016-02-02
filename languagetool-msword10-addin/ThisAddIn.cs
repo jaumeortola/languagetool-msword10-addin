@@ -273,7 +273,7 @@ namespace languagetool_msword10_addin
                 case "wdEnglishUS":
                     return "en-US";
                 case "wdEnglishUK":
-                    return "en-UK";
+                    return "en-GB";
                 case "wdFrench":
                     return "fr";
                 case "wdGerman":
@@ -357,9 +357,9 @@ namespace languagetool_msword10_addin
             {
                 System.Windows.Forms.MessageBox.Show(Resources.WinFormStrings.unable_to_connect_to_server + ": "
                     + Properties.Settings.Default.LTServer 
-                    + " URL: " + uri.ToString()
+                    /*+ " URL: " + uri.ToString()
                     + " RESULT: " + result
-                    + " EXCEPTION: " + e.ToString());
+                    + " EXCEPTION: " + e.ToString()*/);
             }
             return "";
         }
