@@ -333,6 +333,8 @@ namespace languagetool_msword10_addin
                     return "sv";
                 case "wdTamil":
                     return "ta-IN";
+                case "1150":
+                    return "br-FR";
             }
             if (langID.StartsWith("wdEnglish"))
                 return "en-US";
