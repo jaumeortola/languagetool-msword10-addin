@@ -261,8 +261,7 @@ namespace languagetool_msword10_addin
 
         private static string getLanguageCode(string langID)
         {
-            if (langID.StartsWith("wdSpanish"))
-                return "es";
+            //Missing: Tagalog, Asturian, Breton
             switch (langID)
             {
                 case "wdCatalan":
@@ -274,19 +273,71 @@ namespace languagetool_msword10_addin
                     return "en-US";
                 case "wdEnglishUK":
                     return "en-GB";
+                case "wdEnglishAUS":
+                    return "en-AU";
+                case "wdEnglishCanadian":
+                    return "en-CA";
+                case "wdEnglishNewZealand":
+                    return "en-NZ";
+                case "wdEnglishSouthAfrica":
+                    return "en-ZA";
                 case "wdFrench":
                     return "fr";
                 case "wdGerman":
                     return "de-DE";
+                case "wdGermanAustria":
+                    return "de-AT";
+                case "wdSwissGerman":
+                    return "de_CH";
                 case "wdItalian":
                     return "it";
                 case "wdPolish":
                     return "pl-PL";
                 case "wdByelorussian":
-                    return "be";
+                    return "be-BY";
                 case "wdPortuguese":
                     return "pt-PT";
+                case "wdPortugueseBrazil":
+                    return "pt-BR";
+                case "wdTraditionalChinese":
+                    return "zh-CN";
+                case "wdDanish":
+                    return "da-DR";
+                case "wdGalician":
+                    return "gl-ES";
+                case "wdGreek":
+                    return "el-GR";
+                case "wdIcelandic":
+                    return "is-IS";
+                case "wdJapanese":
+                    return "ja-JP";
+                case "wdKhmer":
+                    return "km-KH";
+                case "wdLithuanian":
+                    return "lt-LT";
+                case "wdMalayalam":
+                    return "ml-IN";
+                case "wdPersian":
+                    return "fa";
+                case "wdRomanian":
+                    return "ro-RO";
+                case "wdRussian":
+                    return "ru-RU";
+                case "wdDutch":
+                    return "nl";
+                case "wdSlovak":
+                    return "sk-SK";
+                case "wdSlovenian":
+                    return "sl-SI";
+                case "wdSwedish":
+                    return "sv";
+                case "wdTamil":
+                    return "ta-IN";
             }
+            if (langID.StartsWith("wdEnglish"))
+                return "en-US";
+            if (langID.StartsWith("wdSpanish"))
+                return "es";
             return (Properties.Settings.Default.DefaultLanguage);
         }
 
