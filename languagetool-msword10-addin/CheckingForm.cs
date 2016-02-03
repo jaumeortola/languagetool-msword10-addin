@@ -75,5 +75,10 @@ namespace languagetool_msword10_addin
             Globals.ThisAddIn.Application.Selection.Move();
             Globals.ThisAddIn.Application.ActiveWindow.SetFocus();
         }
+
+        private void servernameBox_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(e.LinkText + "Languages");
+        }
     }
 }

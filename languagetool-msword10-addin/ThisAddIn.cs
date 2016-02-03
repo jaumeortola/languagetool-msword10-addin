@@ -149,9 +149,7 @@ namespace languagetool_msword10_addin
             }
             myCheckingForm.languageBox.Text = Resources.WinFormStrings.language + ": " + getLanguageName(correctionLanguageCode);
             myCheckingForm.servernameBox.Text = Resources.WinFormStrings.LT_server + ": " + Properties.Settings.Default.LTServer.ToString();
-
             
-
             if (myerror["replacements"].Length > 0)
             {
                 string[] myReplacements = myerror["replacements"].Split('#');

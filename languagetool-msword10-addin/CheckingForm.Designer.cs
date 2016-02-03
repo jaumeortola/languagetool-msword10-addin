@@ -45,7 +45,7 @@
             // suggestionsBox
             // 
             this.suggestionsBox.FormattingEnabled = true;
-            this.suggestionsBox.Location = new System.Drawing.Point(23, 236);
+            this.suggestionsBox.Location = new System.Drawing.Point(23, 250);
             this.suggestionsBox.Name = "suggestionsBox";
             this.suggestionsBox.Size = new System.Drawing.Size(292, 134);
             this.suggestionsBox.TabIndex = 0;
@@ -62,7 +62,7 @@
             // changeSuggestion
             // 
             this.changeSuggestion.Enabled = false;
-            this.changeSuggestion.Location = new System.Drawing.Point(326, 236);
+            this.changeSuggestion.Location = new System.Drawing.Point(326, 250);
             this.changeSuggestion.Name = "changeSuggestion";
             this.changeSuggestion.Size = new System.Drawing.Size(100, 23);
             this.changeSuggestion.TabIndex = 2;
@@ -72,7 +72,7 @@
             // 
             // ignoreSuggestion
             // 
-            this.ignoreSuggestion.Location = new System.Drawing.Point(326, 266);
+            this.ignoreSuggestion.Location = new System.Drawing.Point(326, 280);
             this.ignoreSuggestion.Name = "ignoreSuggestion";
             this.ignoreSuggestion.Size = new System.Drawing.Size(100, 23);
             this.ignoreSuggestion.TabIndex = 3;
@@ -83,7 +83,7 @@
             // suggestionsLabel
             // 
             this.suggestionsLabel.AutoSize = true;
-            this.suggestionsLabel.Location = new System.Drawing.Point(20, 218);
+            this.suggestionsLabel.Location = new System.Drawing.Point(20, 232);
             this.suggestionsLabel.Name = "suggestionsLabel";
             this.suggestionsLabel.Size = new System.Drawing.Size(65, 13);
             this.suggestionsLabel.TabIndex = 4;
@@ -95,13 +95,13 @@
             this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.messageBox.Location = new System.Drawing.Point(23, 137);
             this.messageBox.Name = "messageBox";
-            this.messageBox.Size = new System.Drawing.Size(292, 78);
+            this.messageBox.Size = new System.Drawing.Size(292, 92);
             this.messageBox.TabIndex = 5;
             this.messageBox.Text = "";
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(326, 326);
+            this.cancelButton.Location = new System.Drawing.Point(326, 340);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 23);
             this.cancelButton.TabIndex = 6;
@@ -111,7 +111,7 @@
             // 
             // ignoreAllButton
             // 
-            this.ignoreAllButton.Location = new System.Drawing.Point(326, 296);
+            this.ignoreAllButton.Location = new System.Drawing.Point(326, 310);
             this.ignoreAllButton.Name = "ignoreAllButton";
             this.ignoreAllButton.Size = new System.Drawing.Size(100, 23);
             this.ignoreAllButton.TabIndex = 7;
@@ -144,11 +144,12 @@
             // 
             this.servernameBox.BackColor = System.Drawing.SystemColors.Control;
             this.servernameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.servernameBox.Location = new System.Drawing.Point(23, 376);
+            this.servernameBox.Location = new System.Drawing.Point(23, 390);
             this.servernameBox.Name = "servernameBox";
-            this.servernameBox.Size = new System.Drawing.Size(403, 37);
+            this.servernameBox.Size = new System.Drawing.Size(403, 23);
             this.servernameBox.TabIndex = 10;
             this.servernameBox.Text = "";
+            this.servernameBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.servernameBox_LinkClicked);
             // 
             // CheckingForm
             // 
