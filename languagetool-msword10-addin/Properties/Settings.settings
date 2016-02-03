@@ -15,7 +15,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LTServerOptions" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost:8081/;https://languagetool.org:8081/;https://www.softcatala.org/languagetool/api/checkDocument/</Value>
+      <Value Profile="(Default)">http://localhost:8081/;https://languagetool.org:8081/;https://www.softcatala.org/languagetool/api/</Value>
     </Setting>
     <Setting Name="CatalanPreferencesOptions" Type="System.String" Scope="User">
       <Value Profile="(Default)">general;valencià;valencià (accentuació general);balear</Value>

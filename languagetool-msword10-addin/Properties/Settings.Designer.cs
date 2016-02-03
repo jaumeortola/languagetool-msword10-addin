@@ -74,7 +74,7 @@ namespace languagetool_msword10_addin.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8081/;https://languagetool.org:8081/;https://www.softcatala.org/" +
-            "languagetool/api/checkDocument/")]
+            "languagetool/api/")]
         public string LTServerOptions {
             get {
                 return ((string)(this["LTServerOptions"]));
