@@ -181,6 +181,12 @@
     <Compile Include="CheckingForm.Designer.cs">
       <DependentUpon>CheckingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CatalanSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CatalanSettingsForm.Designer.cs">
+      <DependentUpon>CatalanSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LTSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +214,9 @@
     </Compile>
     <EmbeddedResource Include="CheckingForm.resx">
       <DependentUpon>CheckingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CatalanSettingsForm.resx">
+      <DependentUpon>CatalanSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LTSettingsForm.resx">
       <DependentUpon>LTSettingsForm.cs</DependentUpon>
