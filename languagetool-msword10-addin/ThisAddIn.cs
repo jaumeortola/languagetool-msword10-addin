@@ -139,14 +139,17 @@ namespace languagetool_msword10_addin
             {
                 LinkLabel.Link link = new LinkLabel.Link();
                 link.LinkData = myerror["url"];
-                myCheckingForm.linkLabel1.Text = "Més informació";
-                myCheckingForm.linkLabel1.Links.Add(0, 14, link);
-            } else
+                myCheckingForm.moreinfoLinkLabel.Text = Resources.WinFormStrings.more_information;
+                myCheckingForm.moreinfoLinkLabel.Links.Add(0, 14, link);
+            }
+            else
             {
-                myCheckingForm.linkLabel1.Text = "";
-                myCheckingForm.linkLabel1.Links.Clear();
+                myCheckingForm.moreinfoLinkLabel.Text = "";
+                myCheckingForm.moreinfoLinkLabel.Links.Clear();
             }
             myCheckingForm.languageBox.Text = Resources.WinFormStrings.language + ": " + getLanguageName(correctionLanguageCode);
+            myCheckingForm.servernameBox.Text = Resources.WinFormStrings.LT_server + ": " + Properties.Settings.Default.LTServer.ToString();
+
             
 
             if (myerror["replacements"].Length > 0)
@@ -167,6 +170,7 @@ namespace languagetool_msword10_addin
             preparingDialog = false;
             myCheckingForm.suggestionsBox.Enabled = true;
         }
+
         public static void checkOnDialogStart()
         {
             ignoredWords.Clear();
@@ -335,6 +339,8 @@ namespace languagetool_msword10_addin
                     return "ta-IN";
                 case "1150":
                     return "br-FR";
+                case "wdUkrainian":
+                    return "uk-UA";
             }
             if (langID.StartsWith("wdEnglish"))
                 return "en-US";
@@ -406,7 +412,7 @@ namespace languagetool_msword10_addin
                 }
                 return result;
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(Resources.WinFormStrings.unable_to_connect_to_server + ": "
                     + Properties.Settings.Default.LTServer 
@@ -468,6 +474,7 @@ namespace languagetool_msword10_addin
             languages.Add("sv");
             languages.Add("tl-PH");
             languages.Add("ta-IN");
+            languages.Add("uk-UA");
             return languages;
 
             /* gets the list of available languages from the server (it is sometimes slow)
@@ -499,11 +506,7 @@ namespace languagetool_msword10_addin
                 foreach (var lang in xml.Descendants("language"))
                     languages.Add(lang.Attribute("name").Value, lang.Attribute("abbrWithVariant").Value);
             }*/
-            
         }
-
-              
-        
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {

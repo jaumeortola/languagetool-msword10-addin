@@ -17,10 +17,10 @@ namespace languagetool_msword10_addin
             InitializeComponent();
             this.changeSuggestion.Text = Resources.WinFormStrings.change;
             this.ignoreSuggestion.Text = Resources.WinFormStrings.ignore_once;
-            this.label1.Text = Resources.WinFormStrings.suggestions + ":";
-            this.button1.Text = Resources.WinFormStrings.cancel;
-            this.button2.Text = Resources.WinFormStrings.ignore_all;
-            this.linkLabel1.Text = Resources.WinFormStrings.more_information;
+            this.suggestionsLabel.Text = Resources.WinFormStrings.suggestions + ":";
+            this.cancelButton.Text = Resources.WinFormStrings.cancel;
+            this.ignoreAllButton.Text = Resources.WinFormStrings.ignore_all;
+            this.moreinfoLinkLabel.Text = Resources.WinFormStrings.more_information;
             this.Text = Resources.WinFormStrings.proofreading_with_LanguageTool;
 
             this.languageBox.Text = "";
@@ -64,7 +64,7 @@ namespace languagetool_msword10_addin
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        private void linklabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(((LinkLabel.Link)e.Link.LinkData).LinkData.ToString());
         }
@@ -74,8 +74,6 @@ namespace languagetool_msword10_addin
             this.Hide();
             Globals.ThisAddIn.Application.Selection.Move();
             Globals.ThisAddIn.Application.ActiveWindow.SetFocus();
-
         }
-
     }
 }

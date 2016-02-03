@@ -33,27 +33,28 @@
             this.contextTextBox = new System.Windows.Forms.RichTextBox();
             this.changeSuggestion = new System.Windows.Forms.Button();
             this.ignoreSuggestion = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.suggestionsLabel = new System.Windows.Forms.Label();
             this.messageBox = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.ignoreAllButton = new System.Windows.Forms.Button();
+            this.moreinfoLinkLabel = new System.Windows.Forms.LinkLabel();
             this.languageBox = new System.Windows.Forms.RichTextBox();
+            this.servernameBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // suggestionsBox
             // 
             this.suggestionsBox.FormattingEnabled = true;
-            this.suggestionsBox.Location = new System.Drawing.Point(23, 217);
+            this.suggestionsBox.Location = new System.Drawing.Point(23, 236);
             this.suggestionsBox.Name = "suggestionsBox";
-            this.suggestionsBox.Size = new System.Drawing.Size(245, 121);
+            this.suggestionsBox.Size = new System.Drawing.Size(292, 134);
             this.suggestionsBox.TabIndex = 0;
             // 
             // contextTextBox
             // 
             this.contextTextBox.Location = new System.Drawing.Point(23, 37);
             this.contextTextBox.Name = "contextTextBox";
-            this.contextTextBox.Size = new System.Drawing.Size(245, 94);
+            this.contextTextBox.Size = new System.Drawing.Size(292, 94);
             this.contextTextBox.TabIndex = 1;
             this.contextTextBox.Text = "";
             this.contextTextBox.TextChanged += new System.EventHandler(this.textUpdated);
@@ -61,7 +62,7 @@
             // changeSuggestion
             // 
             this.changeSuggestion.Enabled = false;
-            this.changeSuggestion.Location = new System.Drawing.Point(280, 217);
+            this.changeSuggestion.Location = new System.Drawing.Point(326, 236);
             this.changeSuggestion.Name = "changeSuggestion";
             this.changeSuggestion.Size = new System.Drawing.Size(100, 23);
             this.changeSuggestion.TabIndex = 2;
@@ -71,7 +72,7 @@
             // 
             // ignoreSuggestion
             // 
-            this.ignoreSuggestion.Location = new System.Drawing.Point(280, 247);
+            this.ignoreSuggestion.Location = new System.Drawing.Point(326, 266);
             this.ignoreSuggestion.Name = "ignoreSuggestion";
             this.ignoreSuggestion.Size = new System.Drawing.Size(100, 23);
             this.ignoreSuggestion.TabIndex = 3;
@@ -79,14 +80,14 @@
             this.ignoreSuggestion.UseVisualStyleBackColor = true;
             this.ignoreSuggestion.Click += new System.EventHandler(this.ignoreSuggestion_Click);
             // 
-            // LT_server_laber
+            // suggestionsLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 199);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Suggestions";
+            this.suggestionsLabel.AutoSize = true;
+            this.suggestionsLabel.Location = new System.Drawing.Point(20, 218);
+            this.suggestionsLabel.Name = "suggestionsLabel";
+            this.suggestionsLabel.Size = new System.Drawing.Size(65, 13);
+            this.suggestionsLabel.TabIndex = 4;
+            this.suggestionsLabel.Text = "Suggestions";
             // 
             // messageBox
             // 
@@ -94,40 +95,40 @@
             this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.messageBox.Location = new System.Drawing.Point(23, 137);
             this.messageBox.Name = "messageBox";
-            this.messageBox.Size = new System.Drawing.Size(245, 59);
+            this.messageBox.Size = new System.Drawing.Size(292, 78);
             this.messageBox.TabIndex = 5;
             this.messageBox.Text = "";
             // 
-            // button1
+            // cancelButton
             // 
-            this.button1.Location = new System.Drawing.Point(280, 307);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.cancel_Click);
+            this.cancelButton.Location = new System.Drawing.Point(326, 326);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(100, 23);
+            this.cancelButton.TabIndex = 6;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancel_Click);
             // 
-            // button2
+            // ignoreAllButton
             // 
-            this.button2.Location = new System.Drawing.Point(280, 277);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Ignore all";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.ignoreAlwaysSuggestion_Click);
+            this.ignoreAllButton.Location = new System.Drawing.Point(326, 296);
+            this.ignoreAllButton.Name = "ignoreAllButton";
+            this.ignoreAllButton.Size = new System.Drawing.Size(100, 23);
+            this.ignoreAllButton.TabIndex = 7;
+            this.ignoreAllButton.Text = "Ignore all";
+            this.ignoreAllButton.UseVisualStyleBackColor = true;
+            this.ignoreAllButton.Click += new System.EventHandler(this.ignoreAlwaysSuggestion_Click);
             // 
-            // linkLabel1
+            // moreinfoLinkLabel
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(277, 137);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(78, 13);
-            this.linkLabel1.TabIndex = 8;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "More information";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.moreinfoLinkLabel.AutoSize = true;
+            this.moreinfoLinkLabel.Location = new System.Drawing.Point(323, 137);
+            this.moreinfoLinkLabel.Name = "moreinfoLinkLabel";
+            this.moreinfoLinkLabel.Size = new System.Drawing.Size(85, 13);
+            this.moreinfoLinkLabel.TabIndex = 8;
+            this.moreinfoLinkLabel.TabStop = true;
+            this.moreinfoLinkLabel.Text = "More information";
+            this.moreinfoLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklabel_LinkClicked);
             // 
             // languageBox
             // 
@@ -139,17 +140,28 @@
             this.languageBox.TabIndex = 9;
             this.languageBox.Text = "";
             // 
+            // servernameBox
+            // 
+            this.servernameBox.BackColor = System.Drawing.SystemColors.Control;
+            this.servernameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.servernameBox.Location = new System.Drawing.Point(23, 376);
+            this.servernameBox.Name = "servernameBox";
+            this.servernameBox.Size = new System.Drawing.Size(403, 37);
+            this.servernameBox.TabIndex = 10;
+            this.servernameBox.Text = "";
+            // 
             // CheckingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 360);
+            this.ClientSize = new System.Drawing.Size(445, 425);
+            this.Controls.Add(this.servernameBox);
             this.Controls.Add(this.languageBox);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.moreinfoLinkLabel);
+            this.Controls.Add(this.ignoreAllButton);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.messageBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.suggestionsLabel);
             this.Controls.Add(this.ignoreSuggestion);
             this.Controls.Add(this.changeSuggestion);
             this.Controls.Add(this.contextTextBox);
@@ -168,11 +180,12 @@
         public System.Windows.Forms.RichTextBox contextTextBox;
         public System.Windows.Forms.Button changeSuggestion;
         private System.Windows.Forms.Button ignoreSuggestion;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label suggestionsLabel;
         public System.Windows.Forms.RichTextBox messageBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        public System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button ignoreAllButton;
+        public System.Windows.Forms.LinkLabel moreinfoLinkLabel;
         public System.Windows.Forms.RichTextBox languageBox;
+        public System.Windows.Forms.RichTextBox servernameBox;
     }
 }
