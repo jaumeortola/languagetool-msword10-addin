@@ -72,7 +72,7 @@ namespace languagetool_msword10_addin
 
         private void servernameBox_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(e.LinkText + "Languages");
+            System.Diagnostics.Process.Start(e.LinkText + "Languages"); //show list of available languages
         }
     }
 }
