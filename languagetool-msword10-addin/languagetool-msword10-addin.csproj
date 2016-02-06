@@ -234,7 +234,6 @@
     <EmbeddedResource Include="Resources\WinFormStrings.da.resx" />
     <EmbeddedResource Include="Resources\WinFormStrings.de.resx" />
     <EmbeddedResource Include="Resources\WinFormStrings.el_GR.resx" />
-    <EmbeddedResource Include="Resources\WinFormStrings.en.resx" />
     <EmbeddedResource Include="Resources\WinFormStrings.eo.resx" />
     <EmbeddedResource Include="Resources\WinFormStrings.es.resx" />
     <EmbeddedResource Include="Resources\WinFormStrings.fa.resx" />
