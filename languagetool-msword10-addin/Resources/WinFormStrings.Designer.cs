@@ -160,7 +160,7 @@ namespace languagetool_msword10_addin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to German (Austria).
+        ///   Looks up a localized string similar to German (Austrian).
         /// </summary>
         internal static string de_AT {
             get {
@@ -187,7 +187,7 @@ namespace languagetool_msword10_addin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Simple German.
+        ///   Looks up a localized string similar to German (Easy German).
         /// </summary>
         internal static string de_DE_x_simple_language {
             get {
@@ -241,7 +241,7 @@ namespace languagetool_msword10_addin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English (GB).
+        ///   Looks up a localized string similar to English (British).
         /// </summary>
         internal static string en_GB {
             get {
@@ -259,7 +259,7 @@ namespace languagetool_msword10_addin.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English (US).
+        ///   Looks up a localized string similar to English (American).
         /// </summary>
         internal static string en_US {
             get {
@@ -390,15 +390,6 @@ namespace languagetool_msword10_addin.Resources {
         internal static string language {
             get {
                 return ResourceManager.GetString("language", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to LanguageTool Settings.
-        /// </summary>
-        internal static string Languagetool_settings {
-            get {
-                return ResourceManager.GetString("Languagetool_settings", resourceCulture);
             }
         }
         

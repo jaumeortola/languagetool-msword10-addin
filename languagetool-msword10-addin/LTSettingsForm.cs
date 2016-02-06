@@ -12,7 +12,7 @@ namespace languagetool_msword10_addin
             this.save_button.Text = Resources.WinFormStrings.ok;
             this.cancel_button.Text = Resources.WinFormStrings.cancel;
             this.default_language_label.Text = Resources.WinFormStrings.default_language;
-            this.Text = Resources.WinFormStrings.Languagetool_settings;
+            this.Text = Resources.WinFormStrings.LT_settings;
             foreach (string languageISO in ThisAddIn.getLanguagesList())
             {
                 ComboItem myComboItem = new ComboItem(languageISO, ThisAddIn.getLanguageName(languageISO));

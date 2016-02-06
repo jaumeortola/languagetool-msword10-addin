@@ -157,7 +157,7 @@
     <value>alemany (Alemanya)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>alemany (alemany senzill)</value>
+    <value>alemany (alemany fàcil)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>grec</value>
@@ -287,9 +287,6 @@
   </data>
   <data name="language" xml:space="preserve">
     <value>Llengua</value>
-  </data>
-  <data name="Languagetool_settings" xml:space="preserve">
-    <value>Opcions de LanguageTool</value>
   </data>
   <data name="message" xml:space="preserve">
     <value>Missatge</value>

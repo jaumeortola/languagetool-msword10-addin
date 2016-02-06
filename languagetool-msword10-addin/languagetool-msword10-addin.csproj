@@ -226,11 +226,40 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\WinFormStrings.ca-ES.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.ast.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.be.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.br.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.ca.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.cs.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.da.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.de.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.el_GR.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.en.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.eo.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.es.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.fa.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.fr.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.gl.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.is.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.it.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.km.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.lt.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.nl.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.pl.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.pt.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.pt_BR.resx" />
     <EmbeddedResource Include="Resources\WinFormStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WinFormStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WinFormStrings.ro.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.ru.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.sk.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.sl.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.sv.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.tl.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.uk.resx" />
+    <EmbeddedResource Include="Resources\WinFormStrings.zh.resx" />
     <EmbeddedResource Include="Ribbon1.resx">
       <DependentUpon>Ribbon1.cs</DependentUpon>
     </EmbeddedResource>
