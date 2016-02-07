@@ -148,7 +148,7 @@
     <value>Idioma padrão</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>Alemão (Áustria)</value>
+    <value>Alemão (austríaco)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Alemão (suíço)</value>
@@ -157,7 +157,7 @@
     <value>Alemão (Alemanha)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>Alemão simples</value>
+    <value>Alemão (alemão simples)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Grego</value>
@@ -172,13 +172,13 @@
     <value>Inglês (canadense)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>Inglês (GB)</value>
+    <value>Inglês (britânico)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Inglês (Nova Zelândia)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>Inglês (US)</value>
+    <value>Inglês (americano)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Inglês (sul-africano)</value>
@@ -290,9 +290,6 @@
   </data>
   <data name="language" xml:space="preserve">
     <value>Idioma</value>
-  </data>
-  <data name="Languagetool_settings" xml:space="preserve">
-    <value>Configurações do LanguageTool</value>
   </data>
   <data name="message" xml:space="preserve">
     <value>Mensagem</value>

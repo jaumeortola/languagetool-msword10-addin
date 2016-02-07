@@ -148,7 +148,7 @@
     <value>Default Language</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austria)</value>
+    <value>German (Austrian)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Немецкий (Швейцария)</value>
@@ -157,7 +157,7 @@
     <value>Немецкий (Германия)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>Simple German</value>
+    <value>German (Easy German)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Греческий</value>
@@ -172,13 +172,13 @@
     <value>Английский (Канада)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (GB)</value>
+    <value>English (British)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Английский (Новая Зеландия)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (US)</value>
+    <value>English (American)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Английский (Южная Африка)</value>
@@ -290,9 +290,6 @@
   </data>
   <data name="language" xml:space="preserve">
     <value>Язык</value>
-  </data>
-  <data name="Languagetool_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
   </data>
   <data name="message" xml:space="preserve">
     <value>Message</value>

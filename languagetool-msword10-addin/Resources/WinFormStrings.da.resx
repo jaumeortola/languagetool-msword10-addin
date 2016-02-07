@@ -136,7 +136,7 @@
     <value>Catalansk (Valencia)</value>
   </data>
   <data name="checking_options" xml:space="preserve">
-    <value>Checking Options</value>
+    <value>Kontrolleringsindstillinger</value>
   </data>
   <data name="da_DK" xml:space="preserve">
     <value>Dansk</value>
@@ -145,10 +145,10 @@
     <value>Tysk</value>
   </data>
   <data name="default_language" xml:space="preserve">
-    <value>Default Language</value>
+    <value>Standardsprog</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austria)</value>
+    <value>Tysk (Østrig)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Tysk (Schweiz)</value>
@@ -157,7 +157,7 @@
     <value>Tysk (Tyskland)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>Simple German</value>
+    <value>Tysk (Simpel tysk)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Græsk</value>
@@ -172,13 +172,13 @@
     <value>Engelsk (Canada)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (GB)</value>
+    <value>Engelsk (England)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Engelsk (New Zealand)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (US)</value>
+    <value>Engelsk (USA)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Engelsk (Sydafrika)</value>
@@ -217,10 +217,10 @@
     <value>Lettisk</value>
   </data>
   <data name="LT_server" xml:space="preserve">
-    <value>LanguageTool Server</value>
+    <value>LanguageTool server</value>
   </data>
   <data name="LT_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
+    <value>LanguageTool indstillinger</value>
   </data>
   <data name="ml_IN" xml:space="preserve">
     <value>Malayalam</value>
@@ -238,7 +238,7 @@
     <value>Portugisisk (Brasilien)</value>
   </data>
   <data name="pt_PT" xml:space="preserve">
-    <value>Portuguese (Portugal)</value>
+    <value>Portugisisk (Portugal)</value>
   </data>
   <data name="ro_RO" xml:space="preserve">
     <value>Rumænsk</value>
@@ -253,10 +253,10 @@
     <value>Slovensk</value>
   </data>
   <data name="spelling" xml:space="preserve">
-    <value>Spelling</value>
+    <value>Stavning</value>
   </data>
   <data name="style" xml:space="preserve">
-    <value>Style</value>
+    <value>Stil</value>
   </data>
   <data name="sv" xml:space="preserve">
     <value>Svensk</value>
@@ -268,7 +268,7 @@
     <value>Tagalog</value>
   </data>
   <data name="typography" xml:space="preserve">
-    <value>Typography</value>
+    <value>Typografi</value>
   </data>
   <data name="uk_UA" xml:space="preserve">
     <value>Ukrainsk</value>
@@ -277,7 +277,7 @@
     <value>Kinesisk</value>
   </data>
   <data name="change" xml:space="preserve">
-    <value>Change</value>
+    <value>Ændr</value>
   </data>
   <data name="check" xml:space="preserve">
     <value>Kontrollere</value>
@@ -286,36 +286,33 @@
     <value>Ignorer alle</value>
   </data>
   <data name="ignore_once" xml:space="preserve">
-    <value>Ignore Once</value>
+    <value>Ignorer her</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Sprog</value>
   </data>
-  <data name="Languagetool_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
-  </data>
   <data name="message" xml:space="preserve">
-    <value>Message</value>
+    <value>Meddelelse</value>
   </data>
   <data name="more_information" xml:space="preserve">
-    <value>More information</value>
+    <value>Mere information</value>
   </data>
   <data name="no_errors_found" xml:space="preserve">
-    <value>No errors were found.</value>
+    <value>Ingen fejl fundet.</value>
   </data>
   <data name="ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="proofreading_with_LanguageTool" xml:space="preserve">
-    <value>Proofreading with LanguageTool</value>
+    <value>Korrekturlæsning med LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Indstillinger</value>
   </data>
   <data name="suggestions" xml:space="preserve">
-    <value>Suggestions</value>
+    <value>Forslag </value>
   </data>
   <data name="unable_to_connect_to_server" xml:space="preserve">
-    <value>Unable to connect to server</value>
+    <value>Kan ikke forbinde til serveren</value>
   </data>
 </root>
