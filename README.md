@@ -10,8 +10,9 @@ Aquesta implementació està en català i té opcions de configuració específi
 * Baixeu [l'última versió](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) del complement, descomprimiu i instal·leu.
 * En alguns casos, cal reiniciar l'ordinador. 
 
-### Versions de MS Word
-S'ha provat en Microsoft Word 2007 i 2010 (Windows). 
+### Requisits
+* Requereix Microsoft .Net 4.5.2. Si no el teniu instal·lat, podeu descarregar-lo [aquí](https://www.microsoft.com/en-us/download/details.aspx?id=42643). No funciona en versions anteriors a Windows Vista SP 2.
+* S'ha provat en Microsoft Word 2007 i 2010 (Windows). 
 
 ### Com funciona
 * En el MS Word podeu trobar el grup de botons de LanguageTool group en el menú "Complements". Només hi ha dos botons: Revisa (per a començar la revisió des del paràgraf actual) i Opcions. 
@@ -37,8 +38,9 @@ S'ha provat en Microsoft Word 2007 i 2010 (Windows).
 * Download [the latest version](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) of the add-in, unzip and install.
 * In some cases you may need to reboot the computer.
 
-### MS Word versions
-* The add-in has been tested in Microsoft Word 2007 and 2010. 
+### Requirements
+* Microsoft .Net 4.5.2. If it is not installed, you can download it [here](https://www.microsoft.com/en-us/download/details.aspx?id=42643). It does not work in versions prior to Windows Vista SP 2.
+* The add-in has been tested in Microsoft Word 2007 and 2010 (Windows).
 
 ### How it works
 * In MS Word, the LanguageTool group can be found under the "Add-ins" menu. There are just two buttons: Check (to start checking from the current paragraph) and Settings.
