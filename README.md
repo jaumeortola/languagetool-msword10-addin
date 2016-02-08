@@ -11,7 +11,7 @@ Aquesta implementació està en català i té opcions de configuració específi
 * En alguns casos, cal reiniciar l'ordinador. 
 
 ### Requisits
-* Requereix Microsoft .Net 4.5.2. Si no el teniu instal·lat, podeu descarregar-lo [aquí](https://www.microsoft.com/en-us/download/details.aspx?id=42643). No funciona en versions anteriors a Windows Vista SP 2.
+* Requereix Microsoft .Net 4.5.2. Si no el teniu instal·lat, podeu descarregar-lo [aquí](https://www.microsoft.com/en-us/download/details.aspx?id=42643). No funciona en versions anteriors a Windows Vista SP2.
 * S'ha provat en Microsoft Word 2007 i 2010 (Windows). 
 
 ### Com funciona
@@ -39,7 +39,7 @@ Aquesta implementació està en català i té opcions de configuració específi
 * In some cases you may need to reboot the computer.
 
 ### Requirements
-* Microsoft .Net 4.5.2. If it is not installed, you can download it [here](https://www.microsoft.com/en-us/download/details.aspx?id=42643). It does not work in versions prior to Windows Vista SP 2.
+* Microsoft .Net 4.5.2. If it is not installed, you can download it [here](https://www.microsoft.com/en-us/download/details.aspx?id=42643). It does not work in versions prior to Windows Vista SP2.
 * The add-in has been tested in Microsoft Word 2007 and 2010 (Windows).
 
 ### How it works
