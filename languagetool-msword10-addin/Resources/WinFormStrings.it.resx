@@ -136,7 +136,7 @@
     <value>Catalano (Valenciano)</value>
   </data>
   <data name="checking_options" xml:space="preserve">
-    <value>Checking Options</value>
+    <value>Controllo Opzioni</value>
   </data>
   <data name="da_DK" xml:space="preserve">
     <value>Danese</value>
@@ -145,10 +145,10 @@
     <value>Tedesco</value>
   </data>
   <data name="default_language" xml:space="preserve">
-    <value>Default Language</value>
+    <value>Linguaggio Predefinito</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austrian)</value>
+    <value>Tedesco (Asturiano)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Tedesco (Svizzero)</value>
@@ -157,10 +157,10 @@
     <value>Tedesco (Germania)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>German (Easy German)</value>
+    <value>Tedesco (Tedesco Facile)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
-    <value>Greo</value>
+    <value>Greco</value>
   </data>
   <data name="en" xml:space="preserve">
     <value>Inglese</value>
@@ -172,13 +172,13 @@
     <value>Inglese (Canadese)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (British)</value>
+    <value>Inglese (Britannico)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Inglese (Nuova Zelanda)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (American)</value>
+    <value>Inglese (Americano)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Inglese (Sud Africano)</value>
@@ -217,10 +217,10 @@
     <value>Lituano</value>
   </data>
   <data name="LT_server" xml:space="preserve">
-    <value>LanguageTool Server</value>
+    <value>Server LanguageTool</value>
   </data>
   <data name="LT_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
+    <value>Impostazioni LanguageTool</value>
   </data>
   <data name="ml_IN" xml:space="preserve">
     <value>Malayalam</value>
@@ -238,7 +238,7 @@
     <value>Portoghese (Brasile)</value>
   </data>
   <data name="pt_PT" xml:space="preserve">
-    <value>Portuguese (Portugal)</value>
+    <value>Portoghese (Portogallo)</value>
   </data>
   <data name="ro_RO" xml:space="preserve">
     <value>Rumeno</value>
@@ -253,10 +253,10 @@
     <value>Sloveno</value>
   </data>
   <data name="spelling" xml:space="preserve">
-    <value>Spelling</value>
+    <value>Ortografia</value>
   </data>
   <data name="style" xml:space="preserve">
-    <value>Style</value>
+    <value>Stile</value>
   </data>
   <data name="sv" xml:space="preserve">
     <value>Svedese</value>
@@ -268,7 +268,7 @@
     <value>Tagalog</value>
   </data>
   <data name="typography" xml:space="preserve">
-    <value>Typography</value>
+    <value>Tipografia</value>
   </data>
   <data name="uk_UA" xml:space="preserve">
     <value>Ucraino</value>
@@ -286,33 +286,33 @@
     <value>Ignora Tutti</value>
   </data>
   <data name="ignore_once" xml:space="preserve">
-    <value>Ignore Once</value>
+    <value>Ignora Una Volta</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Linguaggio</value>
   </data>
   <data name="message" xml:space="preserve">
-    <value>Message</value>
+    <value>Messaggio</value>
   </data>
   <data name="more_information" xml:space="preserve">
-    <value>More information</value>
+    <value>Ulteriori informazioni</value>
   </data>
   <data name="no_errors_found" xml:space="preserve">
-    <value>No errors were found.</value>
+    <value>Nessun errore trovato</value>
   </data>
   <data name="ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="proofreading_with_LanguageTool" xml:space="preserve">
-    <value>Proofreading with LanguageTool</value>
+    <value>Controllo di testo con LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Impostazioni</value>
   </data>
   <data name="suggestions" xml:space="preserve">
-    <value>Suggestions</value>
+    <value>Suggerimenti</value>
   </data>
   <data name="unable_to_connect_to_server" xml:space="preserve">
-    <value>Unable to connect to server</value>
+    <value>Impossibile contattare il server</value>
   </data>
 </root>
