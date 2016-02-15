@@ -34,16 +34,16 @@
     <PublishUrl>C:\Users\Jaume\Documents\MSWord-LanguageTool-Addin\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.16</ApplicationVersion>
+    <ApplicationVersion>1.0.0.19</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
-    <ProductName>languagetool-msword10-addin</ProductName>
+    <ProductName>LanguageTool MS Word Add-in</ProductName>
     <PublisherName />
     <SupportUrl />
-    <FriendlyName>languagetool-msword10-addin</FriendlyName>
-    <OfficeApplicationDescription />
+    <FriendlyName>LanguageTool MS Word Add-in</FriendlyName>
+    <OfficeApplicationDescription>Proofreading texts with LanguageTool spelling and grammar checker.</OfficeApplicationDescription>
     <LoadBehavior>3</LoadBehavior>
   </PropertyGroup>
   <ItemGroup>
