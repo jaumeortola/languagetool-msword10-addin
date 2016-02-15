@@ -148,7 +148,7 @@
     <value>Idioma Predefinido</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austrian)</value>
+    <value>Alemão (Austríaco)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Alemão (Suíço)</value>
@@ -157,7 +157,7 @@
     <value>Alemão (Alemanha)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>German (Easy German)</value>
+    <value>Alemão (Alemão fácil)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Grego</value>
@@ -172,13 +172,13 @@
     <value>Inglês (Canadiano)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (British)</value>
+    <value>Inglês (Britânico)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Inglês (Neozelandês)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (American)</value>
+    <value>Inglês (Americano)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Inglês (Sul-africano)</value>
