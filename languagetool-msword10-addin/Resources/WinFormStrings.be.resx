@@ -136,7 +136,7 @@
     <value>Каталонскі (Валенсія)</value>
   </data>
   <data name="checking_options" xml:space="preserve">
-    <value>Checking Options</value>
+    <value>Настройкі праверкі</value>
   </data>
   <data name="da_DK" xml:space="preserve">
     <value>Дацкая</value>
@@ -145,10 +145,10 @@
     <value>Нямецкая</value>
   </data>
   <data name="default_language" xml:space="preserve">
-    <value>Default Language</value>
+    <value>Мова па змаўчанні</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austrian)</value>
+    <value>Нямецкі (Аўстрыя)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Нямецкі (Швейцарыя)</value>
@@ -157,7 +157,7 @@
     <value>Нямецкі (Германія)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>German (Easy German)</value>
+    <value>Нямецкі (просты нямецкі)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Грэчаскі</value>
@@ -172,13 +172,13 @@
     <value>Англійская (Канада)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (British)</value>
+    <value>Англійская (Велікабрытанія)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Англійская (Новая Зеландыя)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (American)</value>
+    <value>Англійская (ЗША)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Англійская (Паўднёвая Афрыка)</value>
@@ -217,10 +217,10 @@
     <value>Літоўская</value>
   </data>
   <data name="LT_server" xml:space="preserve">
-    <value>LanguageTool Server</value>
+    <value>Сервер LanguageTool</value>
   </data>
   <data name="LT_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
+    <value>Настаўленні LanguageTool</value>
   </data>
   <data name="ml_IN" xml:space="preserve">
     <value>Малаяламская</value>
@@ -238,7 +238,7 @@
     <value>Партугальская (Бразілія)</value>
   </data>
   <data name="pt_PT" xml:space="preserve">
-    <value>Portuguese (Portugal)</value>
+    <value>Партугальская (Партугалія)</value>
   </data>
   <data name="ro_RO" xml:space="preserve">
     <value>Румынская</value>
@@ -253,10 +253,10 @@
     <value>Славенская</value>
   </data>
   <data name="spelling" xml:space="preserve">
-    <value>Spelling</value>
+    <value>Правапіс</value>
   </data>
   <data name="style" xml:space="preserve">
-    <value>Style</value>
+    <value>Стыль</value>
   </data>
   <data name="sv" xml:space="preserve">
     <value>Шведская</value>
@@ -268,7 +268,7 @@
     <value>Тагалог</value>
   </data>
   <data name="typography" xml:space="preserve">
-    <value>Typography</value>
+    <value>Тыпаграфікі</value>
   </data>
   <data name="uk_UA" xml:space="preserve">
     <value>Украінская</value>
@@ -277,42 +277,42 @@
     <value>Кітайская</value>
   </data>
   <data name="change" xml:space="preserve">
-    <value>Change</value>
+    <value>Змяніць</value>
   </data>
   <data name="check" xml:space="preserve">
-    <value>Check</value>
+    <value>Праверка</value>
   </data>
   <data name="ignore_all" xml:space="preserve">
     <value>Ігнараваць усе</value>
   </data>
   <data name="ignore_once" xml:space="preserve">
-    <value>Ignore Once</value>
+    <value>Ігнараваць</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Мова</value>
   </data>
   <data name="message" xml:space="preserve">
-    <value>Message</value>
+    <value>Паведамленне</value>
   </data>
   <data name="more_information" xml:space="preserve">
-    <value>More information</value>
+    <value>Больш падрабязна</value>
   </data>
   <data name="no_errors_found" xml:space="preserve">
-    <value>No errors were found.</value>
+    <value>Памылкі не знойдзеныя.</value>
   </data>
   <data name="ok" xml:space="preserve">
-    <value>OK</value>
+    <value>ОК</value>
   </data>
   <data name="proofreading_with_LanguageTool" xml:space="preserve">
-    <value>Proofreading with LanguageTool</value>
+    <value>Праверыць з дапамогай LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Налады</value>
   </data>
   <data name="suggestions" xml:space="preserve">
-    <value>Suggestions</value>
+    <value>Прапановы</value>
   </data>
   <data name="unable_to_connect_to_server" xml:space="preserve">
-    <value>Unable to connect to server</value>
+    <value>Няма сувязі з сэрвэрам</value>
   </data>
 </root>

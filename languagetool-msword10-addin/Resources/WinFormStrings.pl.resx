@@ -136,7 +136,7 @@
     <value>kataloński (Walencja)</value>
   </data>
   <data name="checking_options" xml:space="preserve">
-    <value>Checking Options</value>
+    <value>Opcje sprawdzania</value>
   </data>
   <data name="da_DK" xml:space="preserve">
     <value>duński</value>
@@ -145,19 +145,19 @@
     <value>niemiecki</value>
   </data>
   <data name="default_language" xml:space="preserve">
-    <value>Default Language</value>
+    <value>Język domyślny</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austrian)</value>
+    <value>niemiecki austriacki</value>
   </data>
   <data name="de_CH" xml:space="preserve">
-    <value>German (Swiss)</value>
+    <value>niemiecki szwajcarski</value>
   </data>
   <data name="de_DE" xml:space="preserve">
     <value>niemiecki (Niemcy)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>German (Easy German)</value>
+    <value>niemiecki uproszczony</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>grecki</value>
@@ -172,13 +172,13 @@
     <value>angielski (Kanada)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (British)</value>
+    <value>angielski brytyjski</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>angielski (Nowa Zelandia)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (American)</value>
+    <value>angielski amerykański</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>angielski (RPA)</value>
@@ -217,10 +217,10 @@
     <value>litewski</value>
   </data>
   <data name="LT_server" xml:space="preserve">
-    <value>LanguageTool Server</value>
+    <value>Serwer programu LanguageTool</value>
   </data>
   <data name="LT_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
+    <value>Ustawienia programu LanguageTool</value>
   </data>
   <data name="ml_IN" xml:space="preserve">
     <value>malayalam</value>
@@ -238,7 +238,7 @@
     <value>portugalski (Brazylia)</value>
   </data>
   <data name="pt_PT" xml:space="preserve">
-    <value>Portuguese (Portugal)</value>
+    <value>portugalski (Portugalia)</value>
   </data>
   <data name="ro_RO" xml:space="preserve">
     <value>rumuński</value>
@@ -253,10 +253,10 @@
     <value>słoweński</value>
   </data>
   <data name="spelling" xml:space="preserve">
-    <value>Spelling</value>
+    <value>Pisownia</value>
   </data>
   <data name="style" xml:space="preserve">
-    <value>Style</value>
+    <value>Styl</value>
   </data>
   <data name="sv" xml:space="preserve">
     <value>szwedzki</value>
@@ -268,7 +268,7 @@
     <value>tagalski</value>
   </data>
   <data name="typography" xml:space="preserve">
-    <value>Typography</value>
+    <value>Typografia</value>
   </data>
   <data name="uk_UA" xml:space="preserve">
     <value>ukraiński</value>
@@ -286,33 +286,33 @@
     <value>Ignoruj wszystkie</value>
   </data>
   <data name="ignore_once" xml:space="preserve">
-    <value>Ignore Once</value>
+    <value>Pomiń raz</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Język</value>
   </data>
   <data name="message" xml:space="preserve">
-    <value>Message</value>
+    <value>Komunikat</value>
   </data>
   <data name="more_information" xml:space="preserve">
-    <value>More information</value>
+    <value>Więcej informacji</value>
   </data>
   <data name="no_errors_found" xml:space="preserve">
-    <value>No errors were found.</value>
+    <value>Nie znaleziono błędów.</value>
   </data>
   <data name="ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="proofreading_with_LanguageTool" xml:space="preserve">
-    <value>Proofreading with LanguageTool</value>
+    <value>Korekta przy użyciu programu LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ustawienia</value>
   </data>
   <data name="suggestions" xml:space="preserve">
-    <value>Suggestions</value>
+    <value>Podpowiedzi</value>
   </data>
   <data name="unable_to_connect_to_server" xml:space="preserve">
-    <value>Unable to connect to server</value>
+    <value>Nie można nawiązać połączenia z serwerem</value>
   </data>
 </root>

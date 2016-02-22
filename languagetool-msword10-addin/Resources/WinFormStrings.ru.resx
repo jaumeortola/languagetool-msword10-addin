@@ -136,7 +136,7 @@
     <value>Каталанский (Валенсия)</value>
   </data>
   <data name="checking_options" xml:space="preserve">
-    <value>Checking Options</value>
+    <value>Параметры проверки</value>
   </data>
   <data name="da_DK" xml:space="preserve">
     <value>Датский</value>
@@ -145,10 +145,10 @@
     <value>Немецкий</value>
   </data>
   <data name="default_language" xml:space="preserve">
-    <value>Default Language</value>
+    <value>Язык по умолчанию</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austrian)</value>
+    <value>Немецкий (Австрия)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Немецкий (Швейцария)</value>
@@ -157,7 +157,7 @@
     <value>Немецкий (Германия)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>German (Easy German)</value>
+    <value>Немецкий (Простой немецкий)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Греческий</value>
@@ -172,13 +172,13 @@
     <value>Английский (Канада)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (British)</value>
+    <value>Английский (Великобритания)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Английский (Новая Зеландия)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (American)</value>
+    <value>Английский (США)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Английский (Южная Африка)</value>
@@ -217,10 +217,10 @@
     <value>Литовский</value>
   </data>
   <data name="LT_server" xml:space="preserve">
-    <value>LanguageTool Server</value>
+    <value>Сервер LanguageTool</value>
   </data>
   <data name="LT_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
+    <value>Настройки LanguageTool</value>
   </data>
   <data name="ml_IN" xml:space="preserve">
     <value>Малайский</value>
@@ -238,7 +238,7 @@
     <value>Португальский (Бразилия)</value>
   </data>
   <data name="pt_PT" xml:space="preserve">
-    <value>Portuguese (Portugal)</value>
+    <value>Португальский (Португалия)</value>
   </data>
   <data name="ro_RO" xml:space="preserve">
     <value>Румынский</value>
@@ -253,10 +253,10 @@
     <value>Словенский</value>
   </data>
   <data name="spelling" xml:space="preserve">
-    <value>Spelling</value>
+    <value>Правописание</value>
   </data>
   <data name="style" xml:space="preserve">
-    <value>Style</value>
+    <value>Стиль</value>
   </data>
   <data name="sv" xml:space="preserve">
     <value>Шведский</value>
@@ -268,7 +268,7 @@
     <value>Тагальский</value>
   </data>
   <data name="typography" xml:space="preserve">
-    <value>Typography</value>
+    <value>Типографика</value>
   </data>
   <data name="uk_UA" xml:space="preserve">
     <value>Украинский</value>
@@ -286,33 +286,33 @@
     <value>Игнорировать всё</value>
   </data>
   <data name="ignore_once" xml:space="preserve">
-    <value>Ignore Once</value>
+    <value>Игнорировать</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Язык</value>
   </data>
   <data name="message" xml:space="preserve">
-    <value>Message</value>
+    <value>Сообщение</value>
   </data>
   <data name="more_information" xml:space="preserve">
-    <value>More information</value>
+    <value>Подробнее</value>
   </data>
   <data name="no_errors_found" xml:space="preserve">
-    <value>No errors were found.</value>
+    <value>Ошибки не найдены.</value>
   </data>
   <data name="ok" xml:space="preserve">
-    <value>OK</value>
+    <value>ОК</value>
   </data>
   <data name="proofreading_with_LanguageTool" xml:space="preserve">
-    <value>Proofreading with LanguageTool</value>
+    <value>Проверка с помощью LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Настройки</value>
   </data>
   <data name="suggestions" xml:space="preserve">
-    <value>Suggestions</value>
+    <value>Предложения</value>
   </data>
   <data name="unable_to_connect_to_server" xml:space="preserve">
-    <value>Unable to connect to server</value>
+    <value>Невозможно подключиться к серверу</value>
   </data>
 </root>
