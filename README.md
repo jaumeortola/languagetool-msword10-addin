@@ -55,7 +55,9 @@ Aquesta implementació està en català i té opcions de configuració específi
 ### License
 * LGPL 2.1 or later.
 
+<img src="/msword-lt-addin-screenshot.jpg" width="400"/> 
 
 ---
 ![Generalitat de Catalunya](/languagetool-msword10-addin/Resources/suportGenCat.png "Generalitat de Catalunya")
+
 
