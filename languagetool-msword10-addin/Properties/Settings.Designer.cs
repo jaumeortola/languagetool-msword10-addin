@@ -25,7 +25,7 @@ namespace languagetool_msword10_addin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8081/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://languagetool.org:8081/")]
         public string LTServer {
             get {
                 return ((string)(this["LTServer"]));
@@ -122,7 +122,7 @@ namespace languagetool_msword10_addin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ca-ES")]
+        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
         public string DefaultLanguage {
             get {
                 return ((string)(this["DefaultLanguage"]));

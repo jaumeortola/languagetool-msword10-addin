@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="LTServer" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost:8081/</Value>
+      <Value Profile="(Default)">https://languagetool.org:8081/</Value>
     </Setting>
     <Setting Name="CatalanUserPreferences" Type="System.String" Scope="User">
       <Value Profile="(Default)">general</Value>
@@ -27,7 +27,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="DefaultLanguage" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ca-ES</Value>
+      <Value Profile="(Default)">en-US</Value>
     </Setting>
   </Settings>
 </SettingsFile>
