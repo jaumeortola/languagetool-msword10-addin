@@ -15,7 +15,7 @@ Aquesta implementació està en català i té opcions de configuració específi
 * S'ha provat en Microsoft Word 2003, 2007, 2010 i 2013 (Windows). 
 
 ### Com funciona
-* En el MS Word podeu trobar el grup de botons de LanguageTool group en el menú "Complements". Només hi ha dos botons: Revisa (per a començar la revisió des del paràgraf actual) i Opcions. 
+* En el MS Word podeu trobar el grup de botons de LanguageTool en el menú "Complements". Només hi ha dos botons: Revisa (per a començar la revisió des del paràgraf actual) i Opcions. 
 * El text s'envia al servidor de LanguageTool per paràgrafs on és analitzat. 
 * Els possibles errors i suggeriments es mostren en un quadre de diàleg. 
 
