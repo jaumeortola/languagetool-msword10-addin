@@ -56,7 +56,6 @@ namespace languagetool_msword10_addin
             // comboBoxLTServer
             // 
             this.comboBoxLTServer.BackColor = System.Drawing.Color.White;
-            this.comboBoxLTServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLTServer.FormattingEnabled = true;
             this.comboBoxLTServer.Location = new System.Drawing.Point(185, 32);
             this.comboBoxLTServer.Name = "comboBoxLTServer";
