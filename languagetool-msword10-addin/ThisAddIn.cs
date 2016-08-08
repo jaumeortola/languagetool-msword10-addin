@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using Word = Microsoft.Office.Interop.Word;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Resources;
 
 /*TODO:
     - map all language codes from MS Word to ISO codes
@@ -19,7 +17,7 @@ namespace languagetool_msword10_addin
         private readonly int maxSuggestions = 12;
 
         static public CheckingForm myCheckingForm = new CheckingForm();
-        static public List<Dictionary<string, string>> parsedResultsCurrentPara;
+        static public dynamic parsedResultsCurrentPara;
         static public int errorNumberCurrentPara;
         static public Word.Range rangeToCheck;
         static public int rangeToCheckStart;
@@ -57,14 +55,14 @@ namespace languagetool_msword10_addin
             }
             String textToCheck = rangeToCheck.Text.ToString();
             String results = getResultsFromServer(rangeToCheck.LanguageID.ToString(), textToCheck);
-            parsedResultsCurrentPara = ParseXMLResults(results);
+            parsedResultsCurrentPara = ParseJSONResults(results);
             accumulatedOffset = 0;
             errorNumberCurrentPara = 0;
         }
 
         public static void prepareDialog()
         {
-            while (parsedResultsCurrentPara == null || errorNumberCurrentPara >= parsedResultsCurrentPara.Count)
+            while (parsedResultsCurrentPara == null || errorNumberCurrentPara >= parsedResultsCurrentPara.Length)
             {
                 Word.Range newRange = rangeToCheck;
                 int desiredRangeStart = rangeToCheck.Paragraphs.Last.Range.End + 1;
@@ -79,17 +77,18 @@ namespace languagetool_msword10_addin
                 checkCurrentParagraph();
             }
 
-            Dictionary<string, string> myerror = parsedResultsCurrentPara[errorNumberCurrentPara];
+            dynamic myerror = parsedResultsCurrentPara[errorNumberCurrentPara];
 
-            errorOffset = int.Parse(myerror["offset"]);
+            errorOffset = myerror["offset"];
 
-            int beforeLength = int.Parse(myerror["contextoffset"]);
-            errorLength = int.Parse(myerror["errorlength"]);
-            int afterLength = myerror["context"].Length - errorLength - beforeLength;
+            int beforeLength = myerror["context"]["offset"];
+            errorLength = myerror["length"];
+            string contextStr = myerror["context"]["text"];
+            int afterLength = contextStr.Length - errorLength - beforeLength;
 
-            string beforeErrorStr = myerror["context"].Substring(0, beforeLength);
-            string errorStr = myerror["context"].Substring(beforeLength, errorLength);
-            string afterErrorStr = myerror["context"].Substring(beforeLength + errorLength, afterLength);
+            string beforeErrorStr = contextStr.Substring(0, beforeLength);
+            string errorStr = contextStr.Substring(beforeLength, errorLength);
+            string afterErrorStr = contextStr.Substring(beforeLength + errorLength, afterLength);
 
             contextLength = beforeLength + errorLength + afterLength;
             contextOffset = errorOffset - beforeLength;
@@ -112,7 +111,8 @@ namespace languagetool_msword10_addin
             myCheckingForm.suggestionsBox.Items.Clear();
 
             System.Drawing.Color myErrorColor = Color.Blue;
-            switch (myerror["locqualityissuetype"])
+            String myIssueType = myerror["rule"]["issueType"];
+            switch (myIssueType)
             {
                 case "misspelling":
                     myErrorColor = Color.Red;
@@ -134,11 +134,11 @@ namespace languagetool_msword10_addin
             myCheckingForm.contextTextBox.AppendText(afterErrorStr);
             updatedContext = false;
 
-            myCheckingForm.messageBox.Text = myerror["msg"];
-            if (myerror.ContainsKey("url") && myerror["url"].ToString().Length > 3)
+            myCheckingForm.messageBox.Text = myerror["message"];
+            if (myerror["rule"]["urls"] != null && myerror["rule"]["urls"][0]["value"].Length > 3)
             {
                 LinkLabel.Link link = new LinkLabel.Link();
-                link.LinkData = myerror["url"];
+                link.LinkData = myerror["rule"]["urls"][0]["value"];
                 myCheckingForm.moreinfoLinkLabel.Text = Resources.WinFormStrings.more_information;
                 myCheckingForm.moreinfoLinkLabel.Links.Add(0, 14, link);
             }
@@ -152,16 +152,16 @@ namespace languagetool_msword10_addin
             
             if (myerror["replacements"].Length > 0)
             {
-                string[] myReplacements = myerror["replacements"].Split('#');
                 int i = 0;
-                while (i < myReplacements.Length && i < Globals.ThisAddIn.maxSuggestions)
+                while (i < myerror["replacements"].Length && i < Globals.ThisAddIn.maxSuggestions)
                 {
-                    myCheckingForm.suggestionsBox.Items.Add(myReplacements[i]);
+                    myCheckingForm.suggestionsBox.Items.Add(myerror["replacements"][i]["value"]);
                     i++;
                 }
                 myCheckingForm.suggestionsBox.SetSelected(0, true);
                 myCheckingForm.changeSuggestion.Enabled = true;
-            } else
+            }
+            else
             {
                 myCheckingForm.changeSuggestion.Enabled = false;
             }
@@ -242,7 +242,7 @@ namespace languagetool_msword10_addin
         // End of Check with Dialog
 
 
-        private static List<Dictionary<string, string>> ParseXMLResults(String xmlString)
+        /*private static List<Dictionary<string, string>> ParseXMLResults(String xmlString)
         {
             if (string.IsNullOrWhiteSpace(xmlString))
                 return null;
@@ -259,6 +259,15 @@ namespace languagetool_msword10_addin
                 suggestions.Add(suggestion);
             }
             return suggestions;
+        }*/
+
+        private static dynamic ParseJSONResults(String jsonString)
+        {
+            if (string.IsNullOrWhiteSpace(jsonString))
+                return null;
+            dynamic json = System.Web.Helpers.Json.Decode(jsonString);
+            dynamic matches = json["matches"];
+            return matches;
         }
 
         private static string getLanguageCode(string langID)
@@ -376,9 +385,9 @@ namespace languagetool_msword10_addin
                 }
             }
             if (disabledRules.Length > 0)
-                urlParameters += "&disabled=" + disabledRules;
+                urlParameters += "&disabledRules=" + disabledRules;
             if (enabledRules.Length > 0)
-                urlParameters += "&enabled=" + enabledRules;
+                urlParameters += "&enabledRules=" + enabledRules;
             return urlParameters;
         }
         private static string getResultsFromServer(string langID, string textToCheck)
@@ -388,7 +397,7 @@ namespace languagetool_msword10_addin
             }
             correctionLanguageCode = getLanguageCode(langID);
             textToCheck = textToCheck.Replace("\u0002", "*"); //char used for footnote references 
-            string uriString = Properties.Settings.Default.LTServer + "?language=" + correctionLanguageCode
+            string uriString = Properties.Settings.Default.LTServer + "check?language=" + correctionLanguageCode
                 + "&text=" + WebUtility.UrlEncode(textToCheck) + getUrlParameters(langID);
             //uriString = uriString.Replace("%C2%A0", "+"); // replace non-breaking space. Why?
             uriString = uriString.Replace("%0B", "%A0"); // replace "vertical-tab". Why?

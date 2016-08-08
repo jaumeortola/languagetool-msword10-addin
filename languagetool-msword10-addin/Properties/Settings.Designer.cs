@@ -25,7 +25,7 @@ namespace languagetool_msword10_addin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://languagetool.org:8081/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://languagetool.org/api/v2/")]
         public string LTServer {
             get {
                 return ((string)(this["LTServer"]));
@@ -73,8 +73,8 @@ namespace languagetool_msword10_addin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8081/;https://languagetool.org:8081/;https://www.softcatala.org/" +
-            "languagetool/api/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8081/v2/;https://languagetool.org/api/v2/;https://www.softcatala" +
+            ".org/languagetool/api/v2/")]
         public string LTServerOptions {
             get {
                 return ((string)(this["LTServerOptions"]));
