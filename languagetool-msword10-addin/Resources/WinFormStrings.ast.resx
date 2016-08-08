@@ -136,7 +136,7 @@
     <value>Catalán (Valencianu)</value>
   </data>
   <data name="checking_options" xml:space="preserve">
-    <value>Checking Options</value>
+    <value>Opciones de comprobación</value>
   </data>
   <data name="da_DK" xml:space="preserve">
     <value>Danés</value>
@@ -145,19 +145,19 @@
     <value>Alemán</value>
   </data>
   <data name="default_language" xml:space="preserve">
-    <value>Default Language</value>
+    <value>Llingua por defeutu</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austrian)</value>
+    <value>Alemán (Austriacu)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
-    <value>German (Swiss)</value>
+    <value>Alemán (Suizu)</value>
   </data>
   <data name="de_DE" xml:space="preserve">
     <value>Alemán (Alemaña)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>German (Easy German)</value>
+    <value>Alemán (Alemán fácil)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Griegu</value>
@@ -166,22 +166,22 @@
     <value>Inglés</value>
   </data>
   <data name="en_AU" xml:space="preserve">
-    <value>Inglés australianu</value>
+    <value>Inglés (Australianu)</value>
   </data>
   <data name="en_CA" xml:space="preserve">
-    <value>Inglés canadianu</value>
+    <value>Inglés (Canadianu)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (British)</value>
+    <value>Inglés (Británicu)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Inglés (Nueva Zelanda)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (American)</value>
+    <value>Inglés (Americanu)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
-    <value>Inglés sudafricanu</value>
+    <value>Inglés (Sudafricanu)</value>
   </data>
   <data name="eo" xml:space="preserve">
     <value>Esperantu</value>
@@ -217,10 +217,10 @@
     <value>Lituanu</value>
   </data>
   <data name="LT_server" xml:space="preserve">
-    <value>LanguageTool Server</value>
+    <value>Sirvidor de LanguageTool</value>
   </data>
   <data name="LT_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
+    <value>Configuración de LanguageTool</value>
   </data>
   <data name="ml_IN" xml:space="preserve">
     <value>Malayu</value>
@@ -238,7 +238,7 @@
     <value>Portugués (Brasil)</value>
   </data>
   <data name="pt_PT" xml:space="preserve">
-    <value>Portuguese (Portugal)</value>
+    <value>Portugués (Portugal)</value>
   </data>
   <data name="ro_RO" xml:space="preserve">
     <value>Rumanu</value>
@@ -253,10 +253,10 @@
     <value>Eslovenu</value>
   </data>
   <data name="spelling" xml:space="preserve">
-    <value>Spelling</value>
+    <value>Ortografía</value>
   </data>
   <data name="style" xml:space="preserve">
-    <value>Style</value>
+    <value>Estilu</value>
   </data>
   <data name="sv" xml:space="preserve">
     <value>Suecu</value>
@@ -268,7 +268,7 @@
     <value>Tagalog</value>
   </data>
   <data name="typography" xml:space="preserve">
-    <value>Typography</value>
+    <value>Tipografía</value>
   </data>
   <data name="uk_UA" xml:space="preserve">
     <value>Ucraín</value>
@@ -286,33 +286,33 @@
     <value>Inorar too</value>
   </data>
   <data name="ignore_once" xml:space="preserve">
-    <value>Ignore Once</value>
+    <value>Inorar una vegada</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Llingua</value>
   </data>
   <data name="message" xml:space="preserve">
-    <value>Message</value>
+    <value>Mensaxe</value>
   </data>
   <data name="more_information" xml:space="preserve">
-    <value>More information</value>
+    <value>Más información</value>
   </data>
   <data name="no_errors_found" xml:space="preserve">
-    <value>No errors were found.</value>
+    <value>Nun s&apos;atoparon fallos.</value>
   </data>
   <data name="ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Aceutar</value>
   </data>
   <data name="proofreading_with_LanguageTool" xml:space="preserve">
-    <value>Proofreading with LanguageTool</value>
+    <value>Correxir con LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Configuración</value>
   </data>
   <data name="suggestions" xml:space="preserve">
-    <value>Suggestions</value>
+    <value>Suxerencies</value>
   </data>
   <data name="unable_to_connect_to_server" xml:space="preserve">
-    <value>Unable to connect to server</value>
+    <value>Nun se pue coneutar col sirvidor</value>
   </data>
 </root>

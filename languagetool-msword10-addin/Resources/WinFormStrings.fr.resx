@@ -145,10 +145,10 @@
     <value>Allemand</value>
   </data>
   <data name="default_language" xml:space="preserve">
-    <value>Default Language</value>
+    <value>Langue par Défaut</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austrian)</value>
+    <value>Allemand (Autrichien)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Allemand (Suisse)</value>
@@ -172,13 +172,13 @@
     <value>Anglais (Canadien)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (British)</value>
+    <value>Anglais (Britannique)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Anglais (Néo-zélandais)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (American)</value>
+    <value>Anglais (Américain)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Anglais (Sud-africain)</value>
@@ -217,10 +217,10 @@
     <value>Lituanien</value>
   </data>
   <data name="LT_server" xml:space="preserve">
-    <value>LanguageTool Server</value>
+    <value>Serveur LanguageTool</value>
   </data>
   <data name="LT_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
+    <value>Options de LanguageTool</value>
   </data>
   <data name="ml_IN" xml:space="preserve">
     <value>Malayalam</value>
@@ -238,7 +238,7 @@
     <value>Portuguais (Brésil)</value>
   </data>
   <data name="pt_PT" xml:space="preserve">
-    <value>Portuguese (Portugal)</value>
+    <value>Portuguais (Portugal)</value>
   </data>
   <data name="ro_RO" xml:space="preserve">
     <value>Roumain</value>
@@ -253,7 +253,7 @@
     <value>Slovène</value>
   </data>
   <data name="spelling" xml:space="preserve">
-    <value>Spelling</value>
+    <value>Orthographe</value>
   </data>
   <data name="style" xml:space="preserve">
     <value>Style</value>
@@ -268,7 +268,7 @@
     <value>Tagalog</value>
   </data>
   <data name="typography" xml:space="preserve">
-    <value>Typography</value>
+    <value>Typographie</value>
   </data>
   <data name="uk_UA" xml:space="preserve">
     <value>Ukrainien</value>
@@ -295,10 +295,10 @@
     <value>Message</value>
   </data>
   <data name="more_information" xml:space="preserve">
-    <value>More information</value>
+    <value>Plus d&apos;informations</value>
   </data>
   <data name="no_errors_found" xml:space="preserve">
-    <value>No errors were found.</value>
+    <value>Aucune erreur trouvée.</value>
   </data>
   <data name="ok" xml:space="preserve">
     <value>OK</value>
@@ -307,12 +307,12 @@
     <value>Proofreading with LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Options</value>
   </data>
   <data name="suggestions" xml:space="preserve">
     <value>Suggestions</value>
   </data>
   <data name="unable_to_connect_to_server" xml:space="preserve">
-    <value>Unable to connect to server</value>
+    <value>Impossible de se connecter au serveur</value>
   </data>
 </root>

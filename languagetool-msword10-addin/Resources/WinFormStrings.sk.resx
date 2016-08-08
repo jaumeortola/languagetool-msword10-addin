@@ -145,10 +145,10 @@
     <value>Nemecky</value>
   </data>
   <data name="default_language" xml:space="preserve">
-    <value>Default Language</value>
+    <value>Prednastavený jazyk</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austrian)</value>
+    <value>Nemecky (Rakúsko)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Nemecky (Švajčiarsko)</value>
@@ -157,7 +157,7 @@
     <value>Nemecky (Nemecko)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>German (Easy German)</value>
+    <value>Nemecky (jednoduchá nemčina)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Grécky</value>
@@ -172,13 +172,13 @@
     <value>Anglicky (Kanada)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (British)</value>
+    <value>Anglicky (Veľká Británia)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Anglicky (Nový Zéland)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (American)</value>
+    <value>Anglicky (USA)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Anglicky (Južná Afrika)</value>
@@ -220,7 +220,7 @@
     <value>LanguageTool Server</value>
   </data>
   <data name="LT_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
+    <value>LanguageTool nastavenia</value>
   </data>
   <data name="ml_IN" xml:space="preserve">
     <value>Malajzijsky</value>
@@ -238,7 +238,7 @@
     <value>Portugalsky (Brazília)</value>
   </data>
   <data name="pt_PT" xml:space="preserve">
-    <value>Portuguese (Portugal)</value>
+    <value>Portugalsky (Portugalsko)</value>
   </data>
   <data name="ro_RO" xml:space="preserve">
     <value>Rumunsky</value>
@@ -253,10 +253,10 @@
     <value>Slovinsky</value>
   </data>
   <data name="spelling" xml:space="preserve">
-    <value>Spelling</value>
+    <value>Preklepy</value>
   </data>
   <data name="style" xml:space="preserve">
-    <value>Style</value>
+    <value>Štýl</value>
   </data>
   <data name="sv" xml:space="preserve">
     <value>Švédsky</value>
@@ -268,7 +268,7 @@
     <value>Tagalog</value>
   </data>
   <data name="typography" xml:space="preserve">
-    <value>Typography</value>
+    <value>Typografia</value>
   </data>
   <data name="uk_UA" xml:space="preserve">
     <value>Ukrajinsky</value>
@@ -277,7 +277,7 @@
     <value>Čínsky</value>
   </data>
   <data name="change" xml:space="preserve">
-    <value>Change</value>
+    <value>Zmeniť</value>
   </data>
   <data name="check" xml:space="preserve">
     <value>Kontrola</value>
@@ -286,19 +286,19 @@
     <value>Ignorovať všetko</value>
   </data>
   <data name="ignore_once" xml:space="preserve">
-    <value>Ignore Once</value>
+    <value>Ignorovať raz</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Jazyk</value>
   </data>
   <data name="message" xml:space="preserve">
-    <value>Message</value>
+    <value>Správa</value>
   </data>
   <data name="more_information" xml:space="preserve">
-    <value>More information</value>
+    <value>Viac informácií</value>
   </data>
   <data name="no_errors_found" xml:space="preserve">
-    <value>No errors were found.</value>
+    <value>Neboli nájdené chyby.</value>
   </data>
   <data name="ok" xml:space="preserve">
     <value>OK</value>
@@ -307,10 +307,10 @@
     <value>Proofreading with LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Nastavenia</value>
   </data>
   <data name="suggestions" xml:space="preserve">
-    <value>Suggestions</value>
+    <value>Návrhy</value>
   </data>
   <data name="unable_to_connect_to_server" xml:space="preserve">
     <value>Unable to connect to server</value>

@@ -136,7 +136,7 @@
     <value>Katalonų (valensų)</value>
   </data>
   <data name="checking_options" xml:space="preserve">
-    <value>Checking Options</value>
+    <value>Tikrinimo parametrai</value>
   </data>
   <data name="da_DK" xml:space="preserve">
     <value>Danų</value>
@@ -145,10 +145,10 @@
     <value>Vokiečių</value>
   </data>
   <data name="default_language" xml:space="preserve">
-    <value>Default Language</value>
+    <value>Numatytoji kalba</value>
   </data>
   <data name="de_AT" xml:space="preserve">
-    <value>German (Austrian)</value>
+    <value>Vokiečių (austrų)</value>
   </data>
   <data name="de_CH" xml:space="preserve">
     <value>Vokiečių (šveicarų)</value>
@@ -157,7 +157,7 @@
     <value>Vokiečių (Vokietija)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>German (Easy German)</value>
+    <value>Vokiečių (paprastoji)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Graikų</value>
@@ -172,13 +172,13 @@
     <value>Anglų (kanadiečių)</value>
   </data>
   <data name="en_GB" xml:space="preserve">
-    <value>English (British)</value>
+    <value>Anglų (britų)</value>
   </data>
   <data name="en_NZ" xml:space="preserve">
     <value>Anglų (Naujoji Zelandija)</value>
   </data>
   <data name="en_US" xml:space="preserve">
-    <value>English (American)</value>
+    <value>Anglų (amerikiečių)</value>
   </data>
   <data name="en_ZA" xml:space="preserve">
     <value>Anglų (Pietų Afrikos Respublika)</value>
@@ -190,7 +190,7 @@
     <value>Ispanų</value>
   </data>
   <data name="fa" xml:space="preserve">
-    <value>Persian</value>
+    <value>Persų</value>
   </data>
   <data name="fr" xml:space="preserve">
     <value>Prancūzų</value>
@@ -217,10 +217,10 @@
     <value>Lietuvių</value>
   </data>
   <data name="LT_server" xml:space="preserve">
-    <value>LanguageTool Server</value>
+    <value>LanguageTool serveris</value>
   </data>
   <data name="LT_settings" xml:space="preserve">
-    <value>LanguageTool Settings</value>
+    <value>LanguageTool nustatymai</value>
   </data>
   <data name="ml_IN" xml:space="preserve">
     <value>Malajalamų</value>
@@ -253,7 +253,7 @@
     <value>Slovėnų</value>
   </data>
   <data name="spelling" xml:space="preserve">
-    <value>Spelling</value>
+    <value>Rašyba</value>
   </data>
   <data name="style" xml:space="preserve">
     <value>Style</value>
@@ -262,7 +262,7 @@
     <value>Švedų</value>
   </data>
   <data name="ta_IN" xml:space="preserve">
-    <value>Tamil</value>
+    <value>Tamilų</value>
   </data>
   <data name="tl_PH" xml:space="preserve">
     <value>Tagalų</value>
@@ -286,7 +286,7 @@
     <value>Nepaisyti visur</value>
   </data>
   <data name="ignore_once" xml:space="preserve">
-    <value>Ignore Once</value>
+    <value>Nepaisyti vieną kartą</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Kalba</value>
@@ -295,24 +295,24 @@
     <value>Message</value>
   </data>
   <data name="more_information" xml:space="preserve">
-    <value>More information</value>
+    <value>Daugiau informacijos</value>
   </data>
   <data name="no_errors_found" xml:space="preserve">
-    <value>No errors were found.</value>
+    <value>Klaidų nerasta.</value>
   </data>
   <data name="ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Gerai</value>
   </data>
   <data name="proofreading_with_LanguageTool" xml:space="preserve">
     <value>Proofreading with LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Nustatymai</value>
   </data>
   <data name="suggestions" xml:space="preserve">
-    <value>Suggestions</value>
+    <value>Pasiūlymai</value>
   </data>
   <data name="unable_to_connect_to_server" xml:space="preserve">
-    <value>Unable to connect to server</value>
+    <value>Nepavyksta prisijungti prie serverio</value>
   </data>
 </root>
