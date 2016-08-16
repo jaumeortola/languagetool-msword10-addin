@@ -22,6 +22,7 @@ Aquesta implementació està en català i té opcions de configuració específi
 ### Limitacions
 * Els errors no són subratllats o ressaltats en el text a mesura que s'escriu. Aquesta funció és desitjable, però amb la tecnologia usada en aquest projecte no es pot implementar sense causar efectes no volguts en el funcionament del MS Word.
 * En comptes de triar un dels suggeriments oferts en el quadre de diàleg, es pot editar directament el fragment de text on hi ha l'error. En alguns casos això pot afectar la formatació del text.
+* La correcció pot no funcionar bé si es fa servir la funció de control de canvis del MS Word, fins i tot si els canvis són ocults. 
 
 ### Llicència
 * LGPL 2.1 o posterior.
@@ -50,6 +51,7 @@ Aquesta implementació està en català i té opcions de configuració específi
 ### Limitations
 * The errors are not underlined or highlighted in the text. This is a desirable feature, but it is too difficult to implement, with the technology used here, without causing unwanted effects on the operation of MS Word. 
 * Instead of choosing one the suggestions shown in the dialog box, you can edit the piece of text where the error is found. In some cases, this replacement can affect the text format.
+* The programm can fail if you use the "tracking changes" function in MS Word, even if the tracked changes are hidden. 
 
 
 ### License
