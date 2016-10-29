@@ -398,7 +398,8 @@ namespace languagetool_msword10_addin
             correctionLanguageCode = getLanguageCode(langID);
             textToCheck = textToCheck.Replace("\u0002", "*"); //char used for footnote references 
             string uriString = Properties.Settings.Default.LTServer + "check?language=" + correctionLanguageCode
-                + "&text=" + WebUtility.UrlEncode(textToCheck) + getUrlParameters(langID);
+                + "&text=" + WebUtility.UrlEncode(textToCheck) + getUrlParameters(langID)
+                + "&useragent=msword";
             //uriString = uriString.Replace("%C2%A0", "+"); // replace non-breaking space. Why?
             uriString = uriString.Replace("%0B", "%A0"); // replace "vertical-tab". Why?
             Uri uri = new Uri(uriString); //TODO set a limit of length
