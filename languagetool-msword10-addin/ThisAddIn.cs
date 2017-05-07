@@ -15,6 +15,8 @@ namespace languagetool_msword10_addin
     public partial class ThisAddIn
     {
         private readonly int maxSuggestions = 12;
+        private static int httpErrorCount = 0;
+        private const int httpErrorLimit = 5;
 
         static public CheckingForm myCheckingForm = new CheckingForm();
         static public dynamic parsedResultsCurrentPara;
@@ -64,6 +66,10 @@ namespace languagetool_msword10_addin
         {
             while (parsedResultsCurrentPara == null || errorNumberCurrentPara >= parsedResultsCurrentPara.Length)
             {
+                if (httpErrorCount >= httpErrorLimit)
+                {
+                    break;
+                }
                 Word.Range newRange = rangeToCheck;
                 int desiredRangeStart = rangeToCheck.Paragraphs.Last.Range.End + 1;
                 newRange.Start = desiredRangeStart;
@@ -75,6 +81,12 @@ namespace languagetool_msword10_addin
                 }
                 newRange.Select();
                 checkCurrentParagraph();
+            }
+
+            if (httpErrorCount >= httpErrorLimit)
+            {
+                myCheckingForm.finalize();
+                return;
             }
 
             dynamic myerror = parsedResultsCurrentPara[errorNumberCurrentPara];
@@ -418,6 +430,8 @@ namespace languagetool_msword10_addin
                     // Read the whole contents and return as a string  
                     result = reader.ReadToEnd();
                 }
+                // reset error count
+                httpErrorCount = 0;
                 return result;
             }
             catch //(Exception e)
@@ -427,6 +441,7 @@ namespace languagetool_msword10_addin
                     /*+ " URL: " + uri.ToString()
                     + " RESULT: " + result
                     + " EXCEPTION: " + e.ToString()*/);
+                httpErrorCount++;
             }
             return "";
         }
