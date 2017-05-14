@@ -127,7 +127,7 @@
     <value>Brezhoneg</value>
   </data>
   <data name="cancel" xml:space="preserve">
-    <value>Nulañ</value>
+    <value>Nullañ</value>
   </data>
   <data name="ca_ES" xml:space="preserve">
     <value>Katalaneg</value>
@@ -268,7 +268,7 @@
     <value>Tagalog</value>
   </data>
   <data name="typography" xml:space="preserve">
-    <value>Lizherennerezh</value>
+    <value>Tipografiezh</value>
   </data>
   <data name="uk_UA" xml:space="preserve">
     <value>Ukraineg</value>

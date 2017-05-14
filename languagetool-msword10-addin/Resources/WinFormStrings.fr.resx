@@ -136,7 +136,7 @@
     <value>Catalan (Valencien)</value>
   </data>
   <data name="checking_options" xml:space="preserve">
-    <value>Checking Options</value>
+    <value>Options de vérification</value>
   </data>
   <data name="da_DK" xml:space="preserve">
     <value>Danois</value>
@@ -157,7 +157,7 @@
     <value>Allemand (Allemagne)</value>
   </data>
   <data name="de_DE_x_simple_language" xml:space="preserve">
-    <value>German (Easy German)</value>
+    <value>Allemand (allemand simple)</value>
   </data>
   <data name="el_GR" xml:space="preserve">
     <value>Grec</value>
@@ -286,7 +286,7 @@
     <value>Ignorer tout</value>
   </data>
   <data name="ignore_once" xml:space="preserve">
-    <value>Ignore Once</value>
+    <value>Ignorer une fois</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Langue</value>
@@ -304,7 +304,7 @@
     <value>OK</value>
   </data>
   <data name="proofreading_with_LanguageTool" xml:space="preserve">
-    <value>Proofreading with LanguageTool</value>
+    <value>Relecture avec LanguageTool</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Options</value>
