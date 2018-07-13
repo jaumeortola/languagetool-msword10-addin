@@ -34,7 +34,7 @@
     <PublishUrl>C:\Users\Jaume\Documents\MSWord-LanguageTool-Addin\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.22</ApplicationVersion>
+    <ApplicationVersion>1.0.0.23</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -317,10 +317,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>certificat.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>02BF24F2AFC091CF0174B7EB272BC2F82E4714C8</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>3109CFD48B069CBDBB1AF2FFFD4E1ECA6A6BF44A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
