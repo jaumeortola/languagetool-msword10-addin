@@ -8,6 +8,7 @@ Aquesta implementació està en català i té opcions de configuració específi
 ### Instal·lació
 * Descarregueu [Languagetool](https://www.languagetool.org) (versió com a programa independent) i executeu-lo en [mode servidor](http://wiki.languagetool.org/http-server) (port per defecte: 8081). Alternativament, podeu usar alguna API pública de LanguageTool com languagetool.org o softcatala.org.
 * Baixeu [l'última versió](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) del complement, descomprimiu i instal·leu.
+* El nom del servidor (en Opcions) ha de ser semblant a `http://localhost:8081/v2/` (servidor local) o `https://languagetool.org/api/v2/` (servidor públic). No esobrreu la barra final.
 * En alguns casos, cal reiniciar l'ordinador. 
 
 ### Requisits
@@ -37,7 +38,9 @@ Aquesta implementació està en català i té opcions de configuració específi
 ### Installation
 * Download [LanguageTool](https://www.languagetool.org) (desktop version) and run it in [server mode](http://wiki.languagetool.org/http-server) (port by default: 8081). Alternatively, you can use some public LanguageTool API (for instance in languagetool.org or softcatala.org), but this is discouraged specially if you work with long documents.
 * Download [the latest version](https://github.com/jaumeortola/languagetool-msword10-addin/releases/latest) of the add-in, unzip and install.
+* The server name (in Options) should be like `http://localhost:8081/v2/` (local server) or `https://languagetool.org/api/v2/` (public server). Don't remove the trailing slash.
 * In some cases you may need to reboot the computer.
+
 
 ### Requirements
 * Microsoft .Net 4.5.2. If it is not installed, you can download it [here](https://www.microsoft.com/en-us/download/details.aspx?id=42643). It does not work in versions prior to Windows Vista SP2.
