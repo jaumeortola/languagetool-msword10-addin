@@ -418,6 +418,7 @@ namespace languagetool_msword10_addin
             string result = "";
             try
             {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 // Create the web request  
                 System.Net.HttpWebRequest request = System.Net.WebRequest.Create(uri) 
                     as System.Net.HttpWebRequest;
